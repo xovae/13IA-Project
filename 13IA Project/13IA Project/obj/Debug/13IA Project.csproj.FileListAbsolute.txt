@@ -3,9 +3,12 @@ J:\Github\13IA-Project\13IA Project\13IA Project\bin\Debug\13IA Project.exe
 J:\Github\13IA-Project\13IA Project\13IA Project\bin\Debug\13IA Project.pdb
 J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.AssemblyReference.cache
 J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.SuggestedBindingRedirects.cache
-J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\_13IA_Project.Form1.resources
 J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\_13IA_Project.Properties.Resources.resources
 J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.GenerateResource.cache
 J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.CoreCompileInputs.cache
 J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.exe
 J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.pdb
+J:\Github\13IA-Project\13IA Project\13IA Project\bin\Debug\FontAwesome.Sharp.dll
+J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.CopyComplete
+J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\_13IA_Project.frmMenu.resources
+J:\Github\13IA-Project\13IA Project\13IA Project\obj\Debug\_13IA_Project.frmQuestions.resources

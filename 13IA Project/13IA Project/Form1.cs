@@ -10,13 +10,14 @@ using System.Windows.Forms;
 
 namespace _13IA_Project
 {
-    public partial class Form1 : Form
+    public partial class frmMenu : Form
     {
         public bool buttonClick = true;
 
-        public Form1()
+        public frmMenu()
         {
             InitializeComponent();
+            lblUsername.Text = Environment.UserName;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -44,6 +45,11 @@ namespace _13IA_Project
                 button1.Enabled = true;
                 lblToolTip.Show();
             }
+        }
+
+        private void frmMenu_Resize(object sender, EventArgs e)
+        {
+
         }
     }
 }
