@@ -16,6 +16,7 @@ namespace _13IA_Project
         {
             InitializeComponent();
             Icon = Properties.Resources.hbhs_icon;
+            lblUsername.Text = Environment.UserName;
         }
     }
 }

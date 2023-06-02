@@ -35,8 +35,8 @@
             this.toolTipPress = new System.Windows.Forms.ToolTip(this.components);
             this.pnlSidebar = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblUsername = new System.Windows.Forms.Label();
             this.lblCourse = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +90,15 @@
             this.panel1.Size = new System.Drawing.Size(670, 100);
             this.panel1.TabIndex = 4;
             // 
+            // lblCourse
+            // 
+            this.lblCourse.AutoSize = true;
+            this.lblCourse.Location = new System.Drawing.Point(318, 23);
+            this.lblCourse.Name = "lblCourse";
+            this.lblCourse.Size = new System.Drawing.Size(35, 13);
+            this.lblCourse.TabIndex = 1;
+            this.lblCourse.Text = "label2";
+            // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
@@ -99,15 +108,6 @@
             this.lblUsername.Size = new System.Drawing.Size(65, 13);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "lblUsername";
-            // 
-            // lblCourse
-            // 
-            this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(318, 23);
-            this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(35, 13);
-            this.lblCourse.TabIndex = 1;
-            this.lblCourse.Text = "label2";
             // 
             // frmMenu
             // 

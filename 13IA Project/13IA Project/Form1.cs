@@ -17,6 +17,7 @@ namespace _13IA_Project
         public frmMenu()
         {
             InitializeComponent();
+            Icon = Properties.Resources.hbhs_icon;
             lblUsername.Text = Environment.UserName;
         }
 
