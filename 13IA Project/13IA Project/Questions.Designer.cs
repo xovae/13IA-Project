@@ -30,6 +30,7 @@
         {
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblUsername = new System.Windows.Forms.Label();
+            this.pnlQuestions = new System.Windows.Forms.Panel();
             this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,14 +53,25 @@
             this.lblUsername.TabIndex = 1;
             this.lblUsername.Text = "lblUsername";
             // 
+            // pnlQuestions
+            // 
+            this.pnlQuestions.AutoScroll = true;
+            this.pnlQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlQuestions.Location = new System.Drawing.Point(0, 37);
+            this.pnlQuestions.Name = "pnlQuestions";
+            this.pnlQuestions.Size = new System.Drawing.Size(800, 413);
+            this.pnlQuestions.TabIndex = 2;
+            // 
             // frmQuestions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pnlQuestions);
             this.Controls.Add(this.pnlHeader);
             this.Name = "frmQuestions";
             this.Text = "Questions";
+            this.Load += new System.EventHandler(this.frmQuestions_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.ResumeLayout(false);
@@ -69,5 +81,6 @@
         #endregion
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Panel pnlQuestions;
     }
 }
