@@ -16,6 +16,8 @@ namespace _13IA_Project
     {
         public string filePath;
 
+        List<Multichoice> multichoiceList = new List<Multichoice>();
+
         public frmQuestions(string path)
         {
             InitializeComponent();
@@ -27,7 +29,6 @@ namespace _13IA_Project
         private void frmQuestions_Load(object sender, EventArgs e)
         {
             string[] current;
-            int i = 0;
             StreamReader sr = new StreamReader(filePath);
 
             while (!sr.EndOfStream)
@@ -35,43 +36,97 @@ namespace _13IA_Project
                 current = sr.ReadLine().Split(',');
                 if (current[0] == "Multichoice")
                 {
-                    CreateMultichoicePanel(current);
+                    multichoiceList.Add(new Multichoice(current[1], current[2], current[3], current[4], current[5], current[6]));
                 }
                 //else if (current[0] == "SelectAll")
                 //{
 
                 //}
-                i++;
+            }
+            foreach (var item in multichoiceList)
+            {
+                pnlQuestions.Controls.Add(item.panel);
             }
         }
 
-        private void CreateMultichoicePanel(string[] info)
+        private void frmQuestions_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Panel panel = new Panel();
-            panel.AutoSize = true;
 
-            Label question = new Label();
-            question.Text = info[1];
-            panel.Controls.Add(question);
-
-            RadioButton option1 = new RadioButton();
-            option1.Text = info[2];
-            panel.Controls.Add(option1);
-
-            RadioButton option2 = new RadioButton();
-            option2.Text = info[3];
-            panel.Controls.Add(option2);
-
-            RadioButton option3 = new RadioButton();
-            option3.Text = info[4];
-            panel.Controls.Add(option3);
-
-            RadioButton option4 = new RadioButton();
-            option4.Text = info[5];
-            panel.Controls.Add(option4);
-
-            panel.Update();
-            pnlQuestions.Controls.Add(panel);
         }
     }
+
+    class Multichoice
+    {
+        public Panel panel = new Panel();
+        public Label question = new Label();
+        public RadioButton option1 = new RadioButton();
+        public RadioButton option2 = new RadioButton();
+        public RadioButton option3 = new RadioButton();
+        public RadioButton option4 = new RadioButton();
+        public string answer;
+
+        public Multichoice(string questionText, string option1Text, string option2Text, string option3Text, string option4Text, string answerText)
+        {
+            question.Text = questionText;
+            panel.Controls.Add(question);
+            option1.Text = option1Text;
+            panel.Controls.Add(option1);
+            option2.Text = option2Text;
+            panel.Controls.Add(option2);
+            option3.Text = option3Text;
+            panel.Controls.Add(option3);
+            option4.Text = option4Text;
+            panel.Controls.Add(option4);
+            answer = answerText;
+            panel.AutoSize = true;
+        }
+    }
+
+    //class SelectAll : Multichoice
+    //{
+    //    public CheckBox option5 = new CheckBox();
+    //    public CheckBox option6 = new CheckBox();
+    //    public CheckBox option7 = new CheckBox();
+    //    public CheckBox option8 = new CheckBox();
+
+    //    public SelectAll(string questionText, string option1Text, string option2Text, string option3Text, string option4Text, string answerText)
+    //    {
+    //        question.Text = questionText;
+    //        panel.Controls.Add(question);
+    //        option1.Text= option1Text;
+    //        panel.Controls.Add(option1);
+    //        option2.Text= option2Text;
+    //        panel.Controls.Add(option2);
+    //        option3.Text= option3Text;
+    //        panel.Controls.Add(option3);
+    //        option4.Text= option4Text;
+    //        panel.Controls.Add(option4);
+    //        answer = answerText;
+    //        panel.AutoSize = true;
+    //    }
+        
+    //    public SelectAll(string questionText, string option1Text, string option2Text, string option3Text, string option4Text, string option5Text, string option6Text, string option7Text, string option8Text, string answerText)
+    //    {
+    //        question.Text = questionText;
+    //        panel.Controls.Add(question);
+    //        option1.Text= option1Text;
+    //        panel.Controls.Add(option1);
+    //        option2.Text= option2Text;
+    //        panel.Controls.Add(option2);
+    //        option3.Text= option3Text;
+    //        panel.Controls.Add(option3);
+    //        option4.Text= option4Text;
+    //        panel.Controls.Add(option4);
+    //        option5.Text= option5Text;
+    //        panel.Controls.Add(option5);
+    //        option6.Text= option6Text;
+    //        panel.Controls.Add(option6);
+    //        option7.Text= option7Text;
+    //        panel.Controls.Add(option7);
+    //        option8.Text= option8Text;
+    //        panel.Controls.Add(option8);
+    //        answer = answerText;
+    //        panel.AutoSize = true;
+    //    }
+    //}
 }

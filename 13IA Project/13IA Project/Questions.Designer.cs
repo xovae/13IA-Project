@@ -71,6 +71,7 @@
             this.Controls.Add(this.pnlHeader);
             this.Name = "frmQuestions";
             this.Text = "Questions";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmQuestions_FormClosed);
             this.Load += new System.EventHandler(this.frmQuestions_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();

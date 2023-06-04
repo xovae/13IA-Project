@@ -77,8 +77,8 @@ namespace _13IA_Project
             if (selectedQuiz != null)
             {
                 frmQuestions quiz = new frmQuestions(selectedQuiz);
-                quiz.ShowDialog();
-                Close();
+                quiz.Show();
+                Hide();
             }
             else
             {
