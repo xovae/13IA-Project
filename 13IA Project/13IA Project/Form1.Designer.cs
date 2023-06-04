@@ -34,10 +34,12 @@
             this.lblToolTip = new System.Windows.Forms.Label();
             this.toolTipPress = new System.Windows.Forms.ToolTip(this.components);
             this.pnlSidebar = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblCourse = new System.Windows.Forms.Label();
+            this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblUsername = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.lstQuizzes = new System.Windows.Forms.ListBox();
+            this.btnStart = new FontAwesome.Sharp.IconButton();
+            this.lblHint = new System.Windows.Forms.Label();
+            this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -80,24 +82,14 @@
             this.pnlSidebar.Size = new System.Drawing.Size(130, 450);
             this.pnlSidebar.TabIndex = 3;
             // 
-            // panel1
+            // pnlHeader
             // 
-            this.panel1.Controls.Add(this.lblCourse);
-            this.panel1.Controls.Add(this.lblUsername);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(130, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(670, 100);
-            this.panel1.TabIndex = 4;
-            // 
-            // lblCourse
-            // 
-            this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(318, 23);
-            this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(35, 13);
-            this.lblCourse.TabIndex = 1;
-            this.lblCourse.Text = "label2";
+            this.pnlHeader.Controls.Add(this.lblUsername);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(130, 0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(670, 100);
+            this.pnlHeader.TabIndex = 4;
             // 
             // lblUsername
             // 
@@ -109,22 +101,56 @@
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "lblUsername";
             // 
+            // lstQuizzes
+            // 
+            this.lstQuizzes.FormattingEnabled = true;
+            this.lstQuizzes.Location = new System.Drawing.Point(188, 130);
+            this.lstQuizzes.Name = "lstQuizzes";
+            this.lstQuizzes.Size = new System.Drawing.Size(479, 199);
+            this.lstQuizzes.TabIndex = 5;
+            this.lstQuizzes.SelectedIndexChanged += new System.EventHandler(this.lstQuizzes_SelectedIndexChanged);
+            // 
+            // btnStart
+            // 
+            this.btnStart.IconChar = FontAwesome.Sharp.IconChar.Play;
+            this.btnStart.IconColor = System.Drawing.Color.Black;
+            this.btnStart.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnStart.IconSize = 15;
+            this.btnStart.Location = new System.Drawing.Point(406, 335);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(77, 22);
+            this.btnStart.TabIndex = 6;
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // lblHint
+            // 
+            this.lblHint.AutoSize = true;
+            this.lblHint.Location = new System.Drawing.Point(489, 340);
+            this.lblHint.Name = "lblHint";
+            this.lblHint.Size = new System.Drawing.Size(71, 13);
+            this.lblHint.TabIndex = 7;
+            this.lblHint.Text = "Select a quiz!";
+            this.lblHint.Visible = false;
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lblHint);
+            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.lstQuizzes);
+            this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.lblToolTip);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "frmMenu";
-            this.Text = "Form1";
+            this.Text = "Menu";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.frmMenu_Resize);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlHeader.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,9 +163,11 @@
         private System.Windows.Forms.Label lblToolTip;
         private System.Windows.Forms.ToolTip toolTipPress;
         private System.Windows.Forms.Panel pnlSidebar;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label lblCourse;
+        private System.Windows.Forms.ListBox lstQuizzes;
+        private FontAwesome.Sharp.IconButton btnStart;
+        private System.Windows.Forms.Label lblHint;
     }
 }
 
