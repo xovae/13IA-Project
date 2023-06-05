@@ -14,6 +14,12 @@ namespace _13IA_Project
 {
     public partial class frmMenu : Form
     {
+        private static frmMenu instance;
+        public static frmMenu GetInstance() 
+        {
+            return instance;
+        }
+
         public bool buttonClick = true;
 
         const string INTERNALPATH = "..\\..\\..\\..\\Quiz Resources";
@@ -25,13 +31,13 @@ namespace _13IA_Project
         public frmMenu()
         {
             InitializeComponent();
+            instance = this;
             Icon = Resources.hbhs_icon;
             lblUsername.Text = Environment.UserName;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             button1.Enabled = false;
             lblToolTip.Hide();
 

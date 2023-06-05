@@ -56,6 +56,7 @@
             // pnlQuestions
             // 
             this.pnlQuestions.AutoScroll = true;
+            this.pnlQuestions.AutoSize = true;
             this.pnlQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlQuestions.Location = new System.Drawing.Point(0, 37);
             this.pnlQuestions.Name = "pnlQuestions";
@@ -76,6 +77,7 @@
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
