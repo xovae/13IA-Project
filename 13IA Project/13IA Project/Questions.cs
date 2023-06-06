@@ -17,7 +17,9 @@ namespace _13IA_Project
     {
         public string filePath;
 
-        List<Multichoice> multichoiceList = new List<Multichoice>();
+        const int PADDING = 50;
+
+        List<MultiChoice> multichoiceList = new List<MultiChoice>();
 
         public frmQuestions(string path)
         {
@@ -25,6 +27,7 @@ namespace _13IA_Project
             Icon = Properties.Resources.hbhs_icon;
             lblUsername.Text = Environment.UserName;
             filePath = path;
+            pnlQuestions.Width = Width;
         }
 
         private void frmQuestions_Load(object sender, EventArgs e)
@@ -39,7 +42,7 @@ namespace _13IA_Project
                 current = sr.ReadLine().Split(',');
                 if (current[0] == "Multichoice")
                 {
-                    multichoiceList.Add(new Multichoice(current[2], current[3], current[4], current[5], current[6]));
+                    multichoiceList.Add(new MultiChoice(current[1], current[2], current[3], current[4], current[5], current[6]));
                 }
                 //else if (current[0] == "SelectAll")
                 //{
@@ -49,8 +52,9 @@ namespace _13IA_Project
             foreach (var item in multichoiceList)
             {
                 pnlQuestions.Controls.Add(item.panel);
+                distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
                 item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
-                distanceFromTop += 500 - item.panel.Height;
+                distanceFromTop += item.panel.Height + PADDING;
             }
         }
 
@@ -58,41 +62,51 @@ namespace _13IA_Project
         {
             frmMenu.GetInstance().Show();
         }
-    }
 
-    class Multichoice
-    {
-        public Panel panel = new Panel();
-        public Label question = new Label();
-        public string answer;
-
-        public RadioButton option1 = new RadioButton();
-        public RadioButton option2 = new RadioButton();
-        public RadioButton option3 = new RadioButton();
-        public RadioButton option4 = new RadioButton();
-        
-        public Multichoice(string questionText, string correctAnswerText, string falseAnswer1, string falseAnswer2, string falseAnswer3)
+        private void frmQuestions_Resize(object sender, EventArgs e)
         {
-            answer = correctAnswerText;
-            panel.AutoSize = true;
-            panel.BorderStyle = BorderStyle.Fixed3D;
-            option1.AutoSize = true;
-            option2.AutoSize = true;
-            option3.AutoSize = true;
-            option4.AutoSize = true;
-
-            question.Text = questionText;
-            panel.Controls.Add(question);
-            option1.Text = correctAnswerText;
-            panel.Controls.Add(option1);
-            option2.Text = falseAnswer1;            //RANDOMLY SHUFFLE WHERE THE ANSWER IS 
-            panel.Controls.Add(option2);
-            option3.Text = falseAnswer2;
-            panel.Controls.Add(option3);
-            option4.Text = falseAnswer3;
-            panel.Controls.Add(option4);
+            pnlQuestions.Width = Width;
+            foreach (var item in multichoiceList)
+            {
+                int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
+                item.panel.Left = distanceFromLeft;
+            }
         }
     }
+
+    //class Multichoice
+    //{
+    //    public Panel panel = new Panel();
+    //    public Label question = new Label();
+    //    public string answer;
+
+    //    public RadioButton option1 = new RadioButton();
+    //    public RadioButton option2 = new RadioButton();
+    //    public RadioButton option3 = new RadioButton();
+    //    public RadioButton option4 = new RadioButton();
+        
+    //    public Multichoice(string questionText, string correctAnswerText, string falseAnswer1, string falseAnswer2, string falseAnswer3)
+    //    {
+    //        answer = correctAnswerText;
+    //        panel.AutoSize = true;
+    //        panel.BorderStyle = BorderStyle.Fixed3D;
+    //        option1.AutoSize = true;
+    //        option2.AutoSize = true;
+    //        option3.AutoSize = true;
+    //        option4.AutoSize = true;
+
+    //        question.Text = questionText;
+    //        panel.Controls.Add(question);
+    //        option1.Text = correctAnswerText;
+    //        panel.Controls.Add(option1);
+    //        option2.Text = falseAnswer1;            //RANDOMLY SHUFFLE WHERE THE ANSWER IS 
+    //        panel.Controls.Add(option2);
+    //        option3.Text = falseAnswer2;
+    //        panel.Controls.Add(option3);
+    //        option4.Text = falseAnswer3;
+    //        panel.Controls.Add(option4);
+    //    }
+    //}
 
     //class MultiSelect : Multichoice
     //{

@@ -56,7 +56,6 @@
             // pnlQuestions
             // 
             this.pnlQuestions.AutoScroll = true;
-            this.pnlQuestions.AutoSize = true;
             this.pnlQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlQuestions.Location = new System.Drawing.Point(0, 37);
             this.pnlQuestions.Name = "pnlQuestions";
@@ -74,10 +73,10 @@
             this.Text = "Questions";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmQuestions_FormClosed);
             this.Load += new System.EventHandler(this.frmQuestions_Load);
+            this.Resize += new System.EventHandler(this.frmQuestions_Resize);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
