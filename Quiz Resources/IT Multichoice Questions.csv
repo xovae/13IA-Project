@@ -1,11 +1,11 @@
-Type,Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer
-Multichoice,What is the "brain" of a PC?,Motherboard,CPU (Central Processing Unit),Monitor,GPU (Graphics Processing Unit),CPU (Central Processing Unit)
-Multichoice,What does a "firewall" do?,Protects a device from threats,Make the device run better,Lights the PC on fire in emergencies,Recover lost data,Protects a device from threats
-Multichoice,Which of the following are an 'input device'?,Printer,Speaker,Mouse,Monitor,Mouse
-Multichoice,Which of the following are an 'output device'?,Keyboard,Harddrive,Scanner,Printer,Printer
-Multichoice,Which does "URL" stand for?,Universal Resource Locator,United Resource Language,Uniform Retrieval Link,Unique Research Library,Universal Resource Locator
-Multichoice,Which of these programming languages are used for building websites?,Java,C++,HTML,Python,HTML
-Multichoice,Which of these is an example of cloud storage?,USB,External Harddrive,Google Drive,DVD,Google Drive
-Multichoice,What does 'phishing' mean?,A type of computer virus,A hacking technique,An online scam used to steal sensitive information,A programming language,An online scam used to steal sensitive information
-Multichoice,Which of these programs are an example of spreadsheet software?,Microsoft Word,Google Docs,Microsoft Excel,Chrome,Microsoft Excel
-Multichoice,What does "HTML" stand for?,Hyper Text Markup Language,Hyperlinks and Text Messaging Language,High Tech Multimedia Library,Highly Technical Markup Language,Hyper Text Markup Language
+Type,Topic,Question,correctAnswer,falseAnswer1,falseAnswer2,falseAnswer3
+Multichoice,Hardware,What is the "brain" of a PC?,Motherboard,CPU (Central Processing Unit),Monitor,GPU (Graphics Processing Unit)
+Multichoice,Software,What does a "firewall" do?,Protects a device from threats,Make the device run better,Lights the PC on fire in emergencies,Recover lost data
+Multichoice,Hardware,Which of the following are an 'input device'?,Printer,Speaker,Mouse,Monitor
+Multichoice,Hardware,Which of the following are an 'output device'?,Keyboard,Harddrive,Scanner,Printer
+Multichoice,Software,Which does "URL" stand for?,Universal Resource Locator,United Resource Language,Uniform Retrieval Link,Unique Research Library
+Multichoice,HTML,Which of these programming languages are used for building websites?,Java,C++,HTML,Python
+Multichoice,Software,Which of these is an example of cloud storage?,USB,External Harddrive,Google Drive,DVD
+Multichoice,Software,What does 'phishing' mean?,A type of computer virus,A hacking technique,An online scam used to steal sensitive information,A programming language
+Multichoice,Software,Which of these programs are an example of spreadsheet software?,Microsoft Word,Google Docs,Microsoft Excel,Chrome
+Multichoice,HTML,What does "HTML" stand for?,Hyper Text Markup Language,Hyperlinks and Text Messaging Language,High Tech Multimedia Library,Highly Technical Markup Language

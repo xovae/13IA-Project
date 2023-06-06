@@ -26,3 +26,17 @@ K:\2023 13IA\13IA Project\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA 
 K:\2023 13IA\13IA Project\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.CopyComplete
 K:\2023 13IA\13IA Project\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.exe
 K:\2023 13IA\13IA Project\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.pdb
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\bin\Debug\13IA Project.exe.config
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\bin\Debug\13IA Project.exe
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\bin\Debug\13IA Project.pdb
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.AssemblyReference.cache
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.SuggestedBindingRedirects.cache
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\_13IA_Project.frmMenu.resources
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\_13IA_Project.Properties.Resources.resources
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\_13IA_Project.frmQuestions.resources
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.GenerateResource.cache
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.CoreCompileInputs.cache
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.csproj.CopyComplete
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.exe
+C:\Users\jamie\Downloads\13IA-Project\13IA Project\13IA Project\obj\Debug\13IA Project.pdb
