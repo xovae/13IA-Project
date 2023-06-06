@@ -31,11 +31,13 @@
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblUsername = new System.Windows.Forms.Label();
             this.pnlQuestions = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
             // 
+            this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Controls.Add(this.lblUsername);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
@@ -62,6 +64,16 @@
             this.pnlQuestions.Size = new System.Drawing.Size(800, 413);
             this.pnlQuestions.TabIndex = 2;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(37, 13);
+            this.lblTitle.TabIndex = 2;
+            this.lblTitle.Text = "lblTitle";
+            // 
             // frmQuestions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -73,7 +85,7 @@
             this.Text = "Questions";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmQuestions_FormClosed);
             this.Load += new System.EventHandler(this.frmQuestions_Load);
-            this.Resize += new System.EventHandler(this.frmQuestions_Resize);
+            this.SizeChanged += new System.EventHandler(this.frmQuestions_SizeChanged);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.ResumeLayout(false);
@@ -84,5 +96,6 @@
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Panel pnlQuestions;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

@@ -16,17 +16,20 @@ namespace _13IA_Project
     public partial class frmQuestions : Form
     {
         public string filePath;
+        public string quizName;
 
         const int PADDING = 50;
+        const int PANEL_WIDTH = 100;
 
         List<MultiChoice> multichoiceList = new List<MultiChoice>();
 
-        public frmQuestions(string path)
+        public frmQuestions(string path, string name)
         {
             InitializeComponent();
             Icon = Properties.Resources.hbhs_icon;
             lblUsername.Text = Environment.UserName;
             filePath = path;
+            lblTitle.Text = name;
             pnlQuestions.Width = Width;
         }
 
@@ -52,6 +55,9 @@ namespace _13IA_Project
             foreach (var item in multichoiceList)
             {
                 pnlQuestions.Controls.Add(item.panel);
+                item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+                item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
+
                 distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
                 item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
                 distanceFromTop += item.panel.Height + PADDING;
@@ -63,11 +69,13 @@ namespace _13IA_Project
             frmMenu.GetInstance().Show();
         }
 
-        private void frmQuestions_Resize(object sender, EventArgs e)
+        private void frmQuestions_SizeChanged(object sender, EventArgs e)
         {
             pnlQuestions.Width = Width;
             foreach (var item in multichoiceList)
             {
+                item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+                item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
                 int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
                 item.panel.Left = distanceFromLeft;
             }

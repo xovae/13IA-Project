@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace _13IA_Project
         public string questionText;
         public string questionTopic;        //possible simplify, remove the string questionText and just read from questionLabel.Text as needed
         public string answerText;
+        public const int PADDING = 10;
         public Panel panel = new Panel();
         public Label questionLabel = new Label();
 
@@ -21,6 +23,7 @@ namespace _13IA_Project
             panel.AutoSize = true;
             panel.BorderStyle = BorderStyle.Fixed3D;
             questionLabel.AutoSize = true;
+            questionLabel.Font = new Font(questionLabel.Font.FontFamily, 10, FontStyle.Bold);
             panel.Controls.Add(questionLabel);
 
             this.questionText = questionText;
@@ -35,14 +38,14 @@ namespace _13IA_Project
         public RadioButton radioButton1;
         public RadioButton radioButton2;
 
-        public TrueFalse(string questionTopic, string questionText, string correctAnswer, string falseAnswer1) : base(questionTopic, questionText, correctAnswer)
+        public TrueFalse(string questionTopic, string questionText, string answer, string option1) : base(questionTopic, questionText, answer)
         {
-            radioButton1.Text = correctAnswer; 
+            radioButton1.Text = answer; 
             panel.Controls.Add(radioButton1);
 
-            radioButton2.Text = falseAnswer1;
+            radioButton2.Text = option1;
             panel.Controls.Add(radioButton2);
-            radioButton2.Top = radioButton1.Height + 10;
+            radioButton2.Top = radioButton1.Height + PADDING;
         }
     }
 
@@ -53,23 +56,31 @@ namespace _13IA_Project
         public RadioButton radioButton3 = new RadioButton();
         public RadioButton radioButton4 = new RadioButton();
 
-        public MultiChoice(string questionTopic, string questionText, string correctAnswer, string falseAnswer1, string falseAnswer2, string falseAnswer3) : base(questionTopic, questionText, correctAnswer)
+        public MultiChoice(string questionTopic, string questionText, string answer, string option1, string option2, string option3) : base(questionTopic, questionText, answer)
         {
-            radioButton1.Text = correctAnswer;
+            radioButton1.AutoSize = true;
+            radioButton1.Text = answer;
             panel.Controls.Add(radioButton1);
-            radioButton1.Top = questionLabel.Height + 10;
+            radioButton1.Top = questionLabel.Height + PADDING;
+            radioButton1.Left = PADDING / 2;
 
-            radioButton2.Text = falseAnswer1;
+            radioButton2.AutoSize = true;
+            radioButton2.Text = option1;
             panel.Controls.Add(radioButton2);
-            radioButton2.Top = radioButton1.Bottom + 10;
+            radioButton2.Top = radioButton1.Bottom + PADDING;
+            radioButton2.Left = PADDING / 2;
 
-            radioButton3.Text = falseAnswer2;
+            radioButton3.AutoSize = true;
+            radioButton3.Text = option2;
             panel.Controls.Add(radioButton3);
-            radioButton3.Top = radioButton2.Bottom + 10;
+            radioButton3.Top = radioButton2.Bottom + PADDING;
+            radioButton3.Left = PADDING / 2;
 
-            radioButton4.Text = falseAnswer3;
+            radioButton4.AutoSize = true;
+            radioButton4.Text = option3;
             panel.Controls.Add(radioButton4);
-            radioButton4.Top = radioButton3.Bottom + 10;
+            radioButton4.Top = radioButton3.Bottom + PADDING;
+            radioButton4.Left = PADDING / 2;
         }
     }
 
@@ -86,26 +97,26 @@ namespace _13IA_Project
         public CheckBox checkBox7;
         public CheckBox checkBox8;
 
-        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string answer1, string answer2, string answer3, string answer4) : base(questionTopic, questionText, answer1)
+        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string input1, string input2, string input3, string input4) : base(questionTopic, questionText, input1)
         {
             this.numberOfCorrect = numberOfCorrect;
-            checkBox1.Text = answer1;
-            checkBox2.Text = answer2;
-            checkBox3.Text = answer3;
-            checkBox4.Text = answer4;
+            checkBox1.Text = input1;
+            checkBox2.Text = input2;
+            checkBox3.Text = input3;
+            checkBox4.Text = input4;
         }
 
-        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string answer1, string answer2, string answer3, string answer4, string answer5, string answer6, string answer7, string answer8) : base(questionTopic, questionText, answer1)
+        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string input1, string input2, string input3, string input4, string input5, string input6, string input7, string input8) : base(questionTopic, questionText, input1)
         {
             this.numberOfCorrect = numberOfCorrect;
-            checkBox1.Text = answer1;
-            checkBox2.Text = answer2;
-            checkBox3.Text = answer3;
-            checkBox4.Text = answer4;
-            checkBox5.Text = answer5;
-            checkBox6.Text = answer6;
-            checkBox7.Text = answer7;
-            checkBox8.Text = answer8;
+            checkBox1.Text = input1;
+            checkBox2.Text = input2;
+            checkBox3.Text = input3;
+            checkBox4.Text = input4;
+            checkBox5.Text = input5;
+            checkBox6.Text = input6;
+            checkBox7.Text = input7;
+            checkBox8.Text = input8;
         }
     }
 }

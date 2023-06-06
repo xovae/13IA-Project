@@ -67,7 +67,7 @@
     <Compile Include="Questions.Designer.cs">
       <DependentUpon>Questions.cs</DependentUpon>
     </Compile>
-    <Compile Include="questionsTemplate.cs" />
+    <Compile Include="QuestionsTemplate.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

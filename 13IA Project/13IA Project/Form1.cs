@@ -25,6 +25,7 @@ namespace _13IA_Project
         const string INTERNALPATH = "..\\..\\..\\..\\Quiz Resources";
 
         public string selectedQuiz;
+        public string selectedQuizName;
         public string[] quizPaths;
         public string[] quizNames;
 
@@ -38,6 +39,8 @@ namespace _13IA_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            pnlBody.Width = Width;
+            pnlHeader.Width = Width;
             button1.Enabled = false;
             lblToolTip.Hide();
 
@@ -47,6 +50,8 @@ namespace _13IA_Project
             {
                 lstQuizzes.Items.Add(item);
             }
+
+            lstQuizzes.Left = (pnlBody.Width - lstQuizzes.Width) / 2;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -75,6 +80,7 @@ namespace _13IA_Project
             if (lstQuizzes.SelectedIndex != -1)
             {
                 selectedQuiz = quizPaths[lstQuizzes.SelectedIndex];
+                selectedQuizName = lstQuizzes.SelectedItem.ToString();
             }
         }
 
@@ -82,7 +88,7 @@ namespace _13IA_Project
         {
             if (selectedQuiz != null)
             {
-                frmQuestions quiz = new frmQuestions(selectedQuiz);
+                frmQuestions quiz = new frmQuestions(selectedQuiz, selectedQuizName);
                 quiz.Show();
                 Hide();
             }
@@ -90,6 +96,16 @@ namespace _13IA_Project
             {
                 lblHint.Show();
             }
+        }
+
+        private void frmMenu_SizeChanged(object sender, EventArgs e)
+        {
+            lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2;
+            lblTitle.Top = (pnlHeader.Height - lblTitle.Height) / 2;
+
+            lstQuizzes.Left = (pnlBody.Width - lstQuizzes.Width) / 2;
+            btnStart.Left = (pnlBody.Width - btnStart.Width) / 2;
+            lblToolTip.Left = (pnlBody.Width - lblToolTip.Width) / 2;
         }
     }
 }
