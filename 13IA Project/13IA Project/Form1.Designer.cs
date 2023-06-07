@@ -30,51 +30,90 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolTipPress = new System.Windows.Forms.ToolTip(this.components);
+            this.lblToolTip = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
-            this.lblUsername = new System.Windows.Forms.Label();
+            this.pctLogo = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.pnlBody = new System.Windows.Forms.Panel();
             this.lblHint = new System.Windows.Forms.Label();
             this.btnStart = new FontAwesome.Sharp.IconButton();
             this.lstQuizzes = new System.Windows.Forms.ListBox();
-            this.lblToolTip = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
             this.pnlBody.SuspendLayout();
             this.SuspendLayout();
             // 
+            // lblToolTip
+            // 
+            this.lblToolTip.AutoSize = true;
+            this.lblToolTip.Location = new System.Drawing.Point(149, 240);
+            this.lblToolTip.Name = "lblToolTip";
+            this.lblToolTip.Size = new System.Drawing.Size(120, 13);
+            this.lblToolTip.TabIndex = 10;
+            this.lblToolTip.Text = "what\'s happening here?";
+            this.toolTipPress.SetToolTip(this.lblToolTip, "this button is disabled!");
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(106, 277);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Reenable Button";
+            this.toolTipPress.SetToolTip(this.button1, "this is a button!");
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // pnlHeader
             // 
+            this.pnlHeader.BackColor = System.Drawing.Color.Transparent;
+            this.pnlHeader.Controls.Add(this.pctLogo);
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Controls.Add(this.lblUsername);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(800, 100);
+            this.pnlHeader.Size = new System.Drawing.Size(741, 59);
             this.pnlHeader.TabIndex = 4;
+            // 
+            // pctLogo
+            // 
+            this.pctLogo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pctLogo.Location = new System.Drawing.Point(0, 0);
+            this.pctLogo.Name = "pctLogo";
+            this.pctLogo.Size = new System.Drawing.Size(225, 59);
+            this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pctLogo.TabIndex = 2;
+            this.pctLogo.TabStop = false;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitle.Location = new System.Drawing.Point(317, 18);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(166, 25);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "HBHS Quizzes";
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblUsername.Location = new System.Drawing.Point(735, 0);
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(632, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(65, 13);
+            this.lblUsername.Size = new System.Drawing.Size(109, 20);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "lblUsername";
             // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(362, 42);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(77, 13);
-            this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "HBHS Quizzes";
-            // 
             // pnlBody
             // 
+            this.pnlBody.BackColor = System.Drawing.Color.Transparent;
             this.pnlBody.Controls.Add(this.lblHint);
             this.pnlBody.Controls.Add(this.btnStart);
             this.pnlBody.Controls.Add(this.lstQuizzes);
@@ -82,15 +121,15 @@
             this.pnlBody.Controls.Add(this.button1);
             this.pnlBody.Controls.Add(this.label1);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBody.Location = new System.Drawing.Point(0, 100);
+            this.pnlBody.Location = new System.Drawing.Point(0, 59);
             this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(800, 350);
+            this.pnlBody.Size = new System.Drawing.Size(741, 318);
             this.pnlBody.TabIndex = 0;
             // 
             // lblHint
             // 
             this.lblHint.AutoSize = true;
-            this.lblHint.Location = new System.Drawing.Point(462, 237);
+            this.lblHint.Location = new System.Drawing.Point(412, 237);
             this.lblHint.Name = "lblHint";
             this.lblHint.Size = new System.Drawing.Size(71, 13);
             this.lblHint.TabIndex = 13;
@@ -103,7 +142,7 @@
             this.btnStart.IconColor = System.Drawing.Color.Black;
             this.btnStart.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnStart.IconSize = 15;
-            this.btnStart.Location = new System.Drawing.Point(379, 232);
+            this.btnStart.Location = new System.Drawing.Point(332, 232);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(77, 22);
             this.btnStart.TabIndex = 12;
@@ -113,38 +152,18 @@
             // lstQuizzes
             // 
             this.lstQuizzes.FormattingEnabled = true;
-            this.lstQuizzes.Location = new System.Drawing.Point(161, 27);
+            this.lstQuizzes.Location = new System.Drawing.Point(131, 27);
             this.lstQuizzes.Name = "lstQuizzes";
             this.lstQuizzes.Size = new System.Drawing.Size(479, 199);
             this.lstQuizzes.TabIndex = 11;
             this.lstQuizzes.SelectedIndexChanged += new System.EventHandler(this.lstQuizzes_SelectedIndexChanged);
-            // 
-            // lblToolTip
-            // 
-            this.lblToolTip.AutoSize = true;
-            this.lblToolTip.Location = new System.Drawing.Point(634, 272);
-            this.lblToolTip.Name = "lblToolTip";
-            this.lblToolTip.Size = new System.Drawing.Size(120, 13);
-            this.lblToolTip.TabIndex = 10;
-            this.lblToolTip.Text = "what\'s happening here?";
-            this.toolTipPress.SetToolTip(this.lblToolTip, "this button is disabled!");
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(591, 309);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Reenable Button";
-            this.toolTipPress.SetToolTip(this.button1, "this is a button!");
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.lstQuizzes.DoubleClick += new System.EventHandler(this.btnStart_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Aquamarine;
-            this.label1.Location = new System.Drawing.Point(576, 272);
+            this.label1.Location = new System.Drawing.Point(91, 240);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 8;
@@ -155,15 +174,20 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(741, 377);
             this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlHeader);
+            this.DoubleBuffered = true;
+            this.MinimumSize = new System.Drawing.Size(750, 410);
             this.Name = "frmMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.frmMenu_SizeChanged);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
             this.pnlBody.ResumeLayout(false);
             this.pnlBody.PerformLayout();
             this.ResumeLayout(false);
@@ -179,6 +203,7 @@
         private System.Windows.Forms.Label lblHint;
         private FontAwesome.Sharp.IconButton btnStart;
         private System.Windows.Forms.ListBox lstQuizzes;
+        private System.Windows.Forms.PictureBox pctLogo;
         private System.Windows.Forms.Label lblToolTip;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;

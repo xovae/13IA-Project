@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.pnlQuestions = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,43 +45,49 @@
             this.pnlHeader.Size = new System.Drawing.Size(800, 37);
             this.pnlHeader.TabIndex = 1;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(359, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(83, 25);
+            this.lblTitle.TabIndex = 2;
+            this.lblTitle.Text = "lblTitle";
+            // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblUsername.Location = new System.Drawing.Point(735, 0);
+            this.lblUsername.Location = new System.Drawing.Point(730, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(65, 13);
+            this.lblUsername.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
+            this.lblUsername.Size = new System.Drawing.Size(70, 18);
             this.lblUsername.TabIndex = 1;
             this.lblUsername.Text = "lblUsername";
             // 
             // pnlQuestions
             // 
             this.pnlQuestions.AutoScroll = true;
+            this.pnlQuestions.AutoSize = true;
             this.pnlQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlQuestions.Location = new System.Drawing.Point(0, 37);
+            this.pnlQuestions.Margin = new System.Windows.Forms.Padding(3, 3, 3, 50);
             this.pnlQuestions.Name = "pnlQuestions";
-            this.pnlQuestions.Size = new System.Drawing.Size(800, 413);
+            this.pnlQuestions.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.pnlQuestions.Size = new System.Drawing.Size(800, 424);
             this.pnlQuestions.TabIndex = 2;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(37, 13);
-            this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "lblTitle";
             // 
             // frmQuestions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 461);
             this.Controls.Add(this.pnlQuestions);
             this.Controls.Add(this.pnlHeader);
+            this.MinimumSize = new System.Drawing.Size(650, 500);
             this.Name = "frmQuestions";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Questions";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmQuestions_FormClosed);
             this.Load += new System.EventHandler(this.frmQuestions_Load);
@@ -89,6 +95,7 @@
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

@@ -102,13 +102,16 @@
     <None Include="Resources\hbhs icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\hbhs background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\hbhs logo + text.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hbhs logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hbhs background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hbhs background.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

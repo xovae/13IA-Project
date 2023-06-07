@@ -34,6 +34,7 @@ namespace _13IA_Project
             InitializeComponent();
             instance = this;
             Icon = Resources.hbhs_icon;
+            pctLogo.Image = Resources.hbhs_logo___text;
             lblUsername.Text = Environment.UserName;
         }
 
