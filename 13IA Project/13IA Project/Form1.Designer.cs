@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolTipPress = new System.Windows.Forms.ToolTip(this.components);
-            this.lblToolTip = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pctLogo = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -40,32 +38,10 @@
             this.lblHint = new System.Windows.Forms.Label();
             this.btnStart = new FontAwesome.Sharp.IconButton();
             this.lstQuizzes = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
             this.pnlBody.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblToolTip
-            // 
-            this.lblToolTip.AutoSize = true;
-            this.lblToolTip.Location = new System.Drawing.Point(149, 240);
-            this.lblToolTip.Name = "lblToolTip";
-            this.lblToolTip.Size = new System.Drawing.Size(120, 13);
-            this.lblToolTip.TabIndex = 10;
-            this.lblToolTip.Text = "what\'s happening here?";
-            this.toolTipPress.SetToolTip(this.lblToolTip, "this button is disabled!");
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(106, 277);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Reenable Button";
-            this.toolTipPress.SetToolTip(this.button1, "this is a button!");
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pnlHeader
             // 
@@ -94,7 +70,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTitle.Location = new System.Drawing.Point(317, 18);
+            this.lblTitle.Location = new System.Drawing.Point(287, 18);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(166, 25);
             this.lblTitle.TabIndex = 1;
@@ -117,9 +93,6 @@
             this.pnlBody.Controls.Add(this.lblHint);
             this.pnlBody.Controls.Add(this.btnStart);
             this.pnlBody.Controls.Add(this.lstQuizzes);
-            this.pnlBody.Controls.Add(this.lblToolTip);
-            this.pnlBody.Controls.Add(this.button1);
-            this.pnlBody.Controls.Add(this.label1);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBody.Location = new System.Drawing.Point(0, 59);
             this.pnlBody.Name = "pnlBody";
@@ -128,6 +101,7 @@
             // 
             // lblHint
             // 
+            this.lblHint.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblHint.AutoSize = true;
             this.lblHint.Location = new System.Drawing.Point(412, 237);
             this.lblHint.Name = "lblHint";
@@ -138,6 +112,7 @@
             // 
             // btnStart
             // 
+            this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnStart.IconChar = FontAwesome.Sharp.IconChar.Play;
             this.btnStart.IconColor = System.Drawing.Color.Black;
             this.btnStart.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -151,6 +126,10 @@
             // 
             // lstQuizzes
             // 
+            this.lstQuizzes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstQuizzes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstQuizzes.FormattingEnabled = true;
             this.lstQuizzes.Location = new System.Drawing.Point(131, 27);
             this.lstQuizzes.Name = "lstQuizzes";
@@ -158,17 +137,6 @@
             this.lstQuizzes.TabIndex = 11;
             this.lstQuizzes.SelectedIndexChanged += new System.EventHandler(this.lstQuizzes_SelectedIndexChanged);
             this.lstQuizzes.DoubleClick += new System.EventHandler(this.btnStart_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Aquamarine;
-            this.label1.Location = new System.Drawing.Point(91, 240);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Button!";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // frmMenu
             // 
@@ -179,12 +147,13 @@
             this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlHeader);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(750, 410);
             this.Name = "frmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.SizeChanged += new System.EventHandler(this.frmMenu_SizeChanged);
+            this.Load += new System.EventHandler(this.frmMenu_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
@@ -204,9 +173,6 @@
         private FontAwesome.Sharp.IconButton btnStart;
         private System.Windows.Forms.ListBox lstQuizzes;
         private System.Windows.Forms.PictureBox pctLogo;
-        private System.Windows.Forms.Label lblToolTip;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
     }
 }
 

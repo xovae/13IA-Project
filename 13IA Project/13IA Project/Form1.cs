@@ -20,14 +20,20 @@ namespace _13IA_Project
             return instance;
         }
 
-        public bool buttonClick = true;
-
         const string INTERNALPATH = "..\\..\\..\\..\\Quiz Resources";
 
         public string selectedQuiz;
         public string selectedQuizName;
         public string[] quizPaths;
         public string[] quizNames;
+
+        //public const float LIST_HEIGHT = 199 / 416 * 100;
+        //public const float LIST_WIDTH = 479 / 757 * 100;
+        //public const int BUTTON_PADDING = 6;
+
+        //Font SmallFont = new Font("Microsoft Sans Serif", 8);
+        //Font MediumFont = new Font("Microsoft Sans Serif", 12);
+        //Font LargeFont = new Font("Microsoft Sans Serif", 14);
 
         public frmMenu()
         {
@@ -38,41 +44,13 @@ namespace _13IA_Project
             lblUsername.Text = Environment.UserName;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void frmMenu_Load(object sender, EventArgs e)
         {
-            pnlBody.Width = Width;
-            pnlHeader.Width = Width;
-            button1.Enabled = false;
-            lblToolTip.Hide();
-
             quizPaths = Directory.GetFiles(INTERNALPATH, "*.csv", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALPATH, "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
             foreach (var item in quizNames)
             {
                 lstQuizzes.Items.Add(item);
-            }
-
-            lstQuizzes.Left = (pnlBody.Width - lstQuizzes.Width) / 2;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            button1.Enabled = false;
-            buttonClick = true;
-            label1.Text = "Button!";
-            label1.BackColor = Color.Aquamarine;
-            lblToolTip.Hide();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            if (buttonClick == true)
-            {
-                label1.Text = "clicked!";
-                label1.BackColor = Color.White;
-                buttonClick = false;
-                button1.Enabled = true;
-                lblToolTip.Show();
             }
         }
 
@@ -92,6 +70,7 @@ namespace _13IA_Project
                 frmQuestions quiz = new frmQuestions(selectedQuiz, selectedQuizName);
                 quiz.Show();
                 Hide();
+                lblHint.Hide();
             }
             else
             {
@@ -99,14 +78,14 @@ namespace _13IA_Project
             }
         }
 
-        private void frmMenu_SizeChanged(object sender, EventArgs e)
+        private void FormatElements()
         {
             lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2;
             lblTitle.Top = (pnlHeader.Height - lblTitle.Height) / 2;
 
             lstQuizzes.Left = (pnlBody.Width - lstQuizzes.Width) / 2;
+
             btnStart.Left = (pnlBody.Width - btnStart.Width) / 2;
-            lblToolTip.Left = (pnlBody.Width - lblToolTip.Width) / 2;
         }
     }
 }

@@ -39,9 +39,13 @@ namespace _13IA_Project
             this.answerText = answerText;
         }
 
-        public void AddCheckBox()
+        public void AddCheckBox(CheckBox check, Control above, string questionText)
         {
-
+            check.AutoSize = true;
+            check.Text = questionText;
+            panel.Controls.Add(check);
+            check.Top = above.Bottom + PADDING;
+            check.Left = PADDING / 2;
         }
 
         public void AddRadioButton(RadioButton button, Control above, string questionText)
@@ -104,84 +108,34 @@ namespace _13IA_Project
         {
             this.numberOfCorrect = numberOfCorrect;
 
-            checkBox1.AutoSize = true;
-            checkBox1.Text = input1;
-            panel.Controls.Add(checkBox1);
-            checkBox1.Top = questionLabel.Bottom;
-            checkBox1.Left = PADDING / 2;
+            AddCheckBox(checkBox1, questionLabel, input1);
 
-            checkBox2.AutoSize = true;
-            checkBox2.Text = input2;
-            panel.Controls.Add(checkBox2);
-            checkBox2.Top = checkBox1.Bottom + PADDING;
-            checkBox2.Left = PADDING / 2;
+            AddCheckBox(checkBox2, checkBox1, input2);
 
-            checkBox3.AutoSize = true;
-            checkBox3.Text = input3;
-            panel.Controls.Add(checkBox3);
-            checkBox3.Top = checkBox2.Bottom + PADDING;
-            checkBox3.Left = PADDING / 2;
+            AddCheckBox(checkBox3, checkBox2, input3);
 
-            checkBox4.AutoSize = true;
-            checkBox4.Text = input4;
-            panel.Controls.Add(checkBox4);
-            checkBox4.Top = checkBox3.Bottom + PADDING;
-            checkBox4.Left = PADDING / 2;
-            checkBox4.Padding = BOTTOM_PADDING;
+            AddCheckBox(checkBox4, checkBox3, input4);
         }
 
         public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string input1, string input2, string input3, string input4, string input5, string input6, string input7, string input8) : base(questionTopic, questionText, input1)
         {
             this.numberOfCorrect = numberOfCorrect;
 
-            checkBox1.AutoSize = true;
-            checkBox1.Text = input1;
-            panel.Controls.Add(checkBox1);
-            checkBox1.Top = questionLabel.Bottom;
-            checkBox1.Left = PADDING / 2;
+            AddCheckBox(checkBox1, questionLabel, input1);
 
-            checkBox2.AutoSize = true;
-            checkBox2.Text = input2;
-            panel.Controls.Add(checkBox2);
-            checkBox2.Top = checkBox1.Bottom + PADDING;
-            checkBox2.Left = PADDING / 2;
+            AddCheckBox(checkBox2, checkBox1, input2);
 
-            checkBox3.AutoSize = true;
-            checkBox3.Text = input3;
-            panel.Controls.Add(checkBox3);
-            checkBox3.Top = checkBox2.Bottom + PADDING;
-            checkBox3.Left = PADDING / 2;
+            AddCheckBox(checkBox3, checkBox2, input3);
 
-            checkBox4.AutoSize = true;
-            checkBox4.Text = input4;
-            panel.Controls.Add(checkBox4);
-            checkBox4.Top = checkBox3.Bottom + PADDING;
-            checkBox4.Left = PADDING / 2;
+            AddCheckBox(checkBox4, checkBox3, input4);
+            
+            AddCheckBox(checkBox5, checkBox4, input5);
 
-            checkBox5.AutoSize = true;
-            checkBox5.Text = input5;
-            panel.Controls.Add(checkBox5);
-            checkBox5.Top = checkBox4.Bottom + PADDING;
-            checkBox5.Left = PADDING / 2;
+            AddCheckBox(checkBox6, checkBox5, input6);
 
-            checkBox6.AutoSize = true;
-            checkBox6.Text = input6;
-            panel.Controls.Add(checkBox6);
-            checkBox6.Top = checkBox5.Bottom + PADDING;
-            checkBox6.Left = PADDING / 2;
+            AddCheckBox(checkBox7, checkBox6, input7);
 
-            checkBox7.AutoSize = true;
-            checkBox7.Text = input7;
-            panel.Controls.Add(checkBox7);
-            checkBox7.Top = checkBox6.Bottom + PADDING;
-            checkBox7.Left = PADDING / 2;
-
-            checkBox8.AutoSize = true;
-            checkBox8.Text = input8;
-            panel.Controls.Add(checkBox8);
-            checkBox8.Top = checkBox7.Bottom + PADDING;
-            checkBox8.Left = PADDING / 2;
-            checkBox8.Padding = BOTTOM_PADDING;
+            AddCheckBox(checkBox8, checkBox7, input8);
         }
     }
 }

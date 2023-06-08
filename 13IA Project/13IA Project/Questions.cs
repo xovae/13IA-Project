@@ -29,6 +29,9 @@ namespace _13IA_Project
         List<MultiSelect> multiselectList = new List<MultiSelect>();
         List<TrueFalse> truefalseList = new List<TrueFalse>();
 
+        public int distanceFromTop;
+        public int distanceFromLeft;
+
         public frmQuestions(string path, string name)
         {
             InitializeComponent();
@@ -42,8 +45,6 @@ namespace _13IA_Project
         private void frmQuestions_Load(object sender, EventArgs e)
         {
             string[] current;
-            int distanceFromTop = 0;
-            int distanceFromLeft = 0;
 
             StreamReader sr = new StreamReader(filePath);
 
@@ -80,55 +81,39 @@ namespace _13IA_Project
                 {
                     foreach (var item in multichoiceList)
                     {
-                        pnlQuestions.Controls.Add(item.panel);
-                        item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                        item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-
-                        distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                        item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
-                        distanceFromTop += item.panel.Height + PADDING;
+                        FormatQuestions(multichoiceList, item.panel);
                     }
                 }
                 if (multiselectList.Count != 0)
                 {
                     foreach (var item in multiselectList)
                     {
-                        pnlQuestions.Controls.Add(item.panel);
-                        item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                        item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-
-                        distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                        item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
-                        distanceFromTop += item.panel.Height + PADDING;
+                        FormatQuestions(multiselectList, item.panel);
                     }
                 }
                 if (truefalseList.Count != 0)
                 {
                     foreach (var item in truefalseList)
                     {
-                        pnlQuestions.Controls.Add(item.panel);
-                        item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+                        FormatQuestions(truefalseList, item.panel);
                         item.panel.Height = item.radioButton2.Bottom;
-                        item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-
-                        distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                        item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
-                        distanceFromTop += item.panel.Height + PADDING;
                     }
                 }
-                //if (multichoiceList.Count != 0)
-                //{
-                //    multichoiceList.Last().panel.Margin = new Padding(0, 0, 0, 10);
-                //}
-                //if (truefalseList.Count != 0)
-                //{
-                //    truefalseList.Last().panel.Padding = new Padding(0, 0, 0, 10);
-                //}
             }
             catch (IOException ex)
             {
                 MessageBox.Show($"The quiz file could not be read! {ex}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void FormatQuestions<T>(List<T> list, Panel panel)
+        {
+            pnlQuestions.Controls.Add(panel);
+            panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+
+            distanceFromLeft = (pnlQuestions.Width - panel.Width) / 2;
+            panel.Location = new Point(distanceFromLeft, distanceFromTop);
+            distanceFromTop += panel.Height + PADDING / 2;
         }
 
         private void btnCheck_Click(object sender, EventArgs e)
@@ -166,28 +151,38 @@ namespace _13IA_Project
             pnlQuestions.Width = Width;
             foreach (var item in multichoiceList)
             {
-                item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-                int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                item.panel.Left = distanceFromLeft;
+                ResizeQuestions(multiselectList, item.panel);
+                //item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+                ////item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
+                //int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
+                //item.panel.Left = distanceFromLeft;
             }
             foreach (var item in multiselectList)
             {
-                item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-                int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                item.panel.Left = distanceFromLeft;
+                ResizeQuestions(multiselectList, item.panel);
+                //item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+                ////item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
+                //int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
+                //item.panel.Left = distanceFromLeft;
             }
             foreach (var item in truefalseList)
             {
-                item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-                int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                item.panel.Left = distanceFromLeft;
+                ResizeQuestions(truefalseList, item.panel);
+                //item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+                ////item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
+                //int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
+                //item.panel.Left = distanceFromLeft;
             }
 
             lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2;
             lblTitle.Top = (pnlHeader.Height - lblTitle.Height) / 2;
+        }
+
+        private void ResizeQuestions<T>(List<T> list, Panel panel)
+        {
+            panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+            int distanceFromLeft = (pnlQuestions.Width - panel.Width) / 2;
+            panel.Left = distanceFromLeft;
         }
     }
 }
