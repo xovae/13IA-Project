@@ -32,7 +32,9 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.pnlQuestions = new System.Windows.Forms.Panel();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
+            this.pnlQuestions.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -49,11 +51,11 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(359, 9);
+            this.lblTitle.Location = new System.Drawing.Point(368, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(83, 25);
+            this.lblTitle.Size = new System.Drawing.Size(65, 25);
             this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "lblTitle";
+            this.lblTitle.Text = "Title!";
             // 
             // lblUsername
             // 
@@ -70,6 +72,7 @@
             // 
             this.pnlQuestions.AutoScroll = true;
             this.pnlQuestions.AutoSize = true;
+            this.pnlQuestions.Controls.Add(this.btnCheck);
             this.pnlQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlQuestions.Location = new System.Drawing.Point(0, 37);
             this.pnlQuestions.Margin = new System.Windows.Forms.Padding(3, 3, 3, 50);
@@ -77,6 +80,19 @@
             this.pnlQuestions.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.pnlQuestions.Size = new System.Drawing.Size(800, 424);
             this.pnlQuestions.TabIndex = 2;
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnCheck.Location = new System.Drawing.Point(0, 395);
+            this.btnCheck.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(800, 24);
+            this.btnCheck.TabIndex = 0;
+            this.btnCheck.TabStop = false;
+            this.btnCheck.Text = "done!";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // frmQuestions
             // 
@@ -94,6 +110,7 @@
             this.SizeChanged += new System.EventHandler(this.frmQuestions_SizeChanged);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
+            this.pnlQuestions.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,5 +121,6 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Panel pnlQuestions;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button btnCheck;
     }
 }

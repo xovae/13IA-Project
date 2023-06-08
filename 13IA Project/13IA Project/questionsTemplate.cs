@@ -21,6 +21,8 @@ namespace _13IA_Project
         public Panel panel = new Panel();
         public Label questionLabel = new Label();
 
+        public bool questionCorrect = false;
+
         public QuestionTemplate(string questionTopic, string questionText, string answerText)
         {
             panel.AutoSize = true;
@@ -36,6 +38,21 @@ namespace _13IA_Project
             this.questionTopic = questionTopic;
             this.answerText = answerText;
         }
+
+        public void AddCheckBox()
+        {
+
+        }
+
+        public void AddRadioButton(RadioButton button, Control above, string questionText)
+        {
+            button.AutoSize = true;
+            button.Text = questionText;
+            panel.Controls.Add(button);
+            button.Top = above.Bottom + PADDING;
+            button.Left = PADDING / 2;
+        }
+
     }
 
     public class TrueFalse : QuestionTemplate
@@ -45,18 +62,9 @@ namespace _13IA_Project
 
         public TrueFalse(string questionTopic, string questionText, string answer) : base(questionTopic, questionText, answer)
         {
-            radioButton1.AutoSize = true;
-            radioButton1.Text = "True"; 
-            panel.Controls.Add(radioButton1);
-            radioButton1.Top = questionLabel.Bottom;
-            radioButton1.Left = PADDING / 2;
+            AddRadioButton(radioButton1, questionLabel, "True");
 
-            radioButton2.AutoSize = true;
-            radioButton2.Text = "False";
-            panel.Controls.Add(radioButton2);
-            radioButton2.Top = radioButton1.Bottom + PADDING;
-            radioButton2.Left = PADDING / 2;
-            radioButton2.Padding = BOTTOM_PADDING;
+            AddRadioButton(radioButton2, radioButton1, "False");
         }
     }
 
@@ -69,29 +77,13 @@ namespace _13IA_Project
 
         public MultiChoice(string questionTopic, string questionText, string answer, string option1, string option2, string option3) : base(questionTopic, questionText, answer)
         {
-            radioButton1.AutoSize = true;
-            radioButton1.Text = answer;
-            panel.Controls.Add(radioButton1);
-            radioButton1.Top = questionLabel.Bottom;
-            radioButton1.Left = PADDING / 2;
+            AddRadioButton(radioButton1, questionLabel, answer);
 
-            radioButton2.AutoSize = true;
-            radioButton2.Text = option1;
-            panel.Controls.Add(radioButton2);
-            radioButton2.Top = radioButton1.Bottom + PADDING;
-            radioButton2.Left = PADDING / 2;
+            AddRadioButton(radioButton2, radioButton1, option1);
 
-            radioButton3.AutoSize = true;
-            radioButton3.Text = option2;
-            panel.Controls.Add(radioButton3);
-            radioButton3.Top = radioButton2.Bottom + PADDING;
-            radioButton3.Left = PADDING / 2;
+            AddRadioButton(radioButton3, radioButton2, option2);
 
-            radioButton4.AutoSize = true;
-            radioButton4.Text = option3;
-            panel.Controls.Add(radioButton4);
-            radioButton4.Top = radioButton3.Bottom + PADDING;
-            radioButton4.Left = PADDING / 2;
+            AddRadioButton(radioButton4, radioButton3, option3);
         }
     }
 
@@ -99,14 +91,14 @@ namespace _13IA_Project
     {
         public int numberOfCorrect;
 
-        public CheckBox checkBox1;
-        public CheckBox checkBox2;
-        public CheckBox checkBox3;
-        public CheckBox checkBox4;
-        public CheckBox checkBox5;
-        public CheckBox checkBox6;
-        public CheckBox checkBox7;
-        public CheckBox checkBox8;
+        public CheckBox checkBox1 = new CheckBox();
+        public CheckBox checkBox2 = new CheckBox();
+        public CheckBox checkBox3 = new CheckBox();
+        public CheckBox checkBox4 = new CheckBox();
+        public CheckBox checkBox5 = new CheckBox();
+        public CheckBox checkBox6 = new CheckBox();
+        public CheckBox checkBox7 = new CheckBox();
+        public CheckBox checkBox8 = new CheckBox();
 
         public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string input1, string input2, string input3, string input4) : base(questionTopic, questionText, input1)
         {

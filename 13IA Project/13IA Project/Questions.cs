@@ -22,8 +22,8 @@ namespace _13IA_Project
         const int PADDING = 50;
         const int PANEL_WIDTH = 100;
 
-        const int MULTI_SMALL = 7;
-        const int MULTI_LARGE = 11;
+        const int MULTI_SMALL = 8;
+        const int MULTI_LARGE = 12;
 
         List<MultiChoice> multichoiceList = new List<MultiChoice>();
         List<MultiSelect> multiselectList = new List<MultiSelect>();
@@ -44,6 +44,7 @@ namespace _13IA_Project
             string[] current;
             int distanceFromTop = 0;
             int distanceFromLeft = 0;
+
             StreamReader sr = new StreamReader(filePath);
 
             lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2;
@@ -52,78 +53,107 @@ namespace _13IA_Project
             try
             {
                 while (!sr.EndOfStream)
-            {
-                current = sr.ReadLine().Split(',');
-                if (current[0] == "Multichoice")
                 {
-                    multichoiceList.Add(new MultiChoice(current[1], current[2], current[3], current[4], current[5], current[6]));
-                }
-                else if (current[0] == "SelectAll")
-                {
-                    if (current.Length == MULTI_SMALL)
+                    current = sr.ReadLine().Split(',');
+
+                    if (current[0] == "Multichoice")
                     {
-                        multiselectList.Add(new MultiSelect(current[1], current[2], Convert.ToInt32(current[3]), current[4], current[5], current[6], current[7]));
+                        multichoiceList.Add(new MultiChoice(current[1], current[2], current[3], current[4], current[5], current[6]));
                     }
-                    else if (current.Length == MULTI_LARGE)
+                    else if (current[0] == "MultiSelect")
                     {
-                        multiselectList.Add(new MultiSelect(current[1], current[2], Convert.ToInt32(current[3]), current[4], current[5], current[6], current[7], current[8], current[9], current[10], current[11]));
+                        if (current.Length == MULTI_SMALL)
+                        {
+                            multiselectList.Add(new MultiSelect(current[1], current[2], Convert.ToInt32(current[3]), current[4], current[5], current[6], current[7]));
+                        }
+                        else if (current.Length == MULTI_LARGE)
+                        {
+                            multiselectList.Add(new MultiSelect(current[1], current[2], Convert.ToInt32(current[3]), current[4], current[5], current[6], current[7], current[8], current[9], current[10], current[11]));
+                        }
+                    }
+                    else if (current[0] == "TrueFalse")
+                    {
+                        truefalseList.Add(new TrueFalse(current[1], current[2], current[3]));
                     }
                 }
-                else if (current[0] == "TrueFalse")
+                if (multichoiceList.Count != 0)
                 {
-                    truefalseList.Add(new TrueFalse(current[1], current[2], current[3]));
+                    foreach (var item in multichoiceList)
+                    {
+                        pnlQuestions.Controls.Add(item.panel);
+                        item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+                        item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
+
+                        distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
+                        item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
+                        distanceFromTop += item.panel.Height + PADDING;
+                    }
                 }
-            }
-            foreach (var item in multichoiceList)
-            {
-                pnlQuestions.Controls.Add(item.panel);
-                item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
+                if (multiselectList.Count != 0)
+                {
+                    foreach (var item in multiselectList)
+                    {
+                        pnlQuestions.Controls.Add(item.panel);
+                        item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+                        item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
 
-                distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
-                distanceFromTop += item.panel.Height + PADDING;
-            }
-            foreach (var item in multiselectList)
-            {
-                pnlQuestions.Controls.Add(item.panel);
-                item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
+                        distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
+                        item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
+                        distanceFromTop += item.panel.Height + PADDING;
+                    }
+                }
+                if (truefalseList.Count != 0)
+                {
+                    foreach (var item in truefalseList)
+                    {
+                        pnlQuestions.Controls.Add(item.panel);
+                        item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+                        item.panel.Height = item.radioButton2.Bottom;
+                        item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
 
-                distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
-                distanceFromTop += item.panel.Height + PADDING;
-            }
-            foreach (var item in truefalseList)
-            {
-                pnlQuestions.Controls.Add(item.panel);
-                item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                item.panel.Height = item.radioButton2.Bottom;
-                item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-
-                distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
-                distanceFromTop += item.panel.Height + PADDING;
-            }
-            //if (multichoiceList.Count != 0)
-            //{
-            //    multichoiceList.Last().panel.Margin = new Padding(0, 0, 0, 10);
-            //}
-            //if (truefalseList.Count != 0)
-            //{
-            //    truefalseList.Last().panel.Padding = new Padding(0, 0, 0, 10);
-            //}
+                        distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
+                        item.panel.Location = new Point(distanceFromLeft, distanceFromTop);
+                        distanceFromTop += item.panel.Height + PADDING;
+                    }
+                }
+                //if (multichoiceList.Count != 0)
+                //{
+                //    multichoiceList.Last().panel.Margin = new Padding(0, 0, 0, 10);
+                //}
+                //if (truefalseList.Count != 0)
+                //{
+                //    truefalseList.Last().panel.Padding = new Padding(0, 0, 0, 10);
+                //}
             }
             catch (IOException ex)
             {
                 MessageBox.Show($"The quiz file could not be read! {ex}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
-        private void CheckQuestions()
+        private void btnCheck_Click(object sender, EventArgs e)
         {
-
+            if (multichoiceList.Count != 0)
+            {
+                foreach (var item in multichoiceList)
+                {
+                    if (item.radioButton1.Checked == true)
+                    {
+                        item.questionCorrect = true;
+                    }
+                }
+                foreach (var item in truefalseList)
+                {
+                    if (item.radioButton1.Checked == true)
+                    {
+                        item.questionCorrect = true;
+                    }
+                }
+                //foreach (var item in multiselectList)
+                //{
+                    
+                //}
+            }
         }
 
         private void frmQuestions_FormClosed(object sender, FormClosedEventArgs e)
