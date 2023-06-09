@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
@@ -35,6 +36,8 @@ namespace _13IA_Project
         public int distanceFromLeft;
 
         public bool questionsComplete = true;
+
+        public int total = 0;
 
         public frmQuestions(string path, string name)
         {
@@ -125,7 +128,6 @@ namespace _13IA_Project
         {
             string selected;
             string output = $"{INTERNAL_WRITE_PATH}//{lblUsername.Text}//{lblUsername.Text} Results-{quizName}.csv";
-            int total = 0;
 
             StreamWriter sw = File.CreateText(output);
             sw.WriteLine("Question,Topic,UserAnswer,CorrectAnswer,Correct?");
@@ -149,15 +151,25 @@ namespace _13IA_Project
                         sw.WriteLine("No");
                     }
                 }
-                sw.WriteLine($"Score: {total} out of {multichoiceList.Count}");
             }
             if (truefalseList.Count != 0)
             {
                 foreach (var item in truefalseList)
                 {
-                    if (item.radioButton1.Checked == true)
+                    selected = GetChecked(item.panel);
+                    if (selected == null)
                     {
-                        item.questionCorrect = true;
+                        questionsComplete = false;
+                    }
+                    sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
+                    if (selected == item.answerText)
+                    {
+                        sw.WriteLine("Yes");
+                        total++;
+                    }
+                    else
+                    {
+                        sw.WriteLine("No");
                     }
                 }
             }
@@ -167,7 +179,10 @@ namespace _13IA_Project
                 //{
                     
                 //}
+                //for every checkbox ticked, add it's text content to a list
+                //if it matches a list of correct answers
             }
+            sw.WriteLine($"Score: {total} out ot {multichoiceList.Count + multiselectList.Count + truefalseList.Count}");
             sw.Close();
             if (questionsComplete == false)
             {
@@ -181,13 +196,34 @@ namespace _13IA_Project
             }
         }
 
+        //private void Output<T>(List<T> list, StreamWriter sw)
+        //{
+        //    //string selected;
+        //    //foreach (var item in list)
+        //    //{
+        //    //    selected = GetChecked(item.panel);
+        //    //    if (selected == null)
+        //    //    {
+        //    //        questionsComplete = false;
+        //    //    }
+        //    //    sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
+        //    //    if (selected == item.answerText)
+        //    //    {
+        //    //        sw.WriteLine("Yes");
+        //    //        total++;
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        sw.WriteLine("No");
+        //    //    }
+        //    //}
+        //}
+
         private string GetChecked(Control container)
         {
             foreach (var control in container.Controls)
             {
-                RadioButton radio = control as RadioButton;
-
-                if (radio != null && radio.Checked)
+                if (control is RadioButton radio && radio.Checked)
                 {
                     return radio.Text;
                 }

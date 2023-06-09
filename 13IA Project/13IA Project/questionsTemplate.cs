@@ -70,7 +70,6 @@ namespace _13IA_Project
 
         public TrueFalse(string questionTopic, string questionText, string answer) : base(questionTopic, questionText, answer)
         {
-            order = rand.Next(1, 5);
             AddRadioButton(radioButton1, questionLabel, "True");
 
             AddRadioButton(radioButton2, radioButton1, "False");
@@ -87,13 +86,47 @@ namespace _13IA_Project
 
         public MultiChoice(string questionTopic, string questionText, string answer, string option1, string option2, string option3) : base(questionTopic, questionText, answer)
         {
-            AddRadioButton(radioButton1, questionLabel, answer);
+            order = rand.Next(1, 5);
+            if (order == 1)
+            {
+                AddRadioButton(radioButton1, questionLabel, answer);
 
-            AddRadioButton(radioButton2, radioButton1, option1);
+                AddRadioButton(radioButton2, radioButton1, option1);
 
-            AddRadioButton(radioButton3, radioButton2, option2);
+                AddRadioButton(radioButton3, radioButton2, option2);
 
-            AddRadioButton(radioButton4, radioButton3, option3);
+                AddRadioButton(radioButton4, radioButton3, option3);
+            }
+            else if (order == 2)
+            {
+                AddRadioButton(radioButton2, questionLabel, option1);
+
+                AddRadioButton(radioButton3, radioButton2, option2);
+
+                AddRadioButton(radioButton4, radioButton3, option3);
+
+                AddRadioButton(radioButton1, radioButton4, answer);
+            }
+            else if (order == 3)
+            {
+                AddRadioButton(radioButton3, questionLabel, option2);
+
+                AddRadioButton(radioButton4, radioButton3, option3);
+
+                AddRadioButton(radioButton1, radioButton4, answer);
+
+                AddRadioButton(radioButton2, radioButton1, option1);
+            }
+            else if (order == 4)
+            {
+                AddRadioButton(radioButton4, questionLabel, option3);
+
+                AddRadioButton(radioButton1, radioButton4, answer);
+
+                AddRadioButton(radioButton2, radioButton1, option1);
+
+                AddRadioButton(radioButton3, radioButton2, option2);
+            }
         }
     }
 

@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +26,8 @@ namespace _13IA_Project
 
         public string selectedQuiz;
         public string selectedQuizName;
+        public string verify;
+
         public string[] quizPaths;
         public string[] quizNames;
         public string[] quizResults;
@@ -43,24 +46,28 @@ namespace _13IA_Project
             quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.csv", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
             quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{lblUsername.Text}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
-            //foreach (var item in quizResults)
+            //if (quizResults.Length != 0)
             //{
-            //    item.Remove(0, lblUsername.Text.Length + 9);
-            //}
-            //foreach (var item in quizNames)
-            //{
-            //    for (int i = 0; i < quizResults.Length; i++)
+            //    foreach (var item in quizResults)
             //    {
-            //        if (!item.Contains(quizResults[i]))
+            //        verify = item.Remove(0, lblUsername.Text.Length + 9);
+            //        foreach (var item2 in quizNames)
             //        {
-            //            lstQuizzes.Items.Add(item);
+            //            if (!item2.Contains(verify))
+            //            {
+            //                lstQuizzes.Items.Add(item2);
+                            
+            //            }
             //        }
             //    }
             //}
-            foreach (var item in quizNames)
-            {
-                lstQuizzes.Items.Add(item);
-            }
+            //else
+            //{
+                foreach (var item in quizNames)
+                {
+                    lstQuizzes.Items.Add(item);
+                }
+            //}
         }
 
         private void lstQuizzes_SelectedIndexChanged(object sender, EventArgs e)
