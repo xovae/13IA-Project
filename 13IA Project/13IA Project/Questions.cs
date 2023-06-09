@@ -121,23 +121,27 @@ namespace _13IA_Project
         private void btnCheck_Click(object sender, EventArgs e)
         {
             string selected;
+            int total = 0;
 
-            StreamWriter sw = File.CreateText($"{INTERNAL_WRITE_PATH}{lblUsername.Text} {quizName}.csv");
-            sw.WriteLine("Question, User Answer, Correct Answer, Correct?");
+            StreamWriter sw = File.CreateText($"{INTERNAL_WRITE_PATH}//{lblUsername.Text}//{lblUsername.Text} {quizName}.csv");
+            sw.WriteLine("Question,UserAnswer,CorrectAnswer,Correct?");
             if (multichoiceList.Count != 0)
             {
                 foreach (var item in multichoiceList)
                 {
                     selected = GetChecked(item.panel);
+                    sw.Write($"{item.questionText}, {item.questionTopic}, {selected}, {item.answerText},");
                     if (selected == item.answerText)
                     {
-                        sw.Write($"{item.questionText}, {selected}, {item.answerText}, Yes");
+                        sw.WriteLine(" Yes");
+                        total++;
                     }
                     else
                     {
-
+                        sw.WriteLine(" No");
                     }
                 }
+                sw.WriteLine($"Score: {total} out of {multichoiceList.Count}");
             }
             if (truefalseList.Count != 0)
             {
@@ -157,13 +161,15 @@ namespace _13IA_Project
                 //}
             }
             sw.Close();
+            Close();
+            frmMenu.GetInstance().Show();
         }
 
-        private string GetChecked(Control panel)
+        private string GetChecked(Control container)
         {
-            foreach (var item in panel.Controls)
+            foreach (var control in container.Controls)
             {
-                RadioButton radio = panel as RadioButton;
+                RadioButton radio = control as RadioButton;
 
                 if (radio != null && radio.Checked)
                 {

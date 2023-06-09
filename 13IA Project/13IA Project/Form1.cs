@@ -20,12 +20,14 @@ namespace _13IA_Project
             return instance;
         }
 
-        const string INTERNALPATH = "..\\..\\..\\..\\Quiz Resources";
+        const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
+        const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";
 
         public string selectedQuiz;
         public string selectedQuizName;
         public string[] quizPaths;
         public string[] quizNames;
+        public string[] quizResults;
 
         //public const float LIST_HEIGHT = 199 / 416 * 100;
         //public const float LIST_WIDTH = 479 / 757 * 100;
@@ -46,10 +48,19 @@ namespace _13IA_Project
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            quizPaths = Directory.GetFiles(INTERNALPATH, "*.csv", SearchOption.AllDirectories);
-            quizNames = Directory.GetFiles(INTERNALPATH, "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
+            quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.csv", SearchOption.AllDirectories);
+            quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
+            quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{lblUsername.Text}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
+            foreach (var item in quizResults)
+            {
+                item.Remove(0, lblUsername.Text.Length);
+            }
             foreach (var item in quizNames)
             {
+                //if ()
+                //{
+
+                //}
                 lstQuizzes.Items.Add(item);
             }
         }
