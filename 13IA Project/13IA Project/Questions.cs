@@ -25,6 +25,8 @@ namespace _13IA_Project
         const int MULTI_SMALL = 8;
         const int MULTI_LARGE = 12;
 
+        public const string INTERNAL_WRITE_PATH = "..\\..\\..\\..\\Quiz Output//";
+
         List<MultiChoice> multichoiceList = new List<MultiChoice>();
         List<MultiSelect> multiselectList = new List<MultiSelect>();
         List<TrueFalse> truefalseList = new List<TrueFalse>();
@@ -39,7 +41,7 @@ namespace _13IA_Project
             lblUsername.Text = Environment.UserName;
             filePath = path;
             lblTitle.Text = name;
-            pnlQuestions.Width = Width;
+            quizName = name;
         }
 
         private void frmQuestions_Load(object sender, EventArgs e)
@@ -118,15 +120,27 @@ namespace _13IA_Project
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
+            string selected;
+
+            StreamWriter sw = File.CreateText($"{INTERNAL_WRITE_PATH}{lblUsername.Text} {quizName}.csv");
+            sw.WriteLine("Question, User Answer, Correct Answer, Correct?");
             if (multichoiceList.Count != 0)
             {
                 foreach (var item in multichoiceList)
                 {
-                    if (item.radioButton1.Checked == true)
+                    selected = GetChecked(item.panel);
+                    if (selected == item.answerText)
                     {
-                        item.questionCorrect = true;
+                        sw.Write($"{item.questionText}, {selected}, {item.answerText}, Yes");
+                    }
+                    else
+                    {
+
                     }
                 }
+            }
+            if (truefalseList.Count != 0)
+            {
                 foreach (var item in truefalseList)
                 {
                     if (item.radioButton1.Checked == true)
@@ -134,11 +148,30 @@ namespace _13IA_Project
                         item.questionCorrect = true;
                     }
                 }
+            }
+            if (multiselectList.Count != 0)
+            {
                 //foreach (var item in multiselectList)
                 //{
                     
                 //}
             }
+            sw.Close();
+        }
+
+        private string GetChecked(Control panel)
+        {
+            foreach (var item in panel.Controls)
+            {
+                RadioButton radio = panel as RadioButton;
+
+                if (radio != null && radio.Checked)
+                {
+                    return radio.Text;
+                }
+            }
+
+            return null;
         }
 
         private void frmQuestions_FormClosed(object sender, FormClosedEventArgs e)
