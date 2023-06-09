@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace _13IA_Project
 {
@@ -23,8 +24,8 @@ namespace _13IA_Project
 
         public bool questionCorrect = false;
 
-        public List<RadioButton> radioButtonList = new List<RadioButton>();
-        public List<CheckBox> checkBoxList = new List<CheckBox>();
+        public Random rand = new Random();
+        public int order = 0;
 
         public QuestionTemplate(string questionTopic, string questionText, string answerText)
         {
@@ -69,6 +70,7 @@ namespace _13IA_Project
 
         public TrueFalse(string questionTopic, string questionText, string answer) : base(questionTopic, questionText, answer)
         {
+            order = rand.Next(1, 5);
             AddRadioButton(radioButton1, questionLabel, "True");
 
             AddRadioButton(radioButton2, radioButton1, "False");
