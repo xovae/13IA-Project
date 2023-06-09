@@ -34,6 +34,8 @@ namespace _13IA_Project
         public int distanceFromTop;
         public int distanceFromLeft;
 
+        public bool questionsComplete = true;
+
         public frmQuestions(string path, string name)
         {
             InitializeComponent();
@@ -79,6 +81,7 @@ namespace _13IA_Project
                         truefalseList.Add(new TrueFalse(current[1], current[2], current[3]));
                     }
                 }
+                sr.Close();
                 if (multichoiceList.Count != 0)
                 {
                     foreach (var item in multichoiceList)
@@ -121,24 +124,29 @@ namespace _13IA_Project
         private void btnCheck_Click(object sender, EventArgs e)
         {
             string selected;
+            string output = $"{INTERNAL_WRITE_PATH}//{lblUsername.Text}//{lblUsername.Text} Results-{quizName}.csv";
             int total = 0;
 
-            StreamWriter sw = File.CreateText($"{INTERNAL_WRITE_PATH}//{lblUsername.Text}//{lblUsername.Text} {quizName}.csv");
-            sw.WriteLine("Question,UserAnswer,CorrectAnswer,Correct?");
+            StreamWriter sw = File.CreateText(output);
+            sw.WriteLine("Question,Topic,UserAnswer,CorrectAnswer,Correct?");
             if (multichoiceList.Count != 0)
             {
                 foreach (var item in multichoiceList)
                 {
                     selected = GetChecked(item.panel);
-                    sw.Write($"{item.questionText}, {item.questionTopic}, {selected}, {item.answerText},");
+                    if (selected == null)
+                    {
+                        questionsComplete = false;
+                    }
+                    sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
                     if (selected == item.answerText)
                     {
-                        sw.WriteLine(" Yes");
+                        sw.WriteLine("Yes");
                         total++;
                     }
                     else
                     {
-                        sw.WriteLine(" No");
+                        sw.WriteLine("No");
                     }
                 }
                 sw.WriteLine($"Score: {total} out of {multichoiceList.Count}");
@@ -161,8 +169,16 @@ namespace _13IA_Project
                 //}
             }
             sw.Close();
-            Close();
-            frmMenu.GetInstance().Show();
+            if (questionsComplete == false)
+            {
+                MessageBox.Show("Complete all quiz questions before submitting!", "Quiz Incomplete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                File.Delete(output);
+            }
+            else
+            {
+                Close();
+                frmMenu.GetInstance().Show();
+            }
         }
 
         private string GetChecked(Control container)
@@ -191,26 +207,14 @@ namespace _13IA_Project
             foreach (var item in multichoiceList)
             {
                 ResizeQuestions(multiselectList, item.panel);
-                //item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                ////item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-                //int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                //item.panel.Left = distanceFromLeft;
             }
             foreach (var item in multiselectList)
             {
                 ResizeQuestions(multiselectList, item.panel);
-                //item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                ////item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-                //int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                //item.panel.Left = distanceFromLeft;
             }
             foreach (var item in truefalseList)
             {
                 ResizeQuestions(truefalseList, item.panel);
-                //item.panel.Width = pnlQuestions.Width - PANEL_WIDTH;
-                ////item.questionLabel.Left = (item.panel.Width - item.questionLabel.Width) / 2;
-                //int distanceFromLeft = (pnlQuestions.Width - item.panel.Width) / 2;
-                //item.panel.Left = distanceFromLeft;
             }
 
             lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2;

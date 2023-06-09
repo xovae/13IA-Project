@@ -29,14 +29,6 @@ namespace _13IA_Project
         public string[] quizNames;
         public string[] quizResults;
 
-        //public const float LIST_HEIGHT = 199 / 416 * 100;
-        //public const float LIST_WIDTH = 479 / 757 * 100;
-        //public const int BUTTON_PADDING = 6;
-
-        //Font SmallFont = new Font("Microsoft Sans Serif", 8);
-        //Font MediumFont = new Font("Microsoft Sans Serif", 12);
-        //Font LargeFont = new Font("Microsoft Sans Serif", 14);
-
         public frmMenu()
         {
             InitializeComponent();
@@ -51,16 +43,22 @@ namespace _13IA_Project
             quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.csv", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
             quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{lblUsername.Text}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
-            foreach (var item in quizResults)
-            {
-                item.Remove(0, lblUsername.Text.Length);
-            }
+            //foreach (var item in quizResults)
+            //{
+            //    item.Remove(0, lblUsername.Text.Length + 9);
+            //}
+            //foreach (var item in quizNames)
+            //{
+            //    for (int i = 0; i < quizResults.Length; i++)
+            //    {
+            //        if (!item.Contains(quizResults[i]))
+            //        {
+            //            lstQuizzes.Items.Add(item);
+            //        }
+            //    }
+            //}
             foreach (var item in quizNames)
             {
-                //if ()
-                //{
-
-                //}
                 lstQuizzes.Items.Add(item);
             }
         }
@@ -87,16 +85,6 @@ namespace _13IA_Project
             {
                 lblHint.Show();
             }
-        }
-
-        private void FormatElements()
-        {
-            lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2;
-            lblTitle.Top = (pnlHeader.Height - lblTitle.Height) / 2;
-
-            lstQuizzes.Left = (pnlBody.Width - lstQuizzes.Width) / 2;
-
-            btnStart.Left = (pnlBody.Width - btnStart.Width) / 2;
         }
     }
 }

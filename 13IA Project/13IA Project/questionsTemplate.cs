@@ -23,6 +23,9 @@ namespace _13IA_Project
 
         public bool questionCorrect = false;
 
+        public List<RadioButton> radioButtonList = new List<RadioButton>();
+        public List<CheckBox> checkBoxList = new List<CheckBox>();
+
         public QuestionTemplate(string questionTopic, string questionText, string answerText)
         {
             panel.AutoSize = true;
@@ -69,6 +72,7 @@ namespace _13IA_Project
             AddRadioButton(radioButton1, questionLabel, "True");
 
             AddRadioButton(radioButton2, radioButton1, "False");
+
         }
     }
 

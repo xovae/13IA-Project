@@ -90,7 +90,7 @@
             this.btnCheck.Size = new System.Drawing.Size(800, 24);
             this.btnCheck.TabIndex = 0;
             this.btnCheck.TabStop = false;
-            this.btnCheck.Text = "done!";
+            this.btnCheck.Text = "&Submit";
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
