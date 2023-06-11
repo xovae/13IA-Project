@@ -129,61 +129,70 @@ namespace _13IA_Project
             string selected;
             string output = $"{INTERNAL_WRITE_PATH}//{lblUsername.Text}//{lblUsername.Text} Results-{quizName}.csv";
 
-            StreamWriter sw = File.CreateText(output);
-            sw.WriteLine("Question,Topic,UserAnswer,CorrectAnswer,Correct?");
-            if (multichoiceList.Count != 0)
+            try
             {
-                foreach (var item in multichoiceList)
+                StreamWriter sw = File.CreateText(output);
+                sw.WriteLine("Question,Topic,UserAnswer,CorrectAnswer,Correct?");
+                if (multichoiceList.Count != 0)
                 {
-                    selected = GetChecked(item.panel);
-                    if (selected == null)
+                    foreach (var item in multichoiceList)
                     {
-                        questionsComplete = false;
-                    }
-                    sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
-                    if (selected == item.answerText)
-                    {
-                        sw.WriteLine("Yes");
-                        total++;
-                    }
-                    else
-                    {
-                        sw.WriteLine("No");
+                        selected = GetChecked(item.panel);
+                        if (selected == null)
+                        {
+                            questionsComplete = false;
+                        }
+                        sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
+                        if (selected == item.answerText)
+                        {
+                            sw.WriteLine("Yes");
+                            total++;
+                        }
+                        else
+                        {
+                            sw.WriteLine("No");
+                        }
                     }
                 }
-            }
-            if (truefalseList.Count != 0)
-            {
-                foreach (var item in truefalseList)
+                if (truefalseList.Count != 0)
                 {
-                    selected = GetChecked(item.panel);
-                    if (selected == null)
+                    foreach (var item in truefalseList)
                     {
-                        questionsComplete = false;
-                    }
-                    sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
-                    if (selected == item.answerText)
-                    {
-                        sw.WriteLine("Yes");
-                        total++;
-                    }
-                    else
-                    {
-                        sw.WriteLine("No");
+                        selected = GetChecked(item.panel);
+                        if (selected == null)
+                        {
+                            questionsComplete = false;
+                        }
+                        sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
+                        if (selected == item.answerText)
+                        {
+                            sw.WriteLine("Yes");
+                            total++;
+                        }
+                        else
+                        {
+                            sw.WriteLine("No");
+                        }
                     }
                 }
-            }
-            if (multiselectList.Count != 0)
-            {
-                //foreach (var item in multiselectList)
-                //{
+                if (multiselectList.Count != 0)
+                {
+                    //foreach (var item in multiselectList)
+                    //{
                     
-                //}
-                //for every checkbox ticked, add it's text content to a list
-                //if it matches a list of correct answers
+                    //}
+                    //for every checkbox ticked, add it's text content to a list
+                    //if it matches a list of correct answers
+                }
+            
+                sw.WriteLine($"Score: {total} out ot {multichoiceList.Count + multiselectList.Count + truefalseList.Count}");
+                sw.Close();
             }
-            sw.WriteLine($"Score: {total} out ot {multichoiceList.Count + multiselectList.Count + truefalseList.Count}");
-            sw.Close();
+            catch (IOException ex)
+            {
+                MessageBox.Show($"The results could not be successfully exported! {ex}", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
             if (questionsComplete == false)
             {
                 MessageBox.Show("Complete all quiz questions before submitting!", "Quiz Incomplete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
