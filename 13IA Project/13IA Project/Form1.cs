@@ -56,6 +56,7 @@ namespace _13IA_Project
             //            if (!item2.Contains(verify))
             //            {
             //                lstQuizzes.Items.Add(item2);
+            //                int index = Array.IndexOf(quizNames, verify);
                             
             //            }
             //        }
@@ -63,7 +64,7 @@ namespace _13IA_Project
             //}
             //else
             //{
-                foreach (var item in quizNames)
+            foreach (var item in quizNames)
                 {
                     lstQuizzes.Items.Add(item);
                 }

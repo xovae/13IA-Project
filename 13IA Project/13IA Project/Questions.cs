@@ -67,6 +67,7 @@ namespace _13IA_Project
                     if (current[0] == "Multichoice")
                     {
                         multichoiceList.Add(new MultiChoice(current[1], current[2], current[3], current[4], current[5], current[6]));
+                        FormatQuestions(multichoiceList, multichoiceList.Last().panel);
                     }
                     else if (current[0] == "MultiSelect")
                     {
@@ -78,32 +79,19 @@ namespace _13IA_Project
                         {
                             multiselectList.Add(new MultiSelect(current[1], current[2], Convert.ToInt32(current[3]), current[4], current[5], current[6], current[7], current[8], current[9], current[10], current[11]));
                         }
+                        FormatQuestions(multiselectList, multiselectList.Last().panel);
                     }
                     else if (current[0] == "TrueFalse")
                     {
                         truefalseList.Add(new TrueFalse(current[1], current[2], current[3]));
+                        FormatQuestions(truefalseList, truefalseList.Last().panel);
                     }
                 }
                 sr.Close();
-                if (multichoiceList.Count != 0)
-                {
-                    foreach (var item in multichoiceList)
-                    {
-                        FormatQuestions(multichoiceList, item.panel);
-                    }
-                }
-                if (multiselectList.Count != 0)
-                {
-                    foreach (var item in multiselectList)
-                    {
-                        FormatQuestions(multiselectList, item.panel);
-                    }
-                }
                 if (truefalseList.Count != 0)
                 {
                     foreach (var item in truefalseList)
                     {
-                        FormatQuestions(truefalseList, item.panel);
                         item.panel.Height = item.radioButton2.Bottom;
                     }
                 }
@@ -137,7 +125,7 @@ namespace _13IA_Project
                 {
                     foreach (var item in multichoiceList)
                     {
-                        selected = GetChecked(item.panel);
+                        selected = GetCheckedRadio(item.panel);
                         if (selected == null)
                         {
                             questionsComplete = false;
@@ -158,7 +146,7 @@ namespace _13IA_Project
                 {
                     foreach (var item in truefalseList)
                     {
-                        selected = GetChecked(item.panel);
+                        selected = GetCheckedRadio(item.panel);
                         if (selected == null)
                         {
                             questionsComplete = false;
@@ -177,10 +165,15 @@ namespace _13IA_Project
                 }
                 if (multiselectList.Count != 0)
                 {
-                    //foreach (var item in multiselectList)
-                    //{
-                    
-                    //}
+                    List<string> inputs = new List<string>();
+                    foreach (var item in multiselectList)
+                    {
+                        inputs.Add(GetChecked(item.panel));
+                        if (inputs.Count == 0)
+                        {
+                            questionsComplete = false;
+                        }
+                    }
                     //for every checkbox ticked, add it's text content to a list
                     //if it matches a list of correct answers
                 }
@@ -210,7 +203,7 @@ namespace _13IA_Project
         //    //string selected;
         //    //foreach (var item in list)
         //    //{
-        //    //    selected = GetChecked(item.panel);
+        //    //    selected = GetCheckedRadio(item.panel);
         //    //    if (selected == null)
         //    //    {
         //    //        questionsComplete = false;
@@ -228,13 +221,26 @@ namespace _13IA_Project
         //    //}
         //}
 
-        private string GetChecked(Control container)
+        private string GetCheckedRadio(Control container)
         {
             foreach (var control in container.Controls)
             {
                 if (control is RadioButton radio && radio.Checked)
                 {
                     return radio.Text;
+                }
+            }
+
+            return null;
+        }
+
+        private string GetChecked(Control container)
+        {
+            foreach (var control in container.Controls)
+            {
+                if (control is CheckBox check && check.Checked)
+                {
+                    return check.Text;
                 }
             }
 
