@@ -120,7 +120,7 @@ namespace _13IA_Project
             try
             {
                 StreamWriter sw = File.CreateText(output);
-                sw.WriteLine("Question,Topic,UserAnswer,CorrectAnswer,Correct?");
+                sw.WriteLine("Question,Topic,UserAnswer(s),CorrectAnswer (MultiChoice),Correct?");
                 if (multichoiceList.Count != 0)
                 {
                     foreach (var item in multichoiceList)
@@ -168,17 +168,30 @@ namespace _13IA_Project
                     List<string> inputs = new List<string>();
                     foreach (var item in multiselectList)
                     {
-                        inputs.Add(GetChecked(item.panel));
+                        inputs = GetChecked(item.panel);
                         if (inputs.Count == 0)
                         {
                             questionsComplete = false;
                         }
-                    }
-                    //for every checkbox ticked, add it's text content to a list
-                    //if it matches a list of correct answers
+                        sw.Write($"{item.questionText},{item.questionTopic},");
+                        inputs.Sort();
+                        foreach (var item2 in inputs)
+                        {
+                            sw.Write($"{item2},");
+                        }
+                        if (inputs.SequenceEqual(item.answers) == true)
+                        {
+                            sw.WriteLine("Yes");
+                            total++;
+                        }
+                        else
+                        {
+                            sw.WriteLine("No");
+                        }
+                    }   
                 }
             
-                sw.WriteLine($"Score: {total} out ot {multichoiceList.Count + multiselectList.Count + truefalseList.Count}");
+                sw.WriteLine($"Score: {total} out of {multichoiceList.Count + multiselectList.Count + truefalseList.Count}");
                 sw.Close();
             }
             catch (IOException ex)
@@ -234,17 +247,17 @@ namespace _13IA_Project
             return null;
         }
 
-        private string GetChecked(Control container)
+        private List<string> GetChecked(Control container)
         {
+            List<string> checks = new List<string>();
             foreach (var control in container.Controls)
             {
                 if (control is CheckBox check && check.Checked)
                 {
-                    return check.Text;
+                    checks.Add(check.Text);
                 }
             }
-
-            return null;
+            return checks;
         }
 
         private void frmQuestions_FormClosed(object sender, FormClosedEventArgs e)

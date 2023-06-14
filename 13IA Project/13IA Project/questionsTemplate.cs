@@ -132,7 +132,8 @@ namespace _13IA_Project
 
     public class MultiSelect : QuestionTemplate
     {
-        public int numberOfCorrect;
+
+        public List<string> answers = new List<string>();
 
         public CheckBox checkBox1 = new CheckBox();
         public CheckBox checkBox2 = new CheckBox();
@@ -145,7 +146,10 @@ namespace _13IA_Project
 
         public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string input1, string input2, string input3, string input4) : base(questionTopic, questionText, input1)
         {
-            this.numberOfCorrect = numberOfCorrect;
+            for (int i = 1; i <= numberOfCorrect; i++)
+            {
+                answers.Add(string.Concat("input" + i));
+            }
 
             AddCheckBox(checkBox1, questionLabel, input1);
 
@@ -158,8 +162,6 @@ namespace _13IA_Project
 
         public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string input1, string input2, string input3, string input4, string input5, string input6, string input7, string input8) : base(questionTopic, questionText, input1)
         {
-            this.numberOfCorrect = numberOfCorrect;
-
             AddCheckBox(checkBox1, questionLabel, input1);
 
             AddCheckBox(checkBox2, checkBox1, input2);
