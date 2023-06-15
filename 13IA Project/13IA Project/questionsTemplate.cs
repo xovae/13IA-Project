@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
@@ -60,7 +61,6 @@ namespace _13IA_Project
             button.Top = above.Bottom + PADDING;
             button.Left = PADDING / 2;
         }
-
     }
 
     public class TrueFalse : QuestionTemplate
@@ -73,7 +73,6 @@ namespace _13IA_Project
             AddRadioButton(radioButton1, questionLabel, "True");
 
             AddRadioButton(radioButton2, radioButton1, "False");
-
         }
     }
 
@@ -132,7 +131,7 @@ namespace _13IA_Project
 
     public class MultiSelect : QuestionTemplate
     {
-
+        public List<string> inputs = new List<string>();
         public List<string> answers = new List<string>();
 
         public CheckBox checkBox1 = new CheckBox();
@@ -144,39 +143,46 @@ namespace _13IA_Project
         public CheckBox checkBox7 = new CheckBox();
         public CheckBox checkBox8 = new CheckBox();
 
-        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string input1, string input2, string input3, string input4) : base(questionTopic, questionText, input1)
+        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, List<string> inputs) : base(questionTopic, questionText, questionText)
         {
-            for (int i = 1; i <= numberOfCorrect; i++)
+            for (int i = 0; i < numberOfCorrect; i++)
             {
-                answers.Add(string.Concat("input" + i));
+                answers.Add(inputs[i]);
             }
 
-            AddCheckBox(checkBox1, questionLabel, input1);
+            if (inputs.Count == 4)
+            {
+                AddCheckBox(checkBox1, questionLabel, inputs[0]);
 
-            AddCheckBox(checkBox2, checkBox1, input2);
+                AddCheckBox(checkBox2, checkBox1, inputs[1]);
 
-            AddCheckBox(checkBox3, checkBox2, input3);
+                AddCheckBox(checkBox3, checkBox2, inputs[2]);
 
-            AddCheckBox(checkBox4, checkBox3, input4);
-        }
+                AddCheckBox(checkBox4, checkBox3, inputs[3]);
+            }
+            else if (inputs.Count == 8)
+            {
+                AddCheckBox(checkBox1, questionLabel, inputs[0]);
 
-        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, string input1, string input2, string input3, string input4, string input5, string input6, string input7, string input8) : base(questionTopic, questionText, input1)
-        {
-            AddCheckBox(checkBox1, questionLabel, input1);
+                AddCheckBox(checkBox2, checkBox1, inputs[1]);
 
-            AddCheckBox(checkBox2, checkBox1, input2);
+                AddCheckBox(checkBox3, checkBox2, inputs[2]);
 
-            AddCheckBox(checkBox3, checkBox2, input3);
+                AddCheckBox(checkBox4, checkBox3, inputs[3]);
 
-            AddCheckBox(checkBox4, checkBox3, input4);
-            
-            AddCheckBox(checkBox5, checkBox4, input5);
+                AddCheckBox(checkBox5, checkBox4, inputs[4]);
 
-            AddCheckBox(checkBox6, checkBox5, input6);
+                AddCheckBox(checkBox6, checkBox5, inputs[5]);
 
-            AddCheckBox(checkBox7, checkBox6, input7);
+                AddCheckBox(checkBox7, checkBox6, inputs[6]);
 
-            AddCheckBox(checkBox8, checkBox7, input8);
+                AddCheckBox(checkBox8, checkBox7, inputs[7]);
+            }
+
+            for (int i = 0; i < inputs.Count; i++)
+            {
+                //AddCheckBox()
+            }
         }
     }
 }

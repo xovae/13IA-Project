@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.toolTipPress = new System.Windows.Forms.ToolTip(this.components);
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pctLogo = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -166,7 +164,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.ToolTip toolTipPress;
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblTitle;

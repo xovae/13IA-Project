@@ -21,10 +21,7 @@ namespace _13IA_Project
         public string quizName;
 
         const int PADDING = 50;
-        const int PANEL_WIDTH = 100;
-
-        const int MULTI_SMALL = 8;
-        const int MULTI_LARGE = 12;
+        const int DISTANCE_FROM_OUTER = 100;
 
         public const string INTERNAL_WRITE_PATH = "..\\..\\..\\..\\Quiz Output//";
 
@@ -52,6 +49,7 @@ namespace _13IA_Project
         private void frmQuestions_Load(object sender, EventArgs e)
         {
             string[] current;
+            List<string> answers = new List<string>();
 
             StreamReader sr = new StreamReader(filePath);
 
@@ -71,14 +69,12 @@ namespace _13IA_Project
                     }
                     else if (current[0] == "MultiSelect")
                     {
-                        if (current.Length == MULTI_SMALL)
+                        for (int i = 0; i < (current.Count() - 4); i++)
                         {
-                            multiselectList.Add(new MultiSelect(current[1], current[2], Convert.ToInt32(current[3]), current[4], current[5], current[6], current[7]));
+                            answers.Add(current[i + 4]);
                         }
-                        else if (current.Length == MULTI_LARGE)
-                        {
-                            multiselectList.Add(new MultiSelect(current[1], current[2], Convert.ToInt32(current[3]), current[4], current[5], current[6], current[7], current[8], current[9], current[10], current[11]));
-                        }
+
+                        multiselectList.Add(new MultiSelect(current[1], current[2], Convert.ToInt32(current[3]), answers));
                         FormatQuestions(multiselectList, multiselectList.Last().panel);
                     }
                     else if (current[0] == "TrueFalse")
@@ -105,7 +101,7 @@ namespace _13IA_Project
         private void FormatQuestions<T>(List<T> list, Panel panel)
         {
             pnlQuestions.Controls.Add(panel);
-            panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+            panel.Width = pnlQuestions.Width - DISTANCE_FROM_OUTER;
 
             distanceFromLeft = (pnlQuestions.Width - panel.Width) / 2;
             panel.Location = new Point(distanceFromLeft, distanceFromTop);
@@ -125,6 +121,7 @@ namespace _13IA_Project
                 {
                     foreach (var item in multichoiceList)
                     {
+                        //OutputRadio(multichoiceList, item.questionText, item.questionTopic, item.answerText, item.panel, sw);
                         selected = GetCheckedRadio(item.panel);
                         if (selected == null)
                         {
@@ -146,6 +143,7 @@ namespace _13IA_Project
                 {
                     foreach (var item in truefalseList)
                     {
+                        //OutputRadio(truefalseList, item.questionText, item.questionTopic, item.answerText, item.panel, sw);
                         selected = GetCheckedRadio(item.panel);
                         if (selected == null)
                         {
@@ -211,27 +209,27 @@ namespace _13IA_Project
             }
         }
 
-        //private void Output<T>(List<T> list, StreamWriter sw)
+        //private void OutputRadio<T>(List<T> list, string questionText, string questionTopic, string answerText, Panel panel, StreamWriter sw)
         //{
-        //    //string selected;
-        //    //foreach (var item in list)
-        //    //{
-        //    //    selected = GetCheckedRadio(item.panel);
-        //    //    if (selected == null)
-        //    //    {
-        //    //        questionsComplete = false;
-        //    //    }
-        //    //    sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
-        //    //    if (selected == item.answerText)
-        //    //    {
-        //    //        sw.WriteLine("Yes");
-        //    //        total++;
-        //    //    }
-        //    //    else
-        //    //    {
-        //    //        sw.WriteLine("No");
-        //    //    }
-        //    //}
+        //    string selected;
+        //    foreach (var item in list)
+        //    {
+        //        selected = GetCheckedRadio(panel);
+        //        if (selected == null)
+        //        {
+        //            questionsComplete = false;
+        //        }
+        //        sw.Write($"{questionText},{questionTopic},{selected},{answerText},");
+        //        if (selected == answerText)
+        //        {
+        //            sw.WriteLine("Yes");
+        //            total++;
+        //        }
+        //        else
+        //        {
+        //            sw.WriteLine("No");
+        //        }
+        //    }
         //}
 
         private string GetCheckedRadio(Control container)
@@ -287,7 +285,7 @@ namespace _13IA_Project
 
         private void ResizeQuestions<T>(List<T> list, Panel panel)
         {
-            panel.Width = pnlQuestions.Width - PANEL_WIDTH;
+            panel.Width = pnlQuestions.Width - DISTANCE_FROM_OUTER;
             int distanceFromLeft = (pnlQuestions.Width - panel.Width) / 2;
             panel.Left = distanceFromLeft;
         }
