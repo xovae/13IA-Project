@@ -118,29 +118,29 @@ namespace _13IA_Project
             string selected;
             string output = $"{INTERNAL_WRITE_PATH}//{lblUsername.Text}//{lblUsername.Text} Results-{quizName}.csv";
 
+            questionsComplete = true;
+
             try
             {
                 StreamWriter sw = File.CreateText(output);
-                sw.WriteLine("Question,Topic,UserAnswer(s),CorrectAnswer (MultiChoice),Correct?"); //update for specific question type
+                sw.WriteLine("Question,Topic,UserAnswer(s),CorrectAnswer (MultiChoice),Correct?");
                 if (multichoiceList.Count != 0)
                 {
                     foreach (var item in multichoiceList)
                     {
-                        //OutputRadio(multichoiceList, item.questionText, item.questionTopic, item.answerText, item.panel, sw);
                         selected = GetCheckedRadio(item.panel);
                         if (selected == null)
                         {
                             questionsComplete = false;
                         }
 
-                        sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.inputList[0]},");
+                        sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerMulti},");
 
-                        if (selected == item.inputList[0])
+                        if (selected == item.answerMulti)
                         {
                             sw.WriteLine("Yes");
                             total++;
                         }
-
                         else
                         {
                             sw.WriteLine("No");
@@ -151,7 +151,6 @@ namespace _13IA_Project
                 {
                     foreach (var item in truefalseList)
                     {
-                        //OutputRadio(truefalseList, item.questionText, item.questionTopic, item.answerText, item.panel, sw);
                         selected = GetCheckedRadio(item.panel);
                         if (selected == null)
                         {
@@ -160,12 +159,10 @@ namespace _13IA_Project
 
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
                         if (selected == item.answerText)
-
                         {
                             sw.WriteLine("Yes");
                             total++;
                         }
-
                         else
                         {
                             sw.WriteLine("No");
@@ -196,7 +193,6 @@ namespace _13IA_Project
                             sw.WriteLine("Yes");
                             total++;
                         }
-
                         else
                         {
                             sw.WriteLine("No");
@@ -216,6 +212,7 @@ namespace _13IA_Project
             {
                 MessageBox.Show("Complete all quiz questions before submitting!", "Quiz Incomplete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 File.Delete(output);
+                total = 0;
             }
             else
             {

@@ -80,23 +80,25 @@ namespace _13IA_Project
 
     public class MultiChoice : QuestionTemplate
     {
-        public List<string> inputList = new List<string>();
+        public string answerMulti;
         public List<RadioButton> radioButtons = new List<RadioButton>();
         
         public MultiChoice(string questionTopic, string questionText, List<string> inputs) : base(questionTopic, questionText)
         {
-            inputList = inputs;
+            answerMulti = inputs[0];
 
-            for (int i = 0; i < inputList.Count(); i++)
+            inputs = inputs.OrderBy(x => rand.Next()).ToList();
+
+            for (int i = 0; i < inputs.Count(); i++)
             {
                 radioButtons.Add(new RadioButton());
                 if (i == 0)
                 {
-                    AddRadioButton(radioButtons[i], questionLabel, inputList[i]);
+                    AddRadioButton(radioButtons[i], questionLabel, inputs[i]);
                 }
                 else
                 {
-                    AddRadioButton(radioButtons[i], radioButtons[i - 1], inputList[i]);
+                    AddRadioButton(radioButtons[i], radioButtons[i - 1], inputs[i]);
                 }
             }
         }
@@ -104,7 +106,6 @@ namespace _13IA_Project
 
     public class MultiSelect : QuestionTemplate
     {
-        public List<string> inputs = new List<string>();
         public List<string> answers = new List<string>();
 
         public List<CheckBox> checkBoxes = new List<CheckBox>();
@@ -115,6 +116,10 @@ namespace _13IA_Project
             {
                 answers.Add(inputs[i]);
             }
+
+            answers.Sort();
+
+            inputs = inputs.OrderBy(x => rand.Next()).ToList();
 
             for (int i = 0; i < inputs.Count; i++)
             {
