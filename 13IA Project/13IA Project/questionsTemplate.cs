@@ -15,7 +15,6 @@ namespace _13IA_Project
     {
         public string questionText;
         public string questionTopic;        //possible simplify, remove the string questionText and just read from questionLabel.Text as needed
-        public string answerText;
 
         public const int PADDING = 10;
         public Padding BOTTOM_PADDING = new Padding(0, 0, 0, PADDING / 5);
@@ -28,7 +27,7 @@ namespace _13IA_Project
         public Random rand = new Random();
         public int order = 0;
 
-        public QuestionTemplate(string questionTopic, string questionText, string answerText)
+        public QuestionTemplate(string questionTopic, string questionText)
         {
             panel.AutoSize = true;
             panel.BorderStyle = BorderStyle.FixedSingle;
@@ -41,7 +40,6 @@ namespace _13IA_Project
             this.questionText = questionText;
             questionLabel.Text = questionText;
             this.questionTopic = questionTopic;
-            this.answerText = answerText;
         }
 
         public void AddCheckBox(CheckBox check, Control above, string questionText)
@@ -68,8 +66,12 @@ namespace _13IA_Project
         public RadioButton radioButton1 = new RadioButton();
         public RadioButton radioButton2 = new RadioButton();
 
-        public TrueFalse(string questionTopic, string questionText, string answer) : base(questionTopic, questionText, answer)
+        public string answerText;
+
+        public TrueFalse(string questionTopic, string questionText, string answer) : base(questionTopic, questionText)
         {
+            answerText = answer;
+
             AddRadioButton(radioButton1, questionLabel, "True");
 
             AddRadioButton(radioButton2, radioButton1, "False");
@@ -78,53 +80,24 @@ namespace _13IA_Project
 
     public class MultiChoice : QuestionTemplate
     {
-        public RadioButton radioButton1 = new RadioButton();
-        public RadioButton radioButton2 = new RadioButton();
-        public RadioButton radioButton3 = new RadioButton();
-        public RadioButton radioButton4 = new RadioButton();
-
-        public MultiChoice(string questionTopic, string questionText, string answer, string option1, string option2, string option3) : base(questionTopic, questionText, answer)
+        public List<string> inputList = new List<string>();
+        public List<RadioButton> radioButtons = new List<RadioButton>();
+        
+        public MultiChoice(string questionTopic, string questionText, List<string> inputs) : base(questionTopic, questionText)
         {
-            order = rand.Next(1, 5);
-            if (order == 1)
+            inputList = inputs;
+
+            for (int i = 0; i < inputList.Count(); i++)
             {
-                AddRadioButton(radioButton1, questionLabel, answer);
-
-                AddRadioButton(radioButton2, radioButton1, option1);
-
-                AddRadioButton(radioButton3, radioButton2, option2);
-
-                AddRadioButton(radioButton4, radioButton3, option3);
-            }
-            else if (order == 2)
-            {
-                AddRadioButton(radioButton2, questionLabel, option1);
-
-                AddRadioButton(radioButton3, radioButton2, option2);
-
-                AddRadioButton(radioButton4, radioButton3, option3);
-
-                AddRadioButton(radioButton1, radioButton4, answer);
-            }
-            else if (order == 3)
-            {
-                AddRadioButton(radioButton3, questionLabel, option2);
-
-                AddRadioButton(radioButton4, radioButton3, option3);
-
-                AddRadioButton(radioButton1, radioButton4, answer);
-
-                AddRadioButton(radioButton2, radioButton1, option1);
-            }
-            else if (order == 4)
-            {
-                AddRadioButton(radioButton4, questionLabel, option3);
-
-                AddRadioButton(radioButton1, radioButton4, answer);
-
-                AddRadioButton(radioButton2, radioButton1, option1);
-
-                AddRadioButton(radioButton3, radioButton2, option2);
+                radioButtons.Add(new RadioButton());
+                if (i == 0)
+                {
+                    AddRadioButton(radioButtons[i], questionLabel, inputList[i]);
+                }
+                else
+                {
+                    AddRadioButton(radioButtons[i], radioButtons[i - 1], inputList[i]);
+                }
             }
         }
     }
@@ -134,54 +107,26 @@ namespace _13IA_Project
         public List<string> inputs = new List<string>();
         public List<string> answers = new List<string>();
 
-        public CheckBox checkBox1 = new CheckBox();
-        public CheckBox checkBox2 = new CheckBox();
-        public CheckBox checkBox3 = new CheckBox();
-        public CheckBox checkBox4 = new CheckBox();
-        public CheckBox checkBox5 = new CheckBox();
-        public CheckBox checkBox6 = new CheckBox();
-        public CheckBox checkBox7 = new CheckBox();
-        public CheckBox checkBox8 = new CheckBox();
+        public List<CheckBox> checkBoxes = new List<CheckBox>();
 
-        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, List<string> inputs) : base(questionTopic, questionText, questionText)
+        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, List<string> inputs) : base(questionTopic, questionText)
         {
             for (int i = 0; i < numberOfCorrect; i++)
             {
                 answers.Add(inputs[i]);
             }
 
-            if (inputs.Count == 4)
-            {
-                AddCheckBox(checkBox1, questionLabel, inputs[0]);
-
-                AddCheckBox(checkBox2, checkBox1, inputs[1]);
-
-                AddCheckBox(checkBox3, checkBox2, inputs[2]);
-
-                AddCheckBox(checkBox4, checkBox3, inputs[3]);
-            }
-            else if (inputs.Count == 8)
-            {
-                AddCheckBox(checkBox1, questionLabel, inputs[0]);
-
-                AddCheckBox(checkBox2, checkBox1, inputs[1]);
-
-                AddCheckBox(checkBox3, checkBox2, inputs[2]);
-
-                AddCheckBox(checkBox4, checkBox3, inputs[3]);
-
-                AddCheckBox(checkBox5, checkBox4, inputs[4]);
-
-                AddCheckBox(checkBox6, checkBox5, inputs[5]);
-
-                AddCheckBox(checkBox7, checkBox6, inputs[6]);
-
-                AddCheckBox(checkBox8, checkBox7, inputs[7]);
-            }
-
             for (int i = 0; i < inputs.Count; i++)
             {
-                //AddCheckBox()
+                checkBoxes.Add(new CheckBox());
+                if (i == 0)
+                {
+                    AddCheckBox(checkBoxes[i], questionLabel, inputs[i]);
+                }
+                else
+                {
+                    AddCheckBox(checkBoxes[i], checkBoxes[i - 1], inputs[i]);
+                }
             }
         }
     }

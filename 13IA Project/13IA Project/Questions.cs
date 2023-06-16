@@ -61,10 +61,15 @@ namespace _13IA_Project
                 while (!sr.EndOfStream)
                 {
                     current = sr.ReadLine().Split(',');
+                    answers.Clear();
 
                     if (current[0] == "Multichoice")
                     {
-                        multichoiceList.Add(new MultiChoice(current[1], current[2], current[3], current[4], current[5], current[6]));
+                        for (int i = 0; i < current.Count() - 3; i++)
+                        {
+                            answers.Add(current[i + 3]);
+                        }
+                        multichoiceList.Add(new MultiChoice(current[1], current[2], answers));
                         FormatQuestions(multichoiceList, multichoiceList.Last().panel);
                     }
                     else if (current[0] == "MultiSelect")
@@ -116,7 +121,7 @@ namespace _13IA_Project
             try
             {
                 StreamWriter sw = File.CreateText(output);
-                sw.WriteLine("Question,Topic,UserAnswer(s),CorrectAnswer (MultiChoice),Correct?");
+                sw.WriteLine("Question,Topic,UserAnswer(s),CorrectAnswer (MultiChoice),Correct?"); //update for specific question type
                 if (multichoiceList.Count != 0)
                 {
                     foreach (var item in multichoiceList)
@@ -127,12 +132,15 @@ namespace _13IA_Project
                         {
                             questionsComplete = false;
                         }
-                        sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
-                        if (selected == item.answerText)
+
+                        sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.inputList[0]},");
+
+                        if (selected == item.inputList[0])
                         {
                             sw.WriteLine("Yes");
                             total++;
                         }
+
                         else
                         {
                             sw.WriteLine("No");
@@ -149,12 +157,15 @@ namespace _13IA_Project
                         {
                             questionsComplete = false;
                         }
+
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
                         if (selected == item.answerText)
+
                         {
                             sw.WriteLine("Yes");
                             total++;
                         }
+
                         else
                         {
                             sw.WriteLine("No");
@@ -171,17 +182,21 @@ namespace _13IA_Project
                         {
                             questionsComplete = false;
                         }
+
                         sw.Write($"{item.questionText},{item.questionTopic},");
                         inputs.Sort();
+
                         foreach (var item2 in inputs)
                         {
                             sw.Write($"{item2},");
                         }
+
                         if (inputs.SequenceEqual(item.answers) == true)
                         {
                             sw.WriteLine("Yes");
                             total++;
                         }
+
                         else
                         {
                             sw.WriteLine("No");
