@@ -60,14 +60,14 @@ namespace _13IA_Project
             {
                 while (!sr.EndOfStream)
                 {
-                    current = sr.ReadLine().Split(',');
+                    current = Encoding.UTF8.GetString(Convert.FromBase64String(sr.ReadLine())).Split(',');
                     answers.Clear();
 
                     if (current[0] == "Multichoice")
                     {
-                        for (int i = 0; i < current.Count() - 3; i++)
+                        for (int i = 0; i < current.Count() - 4; i++)
                         {
-                            answers.Add(current[i + 3]);
+                            answers.Add(current[i + 4]);
                         }
                         multichoiceList.Add(new MultiChoice(current[1], current[2], answers));
                         FormatQuestions(multichoiceList, multichoiceList.Last().panel);
@@ -84,7 +84,7 @@ namespace _13IA_Project
                     }
                     else if (current[0] == "TrueFalse")
                     {
-                        truefalseList.Add(new TrueFalse(current[1], current[2], current[3]));
+                        truefalseList.Add(new TrueFalse(current[1], current[2], current[4]));
                         FormatQuestions(truefalseList, truefalseList.Last().panel);
                     }
                 }

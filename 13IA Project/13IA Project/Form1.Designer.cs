@@ -102,7 +102,8 @@
             // 
             this.lblHint.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblHint.AutoSize = true;
-            this.lblHint.Location = new System.Drawing.Point(412, 237);
+            this.lblHint.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblHint.Location = new System.Drawing.Point(389, 238);
             this.lblHint.Name = "lblHint";
             this.lblHint.Size = new System.Drawing.Size(71, 13);
             this.lblHint.TabIndex = 13;
@@ -112,15 +113,17 @@
             // btnStart
             // 
             this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnStart.BackColor = System.Drawing.Color.White;
+            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnStart.IconChar = FontAwesome.Sharp.IconChar.Play;
-            this.btnStart.IconColor = System.Drawing.Color.Black;
+            this.btnStart.IconColor = System.Drawing.Color.LimeGreen;
             this.btnStart.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnStart.IconSize = 15;
-            this.btnStart.Location = new System.Drawing.Point(332, 232);
+            this.btnStart.IconSize = 20;
+            this.btnStart.Location = new System.Drawing.Point(358, 232);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(77, 22);
+            this.btnStart.Size = new System.Drawing.Size(25, 25);
             this.btnStart.TabIndex = 12;
-            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // lstQuizzes

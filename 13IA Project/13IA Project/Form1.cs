@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,6 +33,8 @@ namespace _13IA_Project
         public string[] quizNames;
         public string[] quizResults;
 
+        public int quizIncrement = 0;
+
         public frmMenu()
         {
             InitializeComponent();
@@ -43,28 +46,38 @@ namespace _13IA_Project
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.csv", SearchOption.AllDirectories);
-            quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
-            quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{lblUsername.Text}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
+            quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
+            quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
+            quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{lblUsername.Text}//", "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
             //if (quizResults.Length != 0)
             //{
             //    foreach (var item in quizResults)
             //    {
             //        verify = item.Remove(0, lblUsername.Text.Length + 9);
-            //        foreach (var item2 in quizNames)
-            //        {
-            //            if (!item2.Contains(verify))
-            //            {
-            //                lstQuizzes.Items.Add(item2);
-            //                int index = Array.IndexOf(quizNames, verify);
-                            
-            //            }
-            //        }
+            //        //foreach (var item2 in quizNames)
+            //        //{
+            //        //    if (!item2.Contains(verify))
+            //        //    {
+            //        //        lstQuizzes.Items.Add(item2);
+            //        //    }
+            //        //    else
+            //        //    {
+            //        //        quizIncrement++;
+            //        //    }
+            //        //}
+            //        //    if (Array.Find(quizNames, element => element == verify) != null)
+            //        //    {
+            //        //        lstQuizzes.Items.Add("a");
+            //        //    }
+            //        //    else
+            //        //    {
+            //        //        quizIncrement++;
+            //        //    }
             //    }
             //}
             //else
             //{
-            foreach (var item in quizNames)
+                foreach (var item in quizNames)
                 {
                     lstQuizzes.Items.Add(item);
                 }
@@ -75,7 +88,7 @@ namespace _13IA_Project
         {
             if (lstQuizzes.SelectedIndex != -1)
             {
-                selectedQuiz = quizPaths[lstQuizzes.SelectedIndex];
+                selectedQuiz = quizPaths[lstQuizzes.SelectedIndex + quizIncrement];
                 selectedQuizName = lstQuizzes.SelectedItem.ToString();
             }
         }

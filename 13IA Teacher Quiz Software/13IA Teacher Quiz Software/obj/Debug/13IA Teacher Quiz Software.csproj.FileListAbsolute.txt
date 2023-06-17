@@ -1,0 +1,11 @@
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\13IA Teacher Quiz Software.exe.config
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\13IA Teacher Quiz Software.exe
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\13IA Teacher Quiz Software.pdb
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.csproj.AssemblyReference.cache
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.csproj.SuggestedBindingRedirects.cache
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\_13IA_Teacher_Quiz_Software.Properties.Resources.resources
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.csproj.GenerateResource.cache
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.csproj.CoreCompileInputs.cache
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.exe
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.pdb
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\_13IA_Teacher_Quiz_Software.frmQuiz.resources

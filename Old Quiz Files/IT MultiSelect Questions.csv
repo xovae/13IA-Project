@@ -1,0 +1,3 @@
+Type,Topic,Question,NumberOfCorrect(MultiSelect),Answer(s)
+MultiSelect,Hardware,Tick all the following input devices,4,Keyboard,Mouse,Scanner,Touchpad,Printer,Headphones,Monitor,Speaker
+MultiSelect,Software,Tick all the following examples of cloud storage,3,Google Drive,Creative Cloud,MEGA,External Harddrive,USB

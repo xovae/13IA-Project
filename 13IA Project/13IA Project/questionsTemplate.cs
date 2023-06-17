@@ -32,6 +32,8 @@ namespace _13IA_Project
             panel.AutoSize = true;
             panel.BorderStyle = BorderStyle.FixedSingle;
             panel.Padding = new Padding(5);
+            panel.BackColor = Color.FromArgb(240, 240, 240);
+
             questionLabel.AutoSize = true;
             questionLabel.Font = new Font(questionLabel.Font.FontFamily, 10, FontStyle.Bold);
             panel.Controls.Add(questionLabel);
