@@ -49,6 +49,9 @@ namespace _13IA_Project
             quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
             quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{lblUsername.Text}//", "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
+
+
+
             //if (quizResults.Length != 0)
             //{
             //    foreach (var item in quizResults)
@@ -82,6 +85,8 @@ namespace _13IA_Project
                     lstQuizzes.Items.Add(item);
                 }
             //}
+
+
         }
 
         private void lstQuizzes_SelectedIndexChanged(object sender, EventArgs e)
