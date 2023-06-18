@@ -71,8 +71,6 @@ namespace _13IA_Project
 
             if (quizResults.Length != 0)
             {
-               
-
                 for (int i = 0; i < quizResults.Length; i++)
                 {
                     verify = quizResults[i].Remove(0, userName.Length + 9);
