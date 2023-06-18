@@ -34,6 +34,8 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnDecode = new System.Windows.Forms.Button();
             this.btnDecodeResults = new System.Windows.Forms.Button();
+            this.cmbQuizzes = new System.Windows.Forms.ComboBox();
+            this.btnAddResource = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -82,12 +84,33 @@
             this.btnDecodeResults.UseVisualStyleBackColor = true;
             this.btnDecodeResults.Click += new System.EventHandler(this.btnDecodeResults_Click);
             // 
+            // cmbQuizzes
+            // 
+            this.cmbQuizzes.FormattingEnabled = true;
+            this.cmbQuizzes.Location = new System.Drawing.Point(69, 87);
+            this.cmbQuizzes.Name = "cmbQuizzes";
+            this.cmbQuizzes.Size = new System.Drawing.Size(121, 21);
+            this.cmbQuizzes.TabIndex = 4;
+            this.cmbQuizzes.SelectedIndexChanged += new System.EventHandler(this.cmbQuizzes_SelectedIndexChanged);
+            // 
+            // btnAddResource
+            // 
+            this.btnAddResource.Location = new System.Drawing.Point(219, 87);
+            this.btnAddResource.Name = "btnAddResource";
+            this.btnAddResource.Size = new System.Drawing.Size(91, 23);
+            this.btnAddResource.TabIndex = 5;
+            this.btnAddResource.Text = "&Add Resources";
+            this.btnAddResource.UseVisualStyleBackColor = true;
+            this.btnAddResource.Click += new System.EventHandler(this.btnAddResource_Click);
+            // 
             // frmQuiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_13IA_Teacher_Quiz_Software.Properties.Resources.hbhs_background;
-            this.ClientSize = new System.Drawing.Size(378, 75);
+            this.ClientSize = new System.Drawing.Size(378, 306);
+            this.Controls.Add(this.btnAddResource);
+            this.Controls.Add(this.cmbQuizzes);
             this.Controls.Add(this.btnDecodeResults);
             this.Controls.Add(this.btnDecode);
             this.Controls.Add(this.btnEncode);
@@ -97,6 +120,7 @@
             this.Name = "frmQuiz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HBHS Revision Quizzes (Teacher Copy)";
+            this.Load += new System.EventHandler(this.frmQuiz_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,6 +134,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnDecode;
         private System.Windows.Forms.Button btnDecodeResults;
+        private System.Windows.Forms.ComboBox cmbQuizzes;
+        private System.Windows.Forms.Button btnAddResource;
     }
 }
 

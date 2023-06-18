@@ -21,10 +21,41 @@ namespace _13IA_Teacher_Quiz_Software
         const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
         const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";
 
+        public string[] quizPaths;
+        public string[] quizNames;
+        public string selectedQuizPath;
+
         public frmQuiz()
         {
             InitializeComponent();
             Icon = Resources.hbhs_icon;
+        }
+
+        private void frmQuiz_Load(object sender, EventArgs e)
+        {
+            quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
+            quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
+
+            foreach (var item in quizNames)
+            {
+                cmbQuizzes.Items.Add(item);
+            }
+        }
+
+        private void cmbQuizzes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbQuizzes.SelectedIndex != -1)
+            {
+                selectedQuizPath = quizPaths[cmbQuizzes.SelectedIndex];
+            }
+        }
+
+        private void btnAddResource_Click(object sender, EventArgs e)
+        {
+            if (selectedQuizPath != null)
+            {
+
+            }
         }
 
         private void btnEncode_Click(object sender, EventArgs e)
