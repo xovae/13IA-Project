@@ -24,6 +24,7 @@ namespace _13IA_Project
 
         const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
         const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";
+        const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";
 
         public string selectedQuiz;
         public string selectedQuizName;
@@ -35,65 +36,91 @@ namespace _13IA_Project
 
         public int quizIncrement = 0;
 
+        public List<string> userNames = new List<string>();
+        public List<string> studentNames = new List<string>();
+
+        public List<string> quizNameList = new List<string>();
+        public List<string> quizPathList = new List<string>();
+
         public frmMenu()
         {
             InitializeComponent();
             instance = this;
             Icon = Resources.hbhs_icon;
             pctLogo.Image = Resources.hbhs_logo___text;
-            lblUsername.Text = Environment.UserName;
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
+            string[] current;
+            string userName = Environment.UserName;
+            int index = 0;
+
             quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
-            quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{lblUsername.Text}//", "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
+            quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{userName}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
 
+            foreach (var item in quizNames)
+            {
+                quizNameList.Add(item);
+            }
+            foreach (var item in quizPaths)
+            {
+                quizPathList.Add(item);
+            }
 
+            if (quizResults.Length != 0)
+            {
+               
 
-            //if (quizResults.Length != 0)
-            //{
-            //    foreach (var item in quizResults)
-            //    {
-            //        verify = item.Remove(0, lblUsername.Text.Length + 9);
-            //        //foreach (var item2 in quizNames)
-            //        //{
-            //        //    if (!item2.Contains(verify))
-            //        //    {
-            //        //        lstQuizzes.Items.Add(item2);
-            //        //    }
-            //        //    else
-            //        //    {
-            //        //        quizIncrement++;
-            //        //    }
-            //        //}
-            //        //    if (Array.Find(quizNames, element => element == verify) != null)
-            //        //    {
-            //        //        lstQuizzes.Items.Add("a");
-            //        //    }
-            //        //    else
-            //        //    {
-            //        //        quizIncrement++;
-            //        //    }
-            //    }
-            //}
-            //else
-            //{
+                for (int i = 0; i < quizResults.Length; i++)
+                {
+                    verify = quizResults[i].Remove(0, userName.Length + 9);
+                    if (quizNameList.Contains(verify) == true)
+                    {
+                        index = quizNameList.IndexOf(verify);
+                        quizNameList.Remove(verify);
+                        quizPathList.RemoveAt(index);
+                    }
+                }
+                foreach (var item in quizNameList)
+                {
+                    lstQuizzes.Items.Add(item);
+                }
+            }
+            else
+            {
                 foreach (var item in quizNames)
                 {
                     lstQuizzes.Items.Add(item);
                 }
-            //}
+            }
 
+            try
+            {
+                StreamReader sr = new StreamReader(STUDENTINFO);
 
+                while (!sr.EndOfStream)
+                {
+                    current = sr.ReadLine().Split(',');
+                    userNames.Add(current[0]);
+                    studentNames.Add(current[1]);
+                }
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"studentList.csv could not be accessed! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            index = userNames.IndexOf(userName);
+            lblUsername.Text = studentNames[index];
         }
 
         private void lstQuizzes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstQuizzes.SelectedIndex != -1)
             {
-                selectedQuiz = quizPaths[lstQuizzes.SelectedIndex + quizIncrement];
+                selectedQuiz = quizPathList[lstQuizzes.SelectedIndex];
                 selectedQuizName = lstQuizzes.SelectedItem.ToString();
             }
         }

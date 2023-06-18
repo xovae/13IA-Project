@@ -14,7 +14,7 @@ namespace _13IA_Project
     public class QuestionTemplate
     {
         public string questionText;
-        public string questionTopic;        //possible simplify, remove the string questionText and just read from questionLabel.Text as needed
+        public string questionTopic;
 
         public const int PADDING = 10;
         public Padding BOTTOM_PADDING = new Padding(0, 0, 0, PADDING / 5);

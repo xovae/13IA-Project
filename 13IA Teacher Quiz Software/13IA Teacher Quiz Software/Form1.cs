@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace _13IA_Teacher_Quiz_Software
         const string SAVEFILTER = "Quiz Files (*.quiz)|*.quiz|All Files (*.*)|*.*";
 
         const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
+        const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";
 
         public frmQuiz()
         {
@@ -54,6 +56,97 @@ namespace _13IA_Teacher_Quiz_Software
                     catch (IOException ex)
                     {
                         MessageBox.Show($"The selected file could not be encoded! {ex}", "Encoding Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        File.Delete(saveFileDialog1.FileName);
+                    }
+                }
+            }
+        }
+
+        private void btnDecode_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = SAVEFILTER;
+            saveFileDialog1.Filter = OPENFILTER;
+            openFileDialog1.InitialDirectory = INTERNALQUIZPATH;
+
+            byte[] current;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        StreamReader sr = new StreamReader(openFileDialog1.FileName);
+                        StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
+
+                        try
+                        {
+                            while (!sr.EndOfStream)
+                            {
+                                current = Convert.FromBase64String(sr.ReadLine());
+                                sw.WriteLine(Encoding.UTF8.GetString(current));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"The selected file was not correctly encoded {ex}", "Decoding Fail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        sr.Close();
+                        sw.Close();
+
+
+                        DialogResult dr = MessageBox.Show("Would you like to open the decoded file?", "Decoding Successful", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (dr == DialogResult.Yes)
+                        {
+                            Process.Start(saveFileDialog1.FileName);
+                        }
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show($"The selected file could not be Decoded! {ex}", "Decoding Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        File.Delete(saveFileDialog1.FileName);
+                    }
+                }
+            }
+        }
+
+        private void btnDecodeResults_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = OPENFILTER;
+            saveFileDialog1.Filter = OPENFILTER;
+            openFileDialog1.InitialDirectory = INTERNALRESULTSPATH;
+
+            byte[] current;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        StreamReader sr = new StreamReader(openFileDialog1.FileName);
+                        StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
+
+                        while (!sr.EndOfStream)
+                        {
+                            current = Convert.FromBase64String(sr.ReadLine());
+                            sw.WriteLine(Encoding.UTF8.GetString(current));
+                        }
+
+                        sr.Close();
+                        sw.Close();
+
+
+                        DialogResult dr = MessageBox.Show("Would you like to open the decoded file?", "Decoding Successful", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (dr == DialogResult.Yes)
+                        {
+                            Process.Start(saveFileDialog1.FileName);
+                        }
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show($"The selected file could not be Decoded! {ex}", "Decoding Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         File.Delete(saveFileDialog1.FileName);
                     }
                 }
