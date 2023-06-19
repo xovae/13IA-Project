@@ -23,6 +23,7 @@ namespace _13IA_Project
         const int PADDING = 50;
         const int DISTANCE_FROM_OUTER = 100;
 
+        const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
         public const string INTERNAL_WRITE_PATH = "..\\..\\..\\..\\Quiz Output//";
 
         List<MultiChoice> multichoiceList = new List<MultiChoice>();
@@ -49,6 +50,7 @@ namespace _13IA_Project
         private void frmQuestions_Load(object sender, EventArgs e)
         {
             string[] current;
+            string resourcePath;
             List<string> answers = new List<string>();
 
             StreamReader sr = new StreamReader(filePath);
@@ -63,28 +65,30 @@ namespace _13IA_Project
                     current = Encoding.UTF8.GetString(Convert.FromBase64String(sr.ReadLine())).Split(',');
                     answers.Clear();
 
+                    resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}";
+
                     if (current[0] == "Multichoice")
                     {
-                        for (int i = 0; i < current.Count() - 4; i++)
+                        for (int i = 0; i < current.Count() - 5; i++)
                         {
-                            answers.Add(current[i + 4]);
+                            answers.Add(current[i + 5]);
                         }
-                        multichoiceList.Add(new MultiChoice(current[1], current[2], answers));
+                        multichoiceList.Add(new MultiChoice(current[1],resourcePath,current[3], answers));
                         FormatQuestions(multichoiceList, multichoiceList.Last().panel);
                     }
                     else if (current[0] == "MultiSelect")
                     {
-                        for (int i = 0; i < (current.Count() - 4); i++)
+                        for (int i = 0; i < (current.Count() - 5); i++)
                         {
-                            answers.Add(current[i + 4]);
+                            answers.Add(current[i + 5]);
                         }
 
-                        multiselectList.Add(new MultiSelect(current[1], current[2], Convert.ToInt32(current[3]), answers));
+                        multiselectList.Add(new MultiSelect(current[1], resourcePath, current[3], Convert.ToInt32(current[4]), answers));
                         FormatQuestions(multiselectList, multiselectList.Last().panel);
                     }
                     else if (current[0] == "TrueFalse")
                     {
-                        truefalseList.Add(new TrueFalse(current[1], current[2], current[4]));
+                        truefalseList.Add(new TrueFalse(current[1], resourcePath, current[3], current[5]));
                         FormatQuestions(truefalseList, truefalseList.Last().panel);
                     }
                 }
@@ -99,7 +103,7 @@ namespace _13IA_Project
             }
             catch (IOException ex)
             {
-                MessageBox.Show($"The quiz file could not be read! {ex}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"The quiz file could not be read! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

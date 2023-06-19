@@ -15,19 +15,21 @@ namespace _13IA_Project
     {
         public string questionText;
         public string questionTopic;
+        public string questionResourcePath;
 
         public const int PADDING = 10;
         public Padding BOTTOM_PADDING = new Padding(0, 0, 0, PADDING / 5);
 
         public Panel panel = new Panel();
         public Label questionLabel = new Label();
+        public PictureBox questionResource = new PictureBox();
 
         public bool questionCorrect = false;
 
         public Random rand = new Random();
         public int order = 0;
 
-        public QuestionTemplate(string questionTopic, string questionText)
+        public QuestionTemplate(string questionTopic, string questionText, string questionResourcePath)
         {
             panel.AutoSize = true;
             panel.BorderStyle = BorderStyle.FixedSingle;
@@ -39,9 +41,14 @@ namespace _13IA_Project
             panel.Controls.Add(questionLabel);
             questionLabel.Top += PADDING / 5;
 
+            questionResource.Image = Image.FromFile(questionResourcePath);
+            panel.Controls.Add(questionResource);
+            questionResource.Top = questionLabel.Bottom + PADDING;
+
             this.questionText = questionText;
             questionLabel.Text = questionText;
             this.questionTopic = questionTopic;
+            this.questionResourcePath = questionResourcePath;
         }
 
         public void AddCheckBox(CheckBox check, Control above, string questionText)
@@ -70,7 +77,7 @@ namespace _13IA_Project
 
         public string answerText;
 
-        public TrueFalse(string questionTopic, string questionText, string answer) : base(questionTopic, questionText)
+        public TrueFalse(string questionTopic, string questionResource, string questionText, string answer) : base(questionTopic, questionText, questionResource)
         {
             answerText = answer;
 
@@ -85,7 +92,7 @@ namespace _13IA_Project
         public string answerMulti;
         public List<RadioButton> radioButtons = new List<RadioButton>();
         
-        public MultiChoice(string questionTopic, string questionText, List<string> inputs) : base(questionTopic, questionText)
+        public MultiChoice(string questionTopic, string questionResource, string questionText, List<string> inputs) : base(questionTopic, questionText, questionResource)
         {
             answerMulti = inputs[0];
 
@@ -112,7 +119,7 @@ namespace _13IA_Project
 
         public List<CheckBox> checkBoxes = new List<CheckBox>();
 
-        public MultiSelect(string questionTopic, string questionText, int numberOfCorrect, List<string> inputs) : base(questionTopic, questionText)
+        public MultiSelect(string questionTopic, string questionResource, string questionText, int numberOfCorrect, List<string> inputs) : base(questionTopic, questionText, questionResource)
         {
             for (int i = 0; i < numberOfCorrect; i++)
             {

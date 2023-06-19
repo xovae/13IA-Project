@@ -17,6 +17,7 @@ namespace _13IA_Teacher_Quiz_Software
     {
         const string OPENFILTER = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
         const string SAVEFILTER = "Quiz Files (*.quiz)|*.quiz|All Files (*.*)|*.*";
+        const string RESOURCEFILTER = "Image Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp|All Files (*.*)|*.*";
 
         const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
         const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";
@@ -24,6 +25,7 @@ namespace _13IA_Teacher_Quiz_Software
         public string[] quizPaths;
         public string[] quizNames;
         public string selectedQuizPath;
+        public string selectedQuizName;
 
         public frmQuiz()
         {
@@ -47,14 +49,35 @@ namespace _13IA_Teacher_Quiz_Software
             if (cmbQuizzes.SelectedIndex != -1)
             {
                 selectedQuizPath = quizPaths[cmbQuizzes.SelectedIndex];
+                selectedQuizName = quizNames[cmbQuizzes.SelectedIndex];
             }
         }
 
         private void btnAddResource_Click(object sender, EventArgs e)
         {
+            string resourceDirectory; 
+
             if (selectedQuizPath != null)
             {
+                if (Directory.Exists($"{INTERNALQUIZPATH}//{selectedQuizName} - Resources") != true)
+                {
+                    Directory.CreateDirectory($"{INTERNALQUIZPATH}//{selectedQuizName} - Resources");
+                }
+                
+                openFileDialog1.Filter = RESOURCEFILTER;
+                resourceDirectory = $"{INTERNALQUIZPATH}//{selectedQuizName} - Resources";
 
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        File.Copy(openFileDialog1.FileName, $"{resourceDirectory}//{openFileDialog1.SafeFileName}");
+                    }
+                    catch (IOException ex)
+                    { 
+                        MessageBox.Show($"The selected resource could not be added! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
