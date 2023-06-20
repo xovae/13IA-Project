@@ -66,7 +66,7 @@ namespace _13IA_Project
                     current = Encoding.UTF8.GetString(Convert.FromBase64String(sr.ReadLine())).Split(',');
                     answers.Clear();
 
-                    if (current[0] == "Multichoice")
+                    if (current[0].Equals("Multichoice", StringComparison.OrdinalIgnoreCase))
                     {
                         for (int i = 0; i < current.Count() - 5; i++)
                         {
@@ -83,7 +83,7 @@ namespace _13IA_Project
                         }
                         FormatQuestions(multichoiceList, multichoiceList.Last().panel);
                     }
-                    else if (current[0] == "MultiSelect")
+                    else if (current[0].Equals("MultiSelect", StringComparison.OrdinalIgnoreCase))
                     {
                         for (int i = 0; i < (current.Count() - 5); i++)
                         {
@@ -100,7 +100,7 @@ namespace _13IA_Project
                         }
                         FormatQuestions(multiselectList, multiselectList.Last().panel);
                     }
-                    else if (current[0] == "TrueFalse")
+                    else if (current[0].Equals("TrueFalse", StringComparison.OrdinalIgnoreCase))
                     {
                         if (current[2] != "")
                         {
@@ -168,7 +168,7 @@ namespace _13IA_Project
                         //sw.Write(Encode($"{item.questionText},{item.questionTopic},{selected},{item.answerMulti},"));
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerMulti},");
 
-                        if (selected == item.answerMulti)
+                        if (selected.Equals(item.answerMulti, StringComparison.OrdinalIgnoreCase))
                         {
                             //sw.WriteLine(Encode("Y"));
                             sw.WriteLine("Y");
@@ -194,7 +194,7 @@ namespace _13IA_Project
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
                         //sw.Write(Encode($"{item.questionText},{item.questionTopic},{selected},{item.answerText},"));
 
-                        if (selected == item.answerText)
+                        if (selected.Equals(item.answerText, StringComparison.OrdinalIgnoreCase))
                         {
                             //sw.WriteLine(Encode("Y"));
                             sw.WriteLine("Y");

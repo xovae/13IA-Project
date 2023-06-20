@@ -86,6 +86,7 @@
             // 
             // cmbQuizzes
             // 
+            this.cmbQuizzes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbQuizzes.FormattingEnabled = true;
             this.cmbQuizzes.Location = new System.Drawing.Point(69, 87);
             this.cmbQuizzes.Name = "cmbQuizzes";

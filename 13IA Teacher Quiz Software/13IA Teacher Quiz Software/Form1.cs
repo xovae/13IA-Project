@@ -1,4 +1,5 @@
 ﻿using _13IA_Teacher_Quiz_Software.Properties;
+using Aspose.Cells;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace _13IA_Teacher_Quiz_Software
 
         const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
         const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";
+        const string TEMPPATH = "..\\..\\..\\..\\Quiz Resources//convert.csv";
 
         public string[] quizPaths;
         public string[] quizNames;
@@ -95,17 +97,38 @@ namespace _13IA_Teacher_Quiz_Software
                 {
                     try
                     {
-                        StreamReader sr = new StreamReader(openFileDialog1.FileName);
-                        StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
+                        //if (Path.GetExtension(openFileDialog1.FileName) == ".xlsx")
+                        //{
+                        //    var book = new Workbook(openFileDialog1.FileName);
+                        //    book.Save(TEMPPATH, SaveFormat.Csv);
+                        //    StreamReader sr = new StreamReader(TEMPPATH);
+                        //    StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
 
-                        while (!sr.EndOfStream)
+                        //    while (!sr.EndOfStream)
+                        //    {
+                        //        current = Encoding.UTF8.GetBytes(sr.ReadLine());
+                        //        sw.WriteLine(Convert.ToBase64String(current));
+                        //    }
+
+                        //    sr.Close();
+                        //    sw.Close();
+
+                        //    File.Delete(TEMPPATH);
+                        //}
+                        /*else */if (Path.GetExtension(openFileDialog1.FileName) == ".csv")
                         {
-                            current = Encoding.UTF8.GetBytes(sr.ReadLine());
-                            sw.WriteLine(Convert.ToBase64String(current));
-                        }
+                            StreamReader sr = new StreamReader(openFileDialog1.FileName);
+                            StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
 
-                        sr.Close();
-                        sw.Close();
+                            while (!sr.EndOfStream)
+                            {
+                                current = Encoding.UTF8.GetBytes(sr.ReadLine());
+                                sw.WriteLine(Convert.ToBase64String(current));
+                            }
+
+                            sr.Close();
+                            sw.Close();
+                        }
                     }
                     catch (IOException ex)
                     {
