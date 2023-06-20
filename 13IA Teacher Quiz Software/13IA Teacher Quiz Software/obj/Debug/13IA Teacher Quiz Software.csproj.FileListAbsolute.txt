@@ -28,3 +28,5 @@ J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin
 J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Csv.xml
 J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Excel.xml
 J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.csproj.CopyComplete
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.dll
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.xml

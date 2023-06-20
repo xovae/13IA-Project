@@ -1,6 +1,7 @@
 ﻿using _13IA_Teacher_Quiz_Software.Properties;
 using Sylvan.Data.Csv;
 using Sylvan.Data.Excel;
+using Sylvan.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Common;
 
 namespace _13IA_Teacher_Quiz_Software
 {
@@ -100,27 +102,34 @@ namespace _13IA_Teacher_Quiz_Software
                     {
                         if (Path.GetExtension(openFileDialog1.FileName) == ".xlsx" || Path.GetExtension(openFileDialog1.FileName) == ".xlsb" || Path.GetExtension(openFileDialog1.FileName) == ".xls")
                         {
-                            var reader = ExcelDataReader.Create(openFileDialog1.FileName);
+                            ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName);
+                            DbDataReader reader = edr.AsVariableField(x => edr.RowFieldCount);
+                            CsvDataWriter csvWriter = CsvDataWriter.Create(TEMPPATH);
                             do
                             {
-                                var csvWriter = CsvDataWriter.Create(TEMPPATH);
                                 csvWriter.Write(reader);
                             } while (reader.NextResult());
-                            reader.Close();
+                            //do
+                            //{
+                            //    var csvWriter = CsvDataWriter.Create(TEMPPATH);
+                            //    csvWriter.Write(reader);
+                            //} while (reader.NextResult());
+                            //reader.Close();
 
-                            StreamReader sr = new StreamReader(TEMPPATH);
-                            StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
 
-                            while (!sr.EndOfStream)
-                            {
-                                current = Encoding.UTF8.GetBytes(sr.ReadLine());
-                                sw.WriteLine(Convert.ToBase64String(current));
-                            }
+                            //StreamReader sr = new StreamReader(TEMPPATH);
+                            //StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
 
-                            sr.Close();
-                            sw.Close();
+                            //while (!sr.EndOfStream)
+                            //{
+                            //    current = Encoding.UTF8.GetBytes(sr.ReadLine());
+                            //    sw.WriteLine(Convert.ToBase64String(current));
+                            //}
 
-                            File.Delete(TEMPPATH);
+                            //sr.Close();
+                            //sw.Close();
+
+                            //File.Delete(TEMPPATH);
                         }
                         else if (Path.GetExtension(openFileDialog1.FileName) == ".csv")
                         {
