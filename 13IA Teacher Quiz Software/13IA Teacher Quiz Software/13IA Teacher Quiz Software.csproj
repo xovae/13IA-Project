@@ -33,8 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.Cells, Version=23.6.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aspose.Cells.23.6.0\lib\net40\Aspose.Cells.dll</HintPath>
+    <Reference Include="Sylvan.Data.Csv, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sylvan.Data.Csv.1.3.2\lib\netstandard2.0\Sylvan.Data.Csv.dll</HintPath>
+    </Reference>
+    <Reference Include="Sylvan.Data.Excel, Version=0.4.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sylvan.Data.Excel.0.4.12\lib\netstandard2.0\Sylvan.Data.Excel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
