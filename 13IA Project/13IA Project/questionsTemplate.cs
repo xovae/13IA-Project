@@ -22,7 +22,7 @@ namespace _13IA_Project
 
         public Panel panel = new Panel();
         public Label questionLabel = new Label();
-        public PictureBox questionResource = new PictureBox();
+        public PictureBox questionPictureBox = new PictureBox();
 
         public bool questionCorrect = false;
 
@@ -41,9 +41,18 @@ namespace _13IA_Project
             panel.Controls.Add(questionLabel);
             questionLabel.Top += PADDING / 5;
 
-            questionResource.Image = Image.FromFile(questionResourcePath);
-            panel.Controls.Add(questionResource);
-            questionResource.Top = questionLabel.Bottom + PADDING;
+            if (questionResourcePath != "")
+            {
+                questionPictureBox.Image = Image.FromFile(questionResourcePath);
+                panel.Controls.Add(questionPictureBox);
+                questionPictureBox.Top = questionLabel.Bottom + PADDING;
+                questionPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            }
+            else
+            {
+                questionPictureBox.Height = 0;
+                questionPictureBox.Width = 0;
+            }
 
             this.questionText = questionText;
             questionLabel.Text = questionText;
@@ -81,7 +90,14 @@ namespace _13IA_Project
         {
             answerText = answer;
 
-            AddRadioButton(radioButton1, questionLabel, "True");
+            if (questionResourcePath != "")
+            {
+                AddRadioButton(radioButton1, questionPictureBox, "True");
+            }
+            else
+            {
+                AddRadioButton(radioButton1, questionLabel, "True");
+            }
 
             AddRadioButton(radioButton2, radioButton1, "False");
         }
@@ -103,7 +119,14 @@ namespace _13IA_Project
                 radioButtons.Add(new RadioButton());
                 if (i == 0)
                 {
-                    AddRadioButton(radioButtons[i], questionLabel, inputs[i]);
+                    if (questionResourcePath != "")
+                    {
+                        AddRadioButton(radioButtons[i], questionPictureBox, inputs[i]);
+                    }
+                    else
+                    {
+                        AddRadioButton(radioButtons[i], questionLabel, inputs[i]);
+                    }
                 }
                 else
                 {
@@ -135,7 +158,14 @@ namespace _13IA_Project
                 checkBoxes.Add(new CheckBox());
                 if (i == 0)
                 {
-                    AddCheckBox(checkBoxes[i], questionLabel, inputs[i]);
+                    if (questionResourcePath != "")
+                    {
+                        AddCheckBox(checkBoxes[i], questionPictureBox, inputs[i]);
+                    }
+                    else
+                    {
+                        AddCheckBox(checkBoxes[i], questionLabel, inputs[i]);
+                    }
                 }
                 else
                 {

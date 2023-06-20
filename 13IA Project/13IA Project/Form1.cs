@@ -104,14 +104,14 @@ namespace _13IA_Project
                     userNames.Add(current[0]);
                     studentNames.Add(current[1]);
                 }
+                index = userNames.IndexOf(userName);
+                lblUsername.Text = studentNames[index];
             }
             catch (IOException ex)
             {
                 MessageBox.Show($"studentList.csv could not be accessed! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblUsername.Text = Environment.UserName;
             }
-
-            index = userNames.IndexOf(userName);
-            lblUsername.Text = studentNames[index];
         }
 
         private void lstQuizzes_SelectedIndexChanged(object sender, EventArgs e)
