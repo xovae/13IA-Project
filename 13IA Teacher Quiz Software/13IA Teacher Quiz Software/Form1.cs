@@ -2,6 +2,8 @@
 using Sylvan.Data.Csv;
 using Sylvan.Data.Excel;
 using Sylvan.Data;
+using Microsoft.Office.Interop;
+using Excel = Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +21,8 @@ namespace _13IA_Teacher_Quiz_Software
 {
     public partial class frmQuiz : Form
     {
-        const string OPENFILTER = "Data Files (*.csv, *.xlsx, *.xlsb, *.xls)|*.csv;*.xlsx;*.xlsb;*.xls|All Files (*.*)|*.*";
+        const string OPENFILTER = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
+        //const string OPENFILTER = "Data Files (*.csv, *.xlsx, *.xlsb, *.xls)|*.csv;*.xlsx;*.xlsb;*.xls|All Files (*.*)|*.*";
         const string SAVEFILTER = "Quiz Files (*.quiz)|*.quiz|All Files (*.*)|*.*";
         const string RESOURCEFILTER = "Image Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp|All Files (*.*)|*.*";
 
@@ -102,13 +105,27 @@ namespace _13IA_Teacher_Quiz_Software
                     {
                         if (Path.GetExtension(openFileDialog1.FileName) == ".xlsx" || Path.GetExtension(openFileDialog1.FileName) == ".xlsb" || Path.GetExtension(openFileDialog1.FileName) == ".xls")
                         {
-                            ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName);
-                            DbDataReader reader = edr.AsVariableField(x => edr.RowFieldCount);
-                            CsvDataWriter csvWriter = CsvDataWriter.Create(TEMPPATH);
-                            do
-                            {
-                                csvWriter.Write(reader);
-                            } while (reader.NextResult());
+                            //Excel.Application excelApp = new Excel.Application
+                            //{
+                            //    Visible = false
+                            //};
+                            
+                            //Excel.Workbook book = excelApp.Workbooks.Open(openFileDialog1.FileName);
+                            //book = excelApp.ActiveWorkbook;
+                            //Excel.Worksheet ws = excelApp.ActiveSheet;
+                            //ws.SaveAs("J:\\Github\\13IA - Project\\Quiz Resources\\convert.csv", Excel.XlFileFormat.xlCSV);
+                            //book.Close();
+
+                            //xlsheet.SaveAs(destination, Excel.XlFileFormat.xlCSV);
+                            //xlworkbook.Close();
+
+                            //ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName);
+                            //DbDataReader reader = edr.AsVariableField(x => edr.RowFieldCount);
+                            //CsvDataWriter csvWriter = CsvDataWriter.Create(TEMPPATH);
+                            //do
+                            //{
+                            //    csvWriter.Write(reader);
+                            //} while (reader.NextResult());
                             //do
                             //{
                             //    var csvWriter = CsvDataWriter.Create(TEMPPATH);

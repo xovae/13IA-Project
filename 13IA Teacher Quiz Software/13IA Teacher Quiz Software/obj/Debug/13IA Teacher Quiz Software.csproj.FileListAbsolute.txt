@@ -30,3 +30,13 @@ J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin
 J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.csproj.CopyComplete
 J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.dll
 J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.xml
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Common.dll
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Buffers.dll
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Memory.dll
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Numerics.Vectors.dll
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Common.xml
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Buffers.xml
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Memory.xml
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Numerics.Vectors.xml
+J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
