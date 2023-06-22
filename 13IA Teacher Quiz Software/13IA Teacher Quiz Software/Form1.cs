@@ -2,8 +2,6 @@
 using Sylvan.Data.Csv;
 using Sylvan.Data.Excel;
 using Sylvan.Data;
-using Microsoft.Office.Interop;
-using Excel = Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,8 +19,8 @@ namespace _13IA_Teacher_Quiz_Software
 {
     public partial class frmQuiz : Form
     {
-        const string OPENFILTER = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
-        //const string OPENFILTER = "Data Files (*.csv, *.xlsx, *.xlsb, *.xls)|*.csv;*.xlsx;*.xlsb;*.xls|All Files (*.*)|*.*";
+        //const string OPENFILTER = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
+        const string OPENFILTER = "Data Files (*.csv, *.xlsx, *.xlsb, *.xls)|*.csv;*.xlsx;*.xlsb;*.xls|All Files (*.*)|*.*";
         const string SAVEFILTER = "Quiz Files (*.quiz)|*.quiz|All Files (*.*)|*.*";
         const string RESOURCEFILTER = "Image Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp|All Files (*.*)|*.*";
 
@@ -109,7 +107,7 @@ namespace _13IA_Teacher_Quiz_Software
                             //{
                             //    Visible = false
                             //};
-                            
+
                             //Excel.Workbook book = excelApp.Workbooks.Open(openFileDialog1.FileName);
                             //book = excelApp.ActiveWorkbook;
                             //Excel.Worksheet ws = excelApp.ActiveSheet;
@@ -132,6 +130,28 @@ namespace _13IA_Teacher_Quiz_Software
                             //    csvWriter.Write(reader);
                             //} while (reader.NextResult());
                             //reader.Close();
+
+                            //ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName);
+                            //DbDataReader dbr = edr.AsVariableField(x => edr.RowFieldCount);
+                            //CsvDataWriter cdw = CsvDataWriter.Create(TEMPPATH);
+                            //cdw.Write(dbr);
+                            //cdw = null;
+
+                            //using var edr = ExcelDataReader.Create(openFileDialog1.FileName);
+                            //{
+                            //    do
+                            //    {
+
+                            //    } while (edr.NextResult());
+                            //}
+
+                            //ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName);
+                            //CsvDataWriter cdw = CsvDataWriter.Create(TEMPPATH);
+                            //do
+                            //{
+                            //    cdw.Write(edr);
+                            //} while (edr.NextResult());
+                            //cdw = null;
 
 
                             //StreamReader sr = new StreamReader(TEMPPATH);

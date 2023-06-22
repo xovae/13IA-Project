@@ -116,21 +116,24 @@ namespace _13IA_Project
 
             for (int i = 0; i < inputs.Count(); i++)
             {
-                radioButtons.Add(new RadioButton());
-                if (i == 0)
+                if (inputs[i] != "")
                 {
-                    if (questionResourcePath != "")
+                    radioButtons.Add(new RadioButton());
+                    if (i == 0)
                     {
-                        AddRadioButton(radioButtons[i], questionPictureBox, inputs[i]);
+                        if (questionResourcePath != "")
+                        {
+                            AddRadioButton(radioButtons[i], questionPictureBox, inputs[i]);
+                        }
+                        else
+                        {
+                            AddRadioButton(radioButtons[i], questionLabel, inputs[i]);
+                        }
                     }
                     else
                     {
-                        AddRadioButton(radioButtons[i], questionLabel, inputs[i]);
+                        AddRadioButton(radioButtons[i], radioButtons[i - 1], inputs[i]);
                     }
-                }
-                else
-                {
-                    AddRadioButton(radioButtons[i], radioButtons[i - 1], inputs[i]);
                 }
             }
         }
@@ -146,7 +149,10 @@ namespace _13IA_Project
         {
             for (int i = 0; i < numberOfCorrect; i++)
             {
-                answers.Add(inputs[i]);
+                if (inputs[i] != "")
+                {
+                    answers.Add(inputs[i]);
+                }
             }
 
             answers.Sort();
@@ -155,21 +161,24 @@ namespace _13IA_Project
 
             for (int i = 0; i < inputs.Count; i++)
             {
-                checkBoxes.Add(new CheckBox());
-                if (i == 0)
-                {
-                    if (questionResourcePath != "")
+                if (inputs[i] != "")
+                { 
+                    checkBoxes.Add(new CheckBox());
+                    if (i == 0)
                     {
-                        AddCheckBox(checkBoxes[i], questionPictureBox, inputs[i]);
+                        if (questionResourcePath != "")
+                        {
+                            AddCheckBox(checkBoxes[i], questionPictureBox, inputs[i]);
+                        }
+                        else
+                        {
+                            AddCheckBox(checkBoxes[i], questionLabel, inputs[i]);
+                        }
                     }
                     else
                     {
-                        AddCheckBox(checkBoxes[i], questionLabel, inputs[i]);
+                        AddCheckBox(checkBoxes[i], checkBoxes[i - 1], inputs[i]);
                     }
-                }
-                else
-                {
-                    AddCheckBox(checkBoxes[i], checkBoxes[i - 1], inputs[i]);
                 }
             }
         }
