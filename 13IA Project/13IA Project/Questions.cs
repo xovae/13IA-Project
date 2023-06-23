@@ -163,6 +163,7 @@ namespace _13IA_Project
                         if (selected == null)
                         {
                             questionsComplete = false;
+                            selected = "";
                         }
 
                         //sw.Write(Encode($"{item.questionText},{item.questionTopic},{selected},{item.answerMulti},"));
@@ -189,6 +190,7 @@ namespace _13IA_Project
                         if (selected == null)
                         {
                             questionsComplete = false;
+                            selected = "";
                         }
 
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");

@@ -2,6 +2,8 @@
 using Sylvan.Data.Csv;
 using Sylvan.Data.Excel;
 using Sylvan.Data;
+using Microsoft.Office.Interop;
+using Excel = Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -114,6 +116,12 @@ namespace _13IA_Teacher_Quiz_Software
                             //ws.SaveAs("J:\\Github\\13IA - Project\\Quiz Resources\\convert.csv", Excel.XlFileFormat.xlCSV);
                             //book.Close();
 
+                            //Excel.Application excelApp = new Excel.Application();
+                            //Excel.Workbook wb = excelApp.Workbooks.Open(openFileDialog1.FileName);
+                            //wb.SaveAs(@"K:\2023 13IA\13IA Project\13IA-Project\Quiz Resources\convert.csv", Excel.XlFileFormat.xlCSVWindows);
+                            //wb.Close(false);
+                            //excelApp.Quit();
+
                             //xlsheet.SaveAs(destination, Excel.XlFileFormat.xlCSV);
                             //xlworkbook.Close();
 
@@ -142,6 +150,18 @@ namespace _13IA_Teacher_Quiz_Software
                             //    do
                             //    {
 
+                            //    } while (edr.NextResult());
+                            //}
+
+                            //using (ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName))
+                            //{
+                            //    do
+                            //    {
+                            //        //DbDataReader reader = edr.AsVariableField(edr => edr.RowFieldCount);
+                            //        using (CsvDataWriter cdw = CsvDataWriter.Create(TEMPPATH))
+                            //        {
+                            //            cdw.Write(edr);
+                            //        }
                             //    } while (edr.NextResult());
                             //}
 
