@@ -33,7 +33,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnDecode = new System.Windows.Forms.Button();
-            this.btnDecodeResults = new System.Windows.Forms.Button();
             this.cmbQuizzes = new System.Windows.Forms.ComboBox();
             this.btnAddResource = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -52,11 +51,11 @@
             // 
             // btnEncode
             // 
-            this.btnEncode.Location = new System.Drawing.Point(29, 40);
+            this.btnEncode.Location = new System.Drawing.Point(85, 40);
             this.btnEncode.Name = "btnEncode";
             this.btnEncode.Size = new System.Drawing.Size(91, 23);
             this.btnEncode.TabIndex = 1;
-            this.btnEncode.Text = "&Encode Quiz";
+            this.btnEncode.Text = "&Add Quiz";
             this.btnEncode.UseVisualStyleBackColor = true;
             this.btnEncode.Click += new System.EventHandler(this.btnEncode_Click);
             // 
@@ -66,23 +65,13 @@
             // 
             // btnDecode
             // 
-            this.btnDecode.Location = new System.Drawing.Point(146, 40);
+            this.btnDecode.Location = new System.Drawing.Point(202, 40);
             this.btnDecode.Name = "btnDecode";
             this.btnDecode.Size = new System.Drawing.Size(91, 23);
             this.btnDecode.TabIndex = 2;
-            this.btnDecode.Text = "&Decode Quiz";
+            this.btnDecode.Text = "&Open Quiz";
             this.btnDecode.UseVisualStyleBackColor = true;
             this.btnDecode.Click += new System.EventHandler(this.btnDecode_Click);
-            // 
-            // btnDecodeResults
-            // 
-            this.btnDecodeResults.Location = new System.Drawing.Point(263, 40);
-            this.btnDecodeResults.Name = "btnDecodeResults";
-            this.btnDecodeResults.Size = new System.Drawing.Size(91, 23);
-            this.btnDecodeResults.TabIndex = 3;
-            this.btnDecodeResults.Text = "Decode &Results";
-            this.btnDecodeResults.UseVisualStyleBackColor = true;
-            this.btnDecodeResults.Click += new System.EventHandler(this.btnDecodeResults_Click);
             // 
             // cmbQuizzes
             // 
@@ -112,7 +101,6 @@
             this.ClientSize = new System.Drawing.Size(378, 306);
             this.Controls.Add(this.btnAddResource);
             this.Controls.Add(this.cmbQuizzes);
-            this.Controls.Add(this.btnDecodeResults);
             this.Controls.Add(this.btnDecode);
             this.Controls.Add(this.btnEncode);
             this.Controls.Add(this.lblTitle);
@@ -134,7 +122,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnDecode;
-        private System.Windows.Forms.Button btnDecodeResults;
         private System.Windows.Forms.ComboBox cmbQuizzes;
         private System.Windows.Forms.Button btnAddResource;
     }

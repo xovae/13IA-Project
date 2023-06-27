@@ -245,7 +245,6 @@ namespace _13IA_Teacher_Quiz_Software
                         sr.Close();
                         sw.Close();
 
-
                         DialogResult dr = MessageBox.Show("Would you like to open the decoded file?", "Decoding Successful", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         if (dr == DialogResult.Yes)
                         {
@@ -261,46 +260,46 @@ namespace _13IA_Teacher_Quiz_Software
             }
         }
 
-        private void btnDecodeResults_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.Filter = OPENFILTER;
-            saveFileDialog1.Filter = OPENFILTER;
-            openFileDialog1.InitialDirectory = INTERNALRESULTSPATH;
+        //private void btnDecodeResults_Click(object sender, EventArgs e)
+        //{
+        //    openFileDialog1.Filter = OPENFILTER;
+        //    saveFileDialog1.Filter = OPENFILTER;
+        //    openFileDialog1.InitialDirectory = INTERNALRESULTSPATH;
 
-            byte[] current;
+        //    byte[] current;
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        StreamReader sr = new StreamReader(openFileDialog1.FileName);
-                        StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
+        //    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+        //    {
+        //        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+        //        {
+        //            try
+        //            {
+        //                StreamReader sr = new StreamReader(openFileDialog1.FileName);
+        //                StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
 
-                        while (!sr.EndOfStream)
-                        {
-                            current = Convert.FromBase64String(sr.ReadLine());
-                            sw.WriteLine(Encoding.UTF8.GetString(current));
-                        }
+        //                while (!sr.EndOfStream)
+        //                {
+        //                    current = Convert.FromBase64String(sr.ReadLine());
+        //                    sw.WriteLine(Encoding.UTF8.GetString(current));
+        //                }
 
-                        sr.Close();
-                        sw.Close();
+        //                sr.Close();
+        //                sw.Close();
 
 
-                        DialogResult dr = MessageBox.Show("Would you like to open the decoded file?", "Decoding Successful", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                        if (dr == DialogResult.Yes)
-                        {
-                            Process.Start(saveFileDialog1.FileName);
-                        }
-                    }
-                    catch (IOException ex)
-                    {
-                        MessageBox.Show($"The selected file could not be Decoded! {ex}", "Decoding Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        File.Delete(saveFileDialog1.FileName);
-                    }
-                }
-            }
-        }
+        //                DialogResult dr = MessageBox.Show("Would you like to open the decoded file?", "Decoding Successful", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+        //                if (dr == DialogResult.Yes)
+        //                {
+        //                    Process.Start(saveFileDialog1.FileName);
+        //                }
+        //            }
+        //            catch (IOException ex)
+        //            {
+        //                MessageBox.Show($"The selected file could not be Decoded! {ex}", "Decoding Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //                File.Delete(saveFileDialog1.FileName);
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
