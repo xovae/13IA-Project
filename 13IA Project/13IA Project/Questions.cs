@@ -152,7 +152,6 @@ namespace _13IA_Project
             {
                 StreamWriter sw = File.CreateText(output);
 
-                //sw.WriteLine(Encode("Question,Topic,UserAnswer(s),CorrectAnswer (MultiChoice),Correct?"));
                 sw.WriteLine("Question,Topic,UserAnswer(s),CorrectAnswer (MultiChoice),Correct?");
 
                 if (multichoiceList.Count != 0)
@@ -160,24 +159,20 @@ namespace _13IA_Project
                     foreach (var item in multichoiceList)
                     {
                         selected = GetCheckedRadio(item.panel);
-                        if (selected == null)
+                        if (selected == "")
                         {
                             questionsComplete = false;
-                            selected = "";
                         }
 
-                        //sw.Write(Encode($"{item.questionText},{item.questionTopic},{selected},{item.answerMulti},"));
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerMulti},");
 
                         if (selected.Equals(item.answerMulti, StringComparison.OrdinalIgnoreCase))
                         {
-                            //sw.WriteLine(Encode("Y"));
                             sw.WriteLine("Y");
                             total++;
                         }
                         else
                         {
-                            //sw.WriteLine(Encode("N"));
                             sw.WriteLine("N");
                         }
                     }
@@ -187,24 +182,20 @@ namespace _13IA_Project
                     foreach (var item in truefalseList)
                     {
                         selected = GetCheckedRadio(item.panel);
-                        if (selected == null)
+                        if (selected == "")
                         {
                             questionsComplete = false;
-                            selected = "";
                         }
 
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");
-                        //sw.Write(Encode($"{item.questionText},{item.questionTopic},{selected},{item.answerText},"));
 
                         if (selected.Equals(item.answerText, StringComparison.OrdinalIgnoreCase))
                         {
-                            //sw.WriteLine(Encode("Y"));
                             sw.WriteLine("Y");
                             total++;
                         }
                         else
                         {
-                            //sw.WriteLine(Encode("N"));
                             sw.WriteLine("N");
                         }
                     }
@@ -220,33 +211,28 @@ namespace _13IA_Project
                             questionsComplete = false;
                         }
 
-                        //sw.Write(Encode($"{item.questionText},{item.questionTopic},"));
                         sw.Write($"{item.questionText},{item.questionTopic},");
 
                         inputs.Sort();
 
                         foreach (var item2 in inputs)
                         {
-                            //sw.Write(Encode($"{item2},"));
                             sw.Write($"{item2},");
                         }
 
                         if (inputs.SequenceEqual(item.answers) == true)
                         {
-                            //sw.WriteLine(Encode("Y"));
                             sw.WriteLine("Y");
                             total++;
                         }
                         else
                         {
                             sw.WriteLine("N");
-                            //sw.WriteLine(Encode("N"));
                         }
                     }   
                 }
 
                 sw.Write($"Score is {total} out of {multichoiceList.Count + multiselectList.Count + truefalseList.Count}");
-                //sw.Write(Encode($"Score is {total} out of {multichoiceList.Count + multiselectList.Count + truefalseList.Count}"));
                 sw.Close();
             }
             catch (IOException ex)
@@ -267,34 +253,6 @@ namespace _13IA_Project
             }
         }
 
-        private string Encode(string current)
-        {
-            return Convert.ToBase64String(Encoding.UTF8.GetBytes(current));
-        }
-
-        //private void OutputRadio<T>(List<T> list, string questionText, string questionTopic, string answerText, Panel panel, StreamWriter sw)
-        //{
-        //    string selected;
-        //    foreach (var item in list)
-        //    {
-        //        selected = GetCheckedRadio(panel);
-        //        if (selected == null)
-        //        {
-        //            questionsComplete = false;
-        //        }
-        //        sw.Write($"{questionText},{questionTopic},{selected},{answerText},");
-        //        if (selected == answerText)
-        //        {
-        //            sw.WriteLine("Yes");
-        //            total++;
-        //        }
-        //        else
-        //        {
-        //            sw.WriteLine("No");
-        //        }
-        //    }
-        //}
-
         private string GetCheckedRadio(Control container)
         {
             foreach (var control in container.Controls)
@@ -305,7 +263,7 @@ namespace _13IA_Project
                 }
             }
 
-            return null;
+            return "";
         }
 
         private List<string> GetChecked(Control container)
