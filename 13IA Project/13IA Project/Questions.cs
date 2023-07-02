@@ -46,6 +46,12 @@ namespace _13IA_Project
             quizName = name;
         }
 
+        /// <summary>
+        /// This event method is called upon Form frmQuestion loading.
+        /// It is passed a file path for the current selected quiz, and inteprets this line by line, displaying this information visually to the user.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmQuestions_Load(object sender, EventArgs e)
         {
             string[] current;
@@ -342,7 +348,7 @@ namespace _13IA_Project
             pnlQuestions.Width = Width;
             foreach (var item in multichoiceList)
             {
-                ResizeQuestions(multiselectList, item.panel);
+                ResizeQuestions(multiselectList, item.panel);       //calling method ResizeQuestions for every question
             }
             foreach (var item in multiselectList)
             {
