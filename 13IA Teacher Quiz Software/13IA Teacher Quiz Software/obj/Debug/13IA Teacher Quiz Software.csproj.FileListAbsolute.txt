@@ -20,8 +20,6 @@ C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Qu
 C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.csproj.CoreCompileInputs.cache
 C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.exe
 C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.pdb
-C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Aspose.Cells.dll
-C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Aspose.Cells.xml
 C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.csproj.CopyComplete
 J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Csv.dll
 J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Excel.dll
@@ -68,3 +66,19 @@ K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Q
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.csproj.CopyComplete
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.exe
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\obj\Debug\13IA Teacher Quiz Software.pdb
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Common.dll
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Csv.dll
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.dll
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Excel.dll
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Buffers.dll
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Memory.dll
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Common.xml
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.xml
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Csv.xml
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Excel.xml
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Buffers.xml
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Memory.xml
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\jamie\Downloads\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
