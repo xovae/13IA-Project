@@ -21,19 +21,26 @@ namespace _13IA_Teacher_Quiz_Software
 {
     public partial class frmQuiz : Form
     {
-        //const string OPENFILTER = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
-        const string OPENFILTER = "Data Files (*.csv, *.xlsx, *.xlsb, *.xls)|*.csv;*.xlsx;*.xlsb;*.xls|All Files (*.*)|*.*";
+        const string OPENFILTER = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
+        //const string OPENFILTER = "Data Files (*.csv, *.xlsx, *.xlsb, *.xls)|*.csv;*.xlsx;*.xlsb;*.xls|All Files (*.*)|*.*";
         const string SAVEFILTER = "Quiz Files (*.quiz)|*.quiz|All Files (*.*)|*.*";
         const string RESOURCEFILTER = "Image Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp|All Files (*.*)|*.*";
 
         const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
+        const string INTERNALBONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";
         const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";
         const string TEMPPATH = "..\\..\\..\\..\\Quiz Resources//convert.csv";
 
         public string[] quizPaths;
         public string[] quizNames;
+        public string[] bonusPaths;
+        public string[] bonusNames;
+
         public string selectedQuizPath;
         public string selectedQuizName;
+
+        public string selectedBonusPath;
+        public string selectedBonusName;
 
         public frmQuiz()
         {
@@ -46,9 +53,16 @@ namespace _13IA_Teacher_Quiz_Software
             quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
 
+            bonusPaths = Directory.GetFiles(INTERNALBONUSPATH, "*.quiz", SearchOption.AllDirectories);
+            bonusNames = Directory.GetFiles(INTERNALBONUSPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
+
             foreach (var item in quizNames)
             {
                 cmbQuizzes.Items.Add(item);
+            }
+            foreach (var item in bonusNames)
+            {
+                cmbRandom.Items.Add(item);
             }
         }
 
@@ -58,6 +72,15 @@ namespace _13IA_Teacher_Quiz_Software
             {
                 selectedQuizPath = quizPaths[cmbQuizzes.SelectedIndex];
                 selectedQuizName = quizNames[cmbQuizzes.SelectedIndex];
+            }
+        }
+
+        private void cmbRandom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbRandom.SelectedIndex != -1)
+            {
+                selectedBonusPath = bonusPaths[cmbRandom.SelectedIndex];
+                selectedBonusName = bonusNames[cmbRandom.SelectedIndex];
             }
         }
 
@@ -105,88 +128,7 @@ namespace _13IA_Teacher_Quiz_Software
                     {
                         if (Path.GetExtension(openFileDialog1.FileName) == ".xlsx" || Path.GetExtension(openFileDialog1.FileName) == ".xlsb" || Path.GetExtension(openFileDialog1.FileName) == ".xls")
                         {
-                            //Excel.Application excelApp = new Excel.Application
-                            //{
-                            //    Visible = false
-                            //};
 
-                            //Excel.Workbook book = excelApp.Workbooks.Open(openFileDialog1.FileName);
-                            //book = excelApp.ActiveWorkbook;
-                            //Excel.Worksheet ws = excelApp.ActiveSheet;
-                            //ws.SaveAs("J:\\Github\\13IA - Project\\Quiz Resources\\convert.csv", Excel.XlFileFormat.xlCSV);
-                            //book.Close();
-
-                            //Excel.Application excelApp = new Excel.Application();
-                            //Excel.Workbook wb = excelApp.Workbooks.Open(openFileDialog1.FileName);
-                            //wb.SaveAs(@"K:\2023 13IA\13IA Project\13IA-Project\Quiz Resources\convert.csv", Excel.XlFileFormat.xlCSVWindows);
-                            //wb.Close(false);
-                            //excelApp.Quit();
-
-                            //xlsheet.SaveAs(destination, Excel.XlFileFormat.xlCSV);
-                            //xlworkbook.Close();
-
-                            //ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName);
-                            //DbDataReader reader = edr.AsVariableField(x => edr.RowFieldCount);
-                            //CsvDataWriter csvWriter = CsvDataWriter.Create(TEMPPATH);
-                            //do
-                            //{
-                            //    csvWriter.Write(reader);
-                            //} while (reader.NextResult());
-                            //do
-                            //{
-                            //    var csvWriter = CsvDataWriter.Create(TEMPPATH);
-                            //    csvWriter.Write(reader);
-                            //} while (reader.NextResult());
-                            //reader.Close();
-
-                            //ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName);
-                            //DbDataReader dbr = edr.AsVariableField(x => edr.RowFieldCount);
-                            //CsvDataWriter cdw = CsvDataWriter.Create(TEMPPATH);
-                            //cdw.Write(dbr);
-                            //cdw = null;
-
-                            //using var edr = ExcelDataReader.Create(openFileDialog1.FileName);
-                            //{
-                            //    do
-                            //    {
-
-                            //    } while (edr.NextResult());
-                            //}
-
-                            //using (ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName))
-                            //{
-                            //    do
-                            //    {
-                            //        //DbDataReader reader = edr.AsVariableField(edr => edr.RowFieldCount);
-                            //        using (CsvDataWriter cdw = CsvDataWriter.Create(TEMPPATH))
-                            //        {
-                            //            cdw.Write(edr);
-                            //        }
-                            //    } while (edr.NextResult());
-                            //}
-
-                            //ExcelDataReader edr = ExcelDataReader.Create(openFileDialog1.FileName);
-                            //CsvDataWriter cdw = CsvDataWriter.Create(TEMPPATH);
-                            //do
-                            //{
-                            //    cdw.Write(edr);
-                            //} while (edr.NextResult());
-                            //cdw = null;
-
-
-                            //StreamReader sr = new StreamReader(TEMPPATH);
-                            //StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
-
-                            //while (!sr.EndOfStream)
-                            //{
-                            //    current = Encoding.UTF8.GetBytes(sr.ReadLine());
-                            //    sw.WriteLine(Convert.ToBase64String(current));
-                            //}
-
-                            //sr.Close();
-                            //sw.Close();
-
-                            //File.Delete(TEMPPATH);
                         }
                         else if (Path.GetExtension(openFileDialog1.FileName) == ".csv")
                         {

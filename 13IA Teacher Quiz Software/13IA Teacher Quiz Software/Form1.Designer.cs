@@ -35,6 +35,9 @@
             this.btnDecode = new System.Windows.Forms.Button();
             this.cmbQuizzes = new System.Windows.Forms.ComboBox();
             this.btnAddResource = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cmbRandom = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -93,12 +96,42 @@
             this.btnAddResource.UseVisualStyleBackColor = true;
             this.btnAddResource.Click += new System.EventHandler(this.btnAddResource_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(219, 177);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(91, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // cmbRandom
+            // 
+            this.cmbRandom.FormattingEnabled = true;
+            this.cmbRandom.Location = new System.Drawing.Point(69, 177);
+            this.cmbRandom.Name = "cmbRandom";
+            this.cmbRandom.Size = new System.Drawing.Size(121, 21);
+            this.cmbRandom.TabIndex = 7;
+            this.cmbRandom.SelectedIndexChanged += new System.EventHandler(this.cmbRandom_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(96, 149);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Random Banks";
+            // 
             // frmQuiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_13IA_Teacher_Quiz_Software.Properties.Resources.hbhs_background;
             this.ClientSize = new System.Drawing.Size(378, 306);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cmbRandom);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAddResource);
             this.Controls.Add(this.cmbQuizzes);
             this.Controls.Add(this.btnDecode);
@@ -124,6 +157,9 @@
         private System.Windows.Forms.Button btnDecode;
         private System.Windows.Forms.ComboBox cmbQuizzes;
         private System.Windows.Forms.Button btnAddResource;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cmbRandom;
+        private System.Windows.Forms.Label label1;
     }
 }
 
