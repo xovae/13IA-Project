@@ -79,7 +79,7 @@ namespace _13IA_Project
                     current = sr.ReadLine().Split(',');
                     userNames.Add(current[0]);          //add all userNames to the respectivce list
                     studentNames.Add(current[1]);       //add all student's names to the respective list
-                    studentSubjects.Add(current[3]);
+                    studentSubjects.Add(current[2]);
                 }
                 index = userNames.IndexOf(userName);    //get the matching index position of the username in the list for the matching device username
                 lblUsername.Text = studentNames[index]; //set the label on the form to reflect this name

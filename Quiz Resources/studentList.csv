@@ -1,28 +1,28 @@
-StudentID,StudentName,ClassID,Subject
-2makbari,Mostafa,2023-9ITB-5-TR,IT
-3sallenl,Seth,2023-9ITB-5-TR,IT
-3cbrown,Caleb,2023-9ITB-5-TR,IT
-2bcampbe,Bryden,2023-9ITB-5-TR,IT
-3bcosgro,Blake,2023-9ITB-5-TR,IT
-3cdanden,Chamath,2023-9ITB-5-TR,IT
-3jhan,Jaymin,2023-9ITB-5-TR,IT
-3dheayns,Darcy,2023-9ITB-5-TR,IT
-3mholah,Mack,2023-9ITB-5-TR,IT
-3phoneta,Peihana,2023-9ITB-5-TR,IT
-3rhoney,Rylan,2023-9ITB-5-TR,IT
-3yhuang,Yufeng,2023-9ITB-5-TR,IT
-3ajonker,Alex,2023-9ITB-5-TR,IT
-3ajoshy,Austin,2023-9ITB-5-TR,IT
-3okepa,Oscar,2023-9ITB-5-TR,IT
-3mkuila,Mateaki,2023-9ITB-5-TR,IT
-3jmathew,Japheth,2023-9ITB-5-TR,IT
-3rmohan,Raghav,2023-9ITB-5-TR,IT
-3mnoori,Mahdi,2023-9ITB-5-TR,IT
-3cpaoo,Caol,2023-9ITB-5-TR,IT
-3vraaj,Vihaan,2023-9ITB-5-TR,IT
-3swilson,Shaun,2023-9ITB-5-TR,IT
-3gwu,Guanghao,2023-9ITB-5-TR,IT
-ryan,Ryan,2023-9ITB-5-TR,IT
-9jboulto,Jamie,,IT
-spoop,Jamie Home,,IT
-jamie,Jamie Laptop,,IT
+StudentID,StudentName,Subject
+2makbari,Mostafa,IT
+3sallenl,Seth,IT
+3cbrown,Caleb,IT
+2bcampbe,Bryden,IT
+3bcosgro,Blake,IT
+3cdanden,Chamath,IT
+3jhan,Jaymin,IT
+3dheayns,Darcy,IT
+3mholah,Mack,IT
+3phoneta,Peihana,IT
+3rhoney,Rylan,IT
+3yhuang,Yufeng,IT
+3ajonker,Alex,IT
+3ajoshy,Austin,IT
+3okepa,Oscar,IT
+3mkuila,Mateaki,IT
+3jmathew,Japheth,IT
+3rmohan,Raghav,IT
+3mnoori,Mahdi,IT
+3cpaoo,Caol,IT
+3vraaj,Vihaan,IT
+3swilson,Shaun,IT
+3gwu,Guanghao,IT
+ryan,Ryan,IT
+9jboulto,Jamie,IT
+spoop,Jamie Home,IT
+jamie,Jamie Laptop,IT

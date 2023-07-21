@@ -54,6 +54,18 @@ namespace _13IA_Project
         /// <param name="e"></param>
         private void frmQuestions_Load(object sender, EventArgs e)
         {
+            if (quizName == "Bonus Quiz")
+            {
+                LoadRandomQuiz();
+            }
+            else
+            {
+                LoadQuiz();
+            }
+        }
+
+        private void LoadQuiz()
+        {
             string[] current;
             string resourcePath;    //variables used for loading quiz information
             List<string> answers = new List<string>();
@@ -81,7 +93,7 @@ namespace _13IA_Project
                             try
                             {
                                 resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}";
-                                multichoiceList.Add(new MultiChoice(current[1], resourcePath,current[3], answers)); //attempt to pass the file path of the specified resource
+                                multichoiceList.Add(new MultiChoice(current[1], resourcePath, current[3], answers)); //attempt to pass the file path of the specified resource
                             }
                             catch (IOException ex)  //if it cannot be accessed
                             {
@@ -90,7 +102,7 @@ namespace _13IA_Project
                         }
                         else   //if no resource is attached, pass an empty string ""
                         {
-                            multichoiceList.Add(new MultiChoice(current[1],"", current[3], answers));
+                            multichoiceList.Add(new MultiChoice(current[1], "", current[3], answers));
                         }
                         FormatQuestions(multichoiceList, multichoiceList.Last().panel); //format the current question + panel
                     }
@@ -114,7 +126,7 @@ namespace _13IA_Project
                         }
                         else   //if no resource given
                         {
-                            multiselectList.Add(new MultiSelect(current[1],"", current[3], Convert.ToInt32(current[4]), answers));
+                            multiselectList.Add(new MultiSelect(current[1], "", current[3], Convert.ToInt32(current[4]), answers));
                         }
                         FormatQuestions(multiselectList, multiselectList.Last().panel); //format the current question
                     }
@@ -127,7 +139,7 @@ namespace _13IA_Project
                         }
                         else    //if no resource given
                         {
-                            truefalseList.Add(new TrueFalse(current[1],"", current[3], current[5]));
+                            truefalseList.Add(new TrueFalse(current[1], "", current[3], current[5]));
                         }
                         FormatQuestions(truefalseList, truefalseList.Last().panel); //format the current question
                     }
@@ -147,6 +159,11 @@ namespace _13IA_Project
                 Close();
                 frmMenu.GetInstance().Show();   //show the menu form
             }
+        }
+
+        private void LoadRandomQuiz()
+        {
+
         }
 
         /// <summary>
