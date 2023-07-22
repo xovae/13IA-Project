@@ -134,8 +134,15 @@ namespace _13IA_Project
                     {
                         if (current[2] != "")   //if given a resource
                         {
-                            resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
-                            truefalseList.Add(new TrueFalse(current[1], resourcePath, current[3], current[5]));
+                            try
+                            {
+                                resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
+                                truefalseList.Add(new TrueFalse(current[1], resourcePath, current[3], current[5]));
+                            }
+                            catch (IOException ex)
+                            {
+                                MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else    //if no resource given
                         {
@@ -161,9 +168,126 @@ namespace _13IA_Project
             }
         }
 
+        private void LoadQuestion(string line)
+        {
+            string[] current;
+            string rawLine = line;
+            List<string> answers = new List<string>();
+
+            string resourcePath;
+
+            current = Encoding.UTF8.GetString(Convert.FromBase64String(rawLine)).Split(',');  //read the current line, decoding from a base64 string
+            answers.Clear();
+
+            if (current[0].Equals("Multichoice", StringComparison.OrdinalIgnoreCase))   //if a multichoice type question
+            {
+                for (int i = 0; i < current.Count() - 5; i++)   //get all the possible answers ( - 5 for the first non-answer elements, i.e. question, topic, resource)
+                {
+                    answers.Add(current[i + 5]);
+                }
+                if (current[2] != "")   //if the given question has a resource attached
+                {
+                    try
+                    {
+                        resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}";
+                        multichoiceList.Add(new MultiChoice(current[1], resourcePath, current[3], answers)); //attempt to pass the file path of the specified resource
+                    }
+                    catch (IOException ex)  //if it cannot be accessed
+                    {
+                        MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else   //if no resource is attached, pass an empty string ""
+                {
+                    multichoiceList.Add(new MultiChoice(current[1], "", current[3], answers));
+                }
+                FormatQuestions(multichoiceList, multichoiceList.Last().panel); //format the current question + panel
+            }
+            else if (current[0].Equals("MultiSelect", StringComparison.OrdinalIgnoreCase))  //if a select all that apply type question
+            {
+                for (int i = 0; i < (current.Count() - 5); i++) //get all answer elements
+                {
+                    answers.Add(current[i + 5]);
+                }
+                if (current[2] != "")   //if given a resource path
+                {
+                    try
+                    {
+                        resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
+                        multiselectList.Add(new MultiSelect(current[1], resourcePath, current[3], Convert.ToInt32(current[4]), answers));
+                    }
+                    catch (IOException ex)  //if the resource cannot be accessed
+                    {
+                        MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else   //if no resource given
+                {
+                    multiselectList.Add(new MultiSelect(current[1], "", current[3], Convert.ToInt32(current[4]), answers));
+                }
+                FormatQuestions(multiselectList, multiselectList.Last().panel); //format the current question
+            }
+            else if (current[0].Equals("TrueFalse", StringComparison.OrdinalIgnoreCase))    //if a true false question
+            {
+                if (current[2] != "")   //if given a resource
+                {
+                    try
+                    {
+                        resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
+                        truefalseList.Add(new TrueFalse(current[1], resourcePath, current[3], current[5]));
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else    //if no resource given
+                {
+                    truefalseList.Add(new TrueFalse(current[1], "", current[3], current[5]));
+                }
+                FormatQuestions(truefalseList, truefalseList.Last().panel); //format the current question
+            }
+        }
+
         private void LoadRandomQuiz()
         {
+            int totalQuestions = 0;
+            int increment;
 
+            Random rand = new Random();
+
+            string[] current;
+            string resourcePath;    //variables used for loading quiz information
+            List<string> answers = new List<string>();
+
+            StreamReader sr = new StreamReader(filePath);   //create a StreamReader for the selected quiz
+
+            lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2; //set the position of the title
+            lblTitle.Top = (pnlHeader.Height - lblTitle.Height) / 2;
+
+            try
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    sr.DiscardBufferedData();
+                    sr.BaseStream.Position = 0;
+
+                    increment = rand.Next(1, totalQuestions + 1);
+                    for (int i2 = 0; i2 < increment; i2++)
+                    {
+                        sr.Read();
+                    }
+
+                }
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"The quiz file could not be read! {ex}", "Invalid Quiz File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            while (!sr.EndOfStream)
+            {
+                totalQuestions++;
+            }
         }
 
         /// <summary>
