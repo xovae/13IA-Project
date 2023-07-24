@@ -1,28 +1,28 @@
-StudentID,StudentName,Subject
-2makbari,Mostafa,IT
-3sallenl,Seth,IT
-3cbrown,Caleb,IT
-2bcampbe,Bryden,IT
-3bcosgro,Blake,IT
-3cdanden,Chamath,IT
-3jhan,Jaymin,IT
-3dheayns,Darcy,IT
-3mholah,Mack,IT
-3phoneta,Peihana,IT
-3rhoney,Rylan,IT
-3yhuang,Yufeng,IT
-3ajonker,Alex,IT
-3ajoshy,Austin,IT
-3okepa,Oscar,IT
-3mkuila,Mateaki,IT
-3jmathew,Japheth,IT
-3rmohan,Raghav,IT
-3mnoori,Mahdi,IT
-3cpaoo,Caol,IT
-3vraaj,Vihaan,IT
-3swilson,Shaun,IT
-3gwu,Guanghao,IT
-ryan,Ryan,IT
-9jboulto,Jamie,IT
-spoop,Jamie Home,IT
-jamie,Jamie Laptop,IT
+StudentID,StudentName,Subject,Score
+2makbari,Mostafa,IT,0
+3sallenl,Seth,IT,0
+3cbrown,Caleb,IT,0
+2bcampbe,Bryden,IT,0
+3bcosgro,Blake,IT,0
+3cdanden,Chamath,IT,0
+3jhan,Jaymin,IT,0
+3dheayns,Darcy,IT,0
+3mholah,Mack,IT,0
+3phoneta,Peihana,IT,0
+3rhoney,Rylan,IT,0
+3yhuang,Yufeng,IT,0
+3ajonker,Alex,IT,0
+3ajoshy,Austin,IT,0
+3okepa,Oscar,IT,0
+3mkuila,Mateaki,IT,0
+3jmathew,Japheth,IT,0
+3rmohan,Raghav,IT,0
+3mnoori,Mahdi,IT,0
+3cpaoo,Caol,IT,0
+3vraaj,Vihaan,IT,0
+3swilson,Shaun,IT,0
+3gwu,Guanghao,IT,0
+ryan,Ryan,IT,0
+9jboulto,Jamie,IT,0
+spoop,Jamie Home,IT,0
+jamie,Jamie Laptop,IT,0

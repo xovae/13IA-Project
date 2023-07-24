@@ -134,12 +134,12 @@ namespace _13IA_Project
                 {
                     if (studentSubject == "IT")
                     {
-                        selectedQuiz = $"{INTERNALBONUSPATH}//randomBankIT.csv";
+                        selectedQuiz = $"{INTERNALBONUSPATH}//randomBankIT.quiz";
                         selectedQuizName = "Bonus Quiz";
                     }
                     else if (studentSubject == "Food")
                     {
-                        selectedQuiz = $"{INTERNALBONUSPATH}//randomBankFood.csv";
+                        selectedQuiz = $"{INTERNALBONUSPATH}//randomBankFood.quiz";
                         selectedQuizName = "Bonus Quiz";
                     }
                 }

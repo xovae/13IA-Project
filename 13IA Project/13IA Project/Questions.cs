@@ -31,6 +31,7 @@ namespace _13IA_Project
 
         public const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
         public const string INTERNAL_WRITE_PATH = "..\\..\\..\\..\\Quiz Output//";  //file paths of quiz files and output files
+        public const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";
 
         List<MultiChoice> multichoiceList = new List<MultiChoice>();
         List<MultiSelect> multiselectList = new List<MultiSelect>();    //lists used for storing of question types
@@ -66,90 +67,13 @@ namespace _13IA_Project
 
         private void LoadQuiz()
         {
-            string[] current;
-            string resourcePath;    //variables used for loading quiz information
-            List<string> answers = new List<string>();
-
-            StreamReader sr = new StreamReader(filePath);   //create a StreamReader for the selected quiz
-
-            lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2; //set the position of the title
-            lblTitle.Top = (pnlHeader.Height - lblTitle.Height) / 2;
-
             try
             {
+                StreamReader sr = new StreamReader(filePath);   //create a StreamReader for the selected quiz
+                
                 while (!sr.EndOfStream)
                 {
-                    current = Encoding.UTF8.GetString(Convert.FromBase64String(sr.ReadLine())).Split(',');  //read the current line, decoding from a base64 string
-                    answers.Clear();
-
-                    if (current[0].Equals("Multichoice", StringComparison.OrdinalIgnoreCase))   //if a multichoice type question
-                    {
-                        for (int i = 0; i < current.Count() - 5; i++)   //get all the possible answers ( - 5 for the first non-answer elements, i.e. question, topic, resource)
-                        {
-                            answers.Add(current[i + 5]);
-                        }
-                        if (current[2] != "")   //if the given question has a resource attached
-                        {
-                            try
-                            {
-                                resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}";
-                                multichoiceList.Add(new MultiChoice(current[1], resourcePath, current[3], answers)); //attempt to pass the file path of the specified resource
-                            }
-                            catch (IOException ex)  //if it cannot be accessed
-                            {
-                                MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else   //if no resource is attached, pass an empty string ""
-                        {
-                            multichoiceList.Add(new MultiChoice(current[1], "", current[3], answers));
-                        }
-                        FormatQuestions(multichoiceList, multichoiceList.Last().panel); //format the current question + panel
-                    }
-                    else if (current[0].Equals("MultiSelect", StringComparison.OrdinalIgnoreCase))  //if a select all that apply type question
-                    {
-                        for (int i = 0; i < (current.Count() - 5); i++) //get all answer elements
-                        {
-                            answers.Add(current[i + 5]);
-                        }
-                        if (current[2] != "")   //if given a resource path
-                        {
-                            try
-                            {
-                                resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
-                                multiselectList.Add(new MultiSelect(current[1], resourcePath, current[3], Convert.ToInt32(current[4]), answers));
-                            }
-                            catch (IOException ex)  //if the resource cannot be accessed
-                            {
-                                MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else   //if no resource given
-                        {
-                            multiselectList.Add(new MultiSelect(current[1], "", current[3], Convert.ToInt32(current[4]), answers));
-                        }
-                        FormatQuestions(multiselectList, multiselectList.Last().panel); //format the current question
-                    }
-                    else if (current[0].Equals("TrueFalse", StringComparison.OrdinalIgnoreCase))    //if a true false question
-                    {
-                        if (current[2] != "")   //if given a resource
-                        {
-                            try
-                            {
-                                resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
-                                truefalseList.Add(new TrueFalse(current[1], resourcePath, current[3], current[5]));
-                            }
-                            catch (IOException ex)
-                            {
-                                MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else    //if no resource given
-                        {
-                            truefalseList.Add(new TrueFalse(current[1], "", current[3], current[5]));
-                        }
-                        FormatQuestions(truefalseList, truefalseList.Last().panel); //format the current question
-                    }
+                    LoadQuestion(sr.ReadLine());
                 }
                 sr.Close(); //once completed, close the Streamreader
                 if (truefalseList.Count != 0)   //if TrueFalse questions are present
@@ -168,13 +92,51 @@ namespace _13IA_Project
             }
         }
 
-        private void LoadQuestion(string line)
+        private void LoadRandomQuiz()
+        {
+            int totalQuestions = 0;
+            int increment;
+
+            Random rand = new Random();
+
+            try
+            {
+                StreamReader sr = new StreamReader(filePath);   //create a StreamReader for the selected quiz
+
+                while (!sr.EndOfStream)
+                {
+                    totalQuestions++;
+                    sr.ReadLine();
+                }
+
+                for (int i = 0; i < 10; i++)
+                {
+                    sr.DiscardBufferedData();
+                    sr.BaseStream.Position = 0;
+
+                    increment = rand.Next(1, totalQuestions);
+                    for (int i2 = 0; i2 < increment; i2++)
+                    {
+                        sr.ReadLine();
+                    }
+                    LoadQuestion(sr.ReadLine());
+                }
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"The quiz file could not be read! {ex}", "Invalid Quiz File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void LoadQuestion(string rawLine)
         {
             string[] current;
-            string rawLine = line;
+            string resourcePath;
             List<string> answers = new List<string>();
 
-            string resourcePath;
+            lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2; //set the position of the title
+            lblTitle.Top = (pnlHeader.Height - lblTitle.Height) / 2;
 
             current = Encoding.UTF8.GetString(Convert.FromBase64String(rawLine)).Split(',');  //read the current line, decoding from a base64 string
             answers.Clear();
@@ -246,47 +208,6 @@ namespace _13IA_Project
                     truefalseList.Add(new TrueFalse(current[1], "", current[3], current[5]));
                 }
                 FormatQuestions(truefalseList, truefalseList.Last().panel); //format the current question
-            }
-        }
-
-        private void LoadRandomQuiz()
-        {
-            int totalQuestions = 0;
-            int increment;
-
-            Random rand = new Random();
-
-            string[] current;
-            string resourcePath;    //variables used for loading quiz information
-            List<string> answers = new List<string>();
-
-            StreamReader sr = new StreamReader(filePath);   //create a StreamReader for the selected quiz
-
-            lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2; //set the position of the title
-            lblTitle.Top = (pnlHeader.Height - lblTitle.Height) / 2;
-
-            try
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    sr.DiscardBufferedData();
-                    sr.BaseStream.Position = 0;
-
-                    increment = rand.Next(1, totalQuestions + 1);
-                    for (int i2 = 0; i2 < increment; i2++)
-                    {
-                        sr.Read();
-                    }
-
-                }
-            }
-            catch (IOException ex)
-            {
-                MessageBox.Show($"The quiz file could not be read! {ex}", "Invalid Quiz File", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            while (!sr.EndOfStream)
-            {
-                totalQuestions++;
             }
         }
 
@@ -422,6 +343,45 @@ namespace _13IA_Project
             }
             else  //if output was successful
             {
+                if (quizName == "Bonus Quiz")
+                {
+                    try
+                    {
+                        string[] current;
+
+                        int tempScore = 0;
+
+                        StreamReader sr = new StreamReader(STUDENTINFO);
+
+                        List<int> studentScores = new List<int>();
+                        List<string> studentNames = new List<string>();
+                        List<string> studentSubjects = new List<string>();
+                        List<string> userNames = new List<string>();
+
+                        while (!sr.EndOfStream)
+                        {
+                            current = sr.ReadLine().Split(',');
+                            userNames.Add(current[0]);
+                            studentNames.Add(current[1]);
+                            studentSubjects.Add(current[2]);
+                            studentScores.Add(int.Parse(current[3]));
+                        }
+                        int index = userNames.IndexOf(Environment.UserName);
+                        tempScore = studentScores[index] + total;
+
+                        StreamWriter sw = new StreamWriter(STUDENTINFO);
+                        sw.BaseStream.Position = index;
+                        sw.Write($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}");
+                        sw.Close();
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show($"The results of the bonus quiz could not be saved! {ex}", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    File.Delete(output);
+                }
+
                 Close();    //close the form
                 frmMenu.GetInstance().Show();   //show the menu
             }
