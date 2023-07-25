@@ -97,6 +97,8 @@ namespace _13IA_Project
             int totalQuestions = 0;
             int increment;
 
+            List<int> previousRandoms = new List<int>();
+
             Random rand = new Random();
 
             try
@@ -115,11 +117,15 @@ namespace _13IA_Project
                     sr.BaseStream.Position = 0;
 
                     increment = rand.Next(1, totalQuestions);
-                    for (int i2 = 0; i2 < increment; i2++)
+                    previousRandoms.Add(increment);
+                    if (!previousRandoms.Contains(increment))
                     {
-                        sr.ReadLine();
+                        for (int i2 = 0; i2 < increment; i2++)
+                        {
+                            sr.ReadLine();
+                        }
+                        LoadQuestion(sr.ReadLine());
                     }
-                    LoadQuestion(sr.ReadLine());
                 }
             }
             catch (IOException ex)
@@ -377,11 +383,6 @@ namespace _13IA_Project
                             tempScore = studentScores[index] + total;
 
                             EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}", STUDENTINFO, index);
-
-                            //StreamWriter sw = new StreamWriter(STUDENTINFO);
-                            //sw.BaseStream.Position = index;
-                            //sw.Write($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}");
-                            //sw.Close();
                         }
                         catch (Exception ex)
                         {
