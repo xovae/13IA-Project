@@ -358,25 +358,39 @@ namespace _13IA_Project
                         List<string> studentSubjects = new List<string>();
                         List<string> userNames = new List<string>();
 
-                        while (!sr.EndOfStream)
-                        {
-                            current = sr.ReadLine().Split(',');
-                            userNames.Add(current[0]);
-                            studentNames.Add(current[1]);
-                            studentSubjects.Add(current[2]);
-                            studentScores.Add(int.Parse(current[3]));
-                        }
-                        int index = userNames.IndexOf(Environment.UserName);
-                        tempScore = studentScores[index] + total;
+                        sr.ReadLine();
 
-                        StreamWriter sw = new StreamWriter(STUDENTINFO);
-                        sw.BaseStream.Position = index;
-                        sw.Write($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}");
-                        sw.Close();
+                        try
+                        {
+                            while (!sr.EndOfStream)
+                            {
+                                current = sr.ReadLine().Split(',');
+                                userNames.Add(current[0]);
+                                studentNames.Add(current[1]);
+                                studentSubjects.Add(current[2]);
+                                studentScores.Add(int.Parse(current[3]));
+                            }
+
+                            sr.Close();
+
+                            int index = userNames.IndexOf(Environment.UserName);
+                            tempScore = studentScores[index] + total;
+
+                            EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}", STUDENTINFO, index);
+
+                            //StreamWriter sw = new StreamWriter(STUDENTINFO);
+                            //sw.BaseStream.Position = index;
+                            //sw.Write($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}");
+                            //sw.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"The results of the bonus quiz could not be correctly saved! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     catch (IOException ex)
                     {
-                        MessageBox.Show($"The results of the bonus quiz could not be saved! {ex}", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"studentList.csv could not be accessed! {ex}", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     File.Delete(output);
@@ -385,6 +399,13 @@ namespace _13IA_Project
                 Close();    //close the form
                 frmMenu.GetInstance().Show();   //show the menu
             }
+        }
+
+        private void EditLine(string newLine, string fileName, int editIndex)
+        {
+            string[] fileArray = File.ReadAllLines(fileName);
+            fileArray[editIndex - 1] = newLine;
+            File.WriteAllLines(fileName, fileArray);
         }
 
         /// <summary>
