@@ -36,9 +36,13 @@
             this.lblHint = new System.Windows.Forms.Label();
             this.btnStart = new FontAwesome.Sharp.IconButton();
             this.lstQuizzes = new System.Windows.Forms.ListBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblLeadboard = new System.Windows.Forms.Label();
+            this.lstLeaderboard = new System.Windows.Forms.ListBox();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
             this.pnlBody.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -68,7 +72,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblTitle.Location = new System.Drawing.Point(287, 18);
+            this.lblTitle.Location = new System.Drawing.Point(385, 18);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(166, 25);
             this.lblTitle.TabIndex = 1;
@@ -89,10 +93,11 @@
             // pnlBody
             // 
             this.pnlBody.BackColor = System.Drawing.Color.Transparent;
+            this.pnlBody.Controls.Add(this.panel1);
             this.pnlBody.Controls.Add(this.lblHint);
             this.pnlBody.Controls.Add(this.btnStart);
             this.pnlBody.Controls.Add(this.lstQuizzes);
-            this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBody.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlBody.Location = new System.Drawing.Point(0, 59);
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Size = new System.Drawing.Size(741, 318);
@@ -103,7 +108,7 @@
             this.lblHint.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblHint.AutoSize = true;
             this.lblHint.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblHint.Location = new System.Drawing.Point(389, 238);
+            this.lblHint.Location = new System.Drawing.Point(480, 242);
             this.lblHint.Name = "lblHint";
             this.lblHint.Size = new System.Drawing.Size(71, 13);
             this.lblHint.TabIndex = 13;
@@ -119,7 +124,7 @@
             this.btnStart.IconColor = System.Drawing.Color.LimeGreen;
             this.btnStart.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnStart.IconSize = 20;
-            this.btnStart.Location = new System.Drawing.Point(358, 232);
+            this.btnStart.Location = new System.Drawing.Point(449, 236);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(25, 25);
             this.btnStart.TabIndex = 12;
@@ -133,12 +138,41 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstQuizzes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstQuizzes.FormattingEnabled = true;
-            this.lstQuizzes.Location = new System.Drawing.Point(131, 27);
+            this.lstQuizzes.Location = new System.Drawing.Point(222, 31);
             this.lstQuizzes.Name = "lstQuizzes";
             this.lstQuizzes.Size = new System.Drawing.Size(479, 199);
             this.lstQuizzes.TabIndex = 11;
             this.lstQuizzes.SelectedIndexChanged += new System.EventHandler(this.lstQuizzes_SelectedIndexChanged);
             this.lstQuizzes.DoubleClick += new System.EventHandler(this.btnStart_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lstLeaderboard);
+            this.panel1.Controls.Add(this.lblLeadboard);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(182, 318);
+            this.panel1.TabIndex = 14;
+            // 
+            // lblLeadboard
+            // 
+            this.lblLeadboard.AutoSize = true;
+            this.lblLeadboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.lblLeadboard.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblLeadboard.Location = new System.Drawing.Point(22, 3);
+            this.lblLeadboard.Name = "lblLeadboard";
+            this.lblLeadboard.Size = new System.Drawing.Size(145, 25);
+            this.lblLeadboard.TabIndex = 15;
+            this.lblLeadboard.Text = "Leaderboard";
+            // 
+            // lstLeaderboard
+            // 
+            this.lstLeaderboard.FormattingEnabled = true;
+            this.lstLeaderboard.Location = new System.Drawing.Point(27, 31);
+            this.lstLeaderboard.Name = "lstLeaderboard";
+            this.lstLeaderboard.Size = new System.Drawing.Size(140, 251);
+            this.lstLeaderboard.TabIndex = 16;
             // 
             // frmMenu
             // 
@@ -162,6 +196,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
             this.pnlBody.ResumeLayout(false);
             this.pnlBody.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -175,6 +211,9 @@
         private FontAwesome.Sharp.IconButton btnStart;
         private System.Windows.Forms.ListBox lstQuizzes;
         private System.Windows.Forms.PictureBox pctLogo;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblLeadboard;
+        private System.Windows.Forms.ListBox lstLeaderboard;
     }
 }
 

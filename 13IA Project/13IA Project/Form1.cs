@@ -57,6 +57,9 @@ namespace _13IA_Project
             string userName = Environment.UserName; //reading the username
             int index = 0;
 
+            lstLeaderboard.Items.Add("Name".PadRight(16) + "Score");
+            lstLeaderboard.Items.Add("Jamie".PadRight(15 /*will be PADDING - name.Length*/) + "50");
+
             if (quizResults != null)
             {
                 lstQuizzes.Items.Clear();
