@@ -51,13 +51,22 @@ namespace _13IA_Project
             pctLogo.Image = Resources.hbhs_logo___text;
         }
 
-        private void frmMenu_Load(object sender, EventArgs e)
+        public void frmMenu_Load(object sender, EventArgs e)
         {
             string[] current;
             string userName = Environment.UserName; //reading the username
             int index = 0;
 
-            lstQuizzes.Items.Clear();
+            if (quizResults != null)
+            {
+                lstQuizzes.Items.Clear();
+                Array.Clear(quizPaths, 0, quizPaths.Length);
+                Array.Clear(quizNames, 0, quizNames.Length);
+                Array.Clear(quizResults, 0, quizResults.Length);
+
+                quizNameList.Clear();
+                quizPathList.Clear();
+            }
 
             quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();  //loading all quiz paths, names, and result files into their respective arrays, according to the given directories
@@ -95,6 +104,8 @@ namespace _13IA_Project
 
             if (quizResults.Length != 0)    //if any results files are present
             {
+                lstQuizzes.Items.Clear();
+                lstQuizzes.Refresh();
                 for (int i = 0; i < quizResults.Length; i++)
                 {
                     quizResultsCheck = quizResults[i].Remove(0, userName.Length + 9);   //get the name of the results file with the additional formatting removed (9 characters long: {username} Results-)

@@ -117,7 +117,6 @@ namespace _13IA_Project
                     sr.BaseStream.Position = 0;
 
                     increment = rand.Next(1, totalQuestions);
-                    previousRandoms.Add(increment);
                     if (!previousRandoms.Contains(increment))
                     {
                         for (int i2 = 0; i2 < increment; i2++)
@@ -126,6 +125,11 @@ namespace _13IA_Project
                         }
                         LoadQuestion(sr.ReadLine());
                     }
+                    else
+                    {
+                        i--;
+                    }
+                    previousRandoms.Add(increment);
                 }
             }
             catch (IOException ex)
@@ -374,7 +378,7 @@ namespace _13IA_Project
                                 userNames.Add(current[0]);
                                 studentNames.Add(current[1]);
                                 studentSubjects.Add(current[2]);
-                                studentScores.Add(int.Parse(current[3]));
+                                //studentScores.Add(int.Parse(current[3]));
                             }
 
                             sr.Close();
@@ -382,7 +386,7 @@ namespace _13IA_Project
                             int index = userNames.IndexOf(Environment.UserName);
                             tempScore = studentScores[index] + total;
 
-                            EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}", STUDENTINFO, index);
+                            //EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}", STUDENTINFO, index);
                         }
                         catch (Exception ex)
                         {
@@ -396,9 +400,7 @@ namespace _13IA_Project
 
                     File.Delete(output);
                 }
-
                 Close();    //close the form
-                frmMenu.GetInstance().Show();   //show the menu
             }
         }
 
@@ -458,6 +460,7 @@ namespace _13IA_Project
         private void frmQuestions_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmMenu.GetInstance().Show();
+            frmMenu.GetInstance().frmMenu_Load(this, null);
         }
         
         /// <summary>
