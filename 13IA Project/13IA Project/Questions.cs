@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace _13IA_Project
 {
@@ -353,62 +354,20 @@ namespace _13IA_Project
             }
             else  //if output was successful
             {
-                if (quizName == "Bonus Quiz")
+                if (quizName == "Bonus Quiz")   //if the user is taking a bonus quiz
                 {
-                    try
-                    {
-                        string[] current;
+                    StreamReader sr = new StreamReader($"{INTERNAL_WRITE_PATH}//{Environment.UserName}//{Environment.UserName} Score.txt");
+                    int tempScore = Convert.ToInt32(sr.ReadLine()) + total;
+                    sr.Close();
 
-                        int tempScore = 0;
-
-                        StreamReader sr = new StreamReader(STUDENTINFO);
-
-                        List<int> studentScores = new List<int>();
-                        List<string> studentNames = new List<string>();
-                        List<string> studentSubjects = new List<string>();
-                        List<string> userNames = new List<string>();
-
-                        sr.ReadLine();
-
-                        try
-                        {
-                            while (!sr.EndOfStream)
-                            {
-                                current = sr.ReadLine().Split(',');
-                                userNames.Add(current[0]);
-                                studentNames.Add(current[1]);
-                                studentSubjects.Add(current[2]);
-                                //studentScores.Add(int.Parse(current[3]));
-                            }
-
-                            sr.Close();
-
-                            int index = userNames.IndexOf(Environment.UserName);
-                            tempScore = studentScores[index] + total;
-
-                            //EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}", STUDENTINFO, index);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"The results of the bonus quiz could not be correctly saved! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    catch (IOException ex)
-                    {
-                        MessageBox.Show($"studentList.csv could not be accessed! {ex}", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    StreamWriter sw = new StreamWriter($"{INTERNAL_WRITE_PATH}//{Environment.UserName}//{Environment.UserName} Score.txt");
+                    sw.Write(tempScore);
+                    sw.Close();
 
                     File.Delete(output);
                 }
                 Close();    //close the form
             }
-        }
-
-        private void EditLine(string newLine, string fileName, int editIndex)
-        {
-            string[] fileArray = File.ReadAllLines(fileName);
-            fileArray[editIndex - 1] = newLine;
-            File.WriteAllLines(fileName, fileArray);
         }
 
         /// <summary>

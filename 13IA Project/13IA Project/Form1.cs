@@ -70,6 +70,16 @@ namespace _13IA_Project
 
             quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();  //loading all quiz paths, names, and result files into their respective arrays, according to the given directories
+
+            if (Directory.Exists($"{INTERNALRESULTSPATH}//{userName}") != true)
+            {
+                Directory.CreateDirectory($"{INTERNALRESULTSPATH}//{userName}");
+            }
+            if (File.Exists($"{INTERNALRESULTSPATH}//{userName}//{userName} Score.txt") != true)
+            {
+                File.WriteAllText($"{INTERNALRESULTSPATH}//{userName}//{userName} Score.txt", "0");
+            }
+
             quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{userName}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
 
             foreach (var item in quizNames)
