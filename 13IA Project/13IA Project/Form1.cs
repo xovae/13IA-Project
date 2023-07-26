@@ -25,10 +25,12 @@ namespace _13IA_Project
         const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
         const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";             //const strings used for internal file paths of program elements
         const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";
+        const string INTERNALBONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";
 
         public string selectedQuiz;
         public string selectedQuizName;         //strings used for the storage of quiz paths, names, and the comparison of results files to existing quizzes
         public string quizResultsCheck;
+        public string studentSubject;
 
         public string[] quizPaths;
         public string[] quizNames;      //string arrays used for storing all quiz paths, names, and results files loaded directly from the given directory
@@ -36,6 +38,7 @@ namespace _13IA_Project
 
         public List<string> userNames = new List<string>();
         public List<string> studentNames = new List<string>();  //string Lists used for the storing of usernames and student's first names
+        public List<string> studentSubjects = new List<string>();
 
         public List<string> quizNameList = new List<string>();  //string Lists used for storing the truncated lists of quiz paths and names
         public List<string> quizPathList = new List<string>();
@@ -48,14 +51,38 @@ namespace _13IA_Project
             pctLogo.Image = Resources.hbhs_logo___text;
         }
 
-        private void frmMenu_Load(object sender, EventArgs e)
+        public void frmMenu_Load(object sender, EventArgs e)
         {
             string[] current;
             string userName = Environment.UserName; //reading the username
             int index = 0;
 
+            lstLeaderboard.Items.Add("Name".PadRight(16) + "Score");
+            lstLeaderboard.Items.Add("Jamie".PadRight(15 /*will be PADDING - name.Length*/) + "50");
+
+            if (quizResults != null)
+            {
+                lstQuizzes.Items.Clear();
+                Array.Clear(quizPaths, 0, quizPaths.Length);
+                Array.Clear(quizNames, 0, quizNames.Length);
+                Array.Clear(quizResults, 0, quizResults.Length);
+
+                quizNameList.Clear();
+                quizPathList.Clear();
+            }
+
             quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();  //loading all quiz paths, names, and result files into their respective arrays, according to the given directories
+
+            if (Directory.Exists($"{INTERNALRESULTSPATH}//{userName}") != true)
+            {
+                Directory.CreateDirectory($"{INTERNALRESULTSPATH}//{userName}");
+            }
+            if (File.Exists($"{INTERNALRESULTSPATH}//{userName}//{userName} Score.txt") != true)
+            {
+                File.WriteAllText($"{INTERNALRESULTSPATH}//{userName}//{userName} Score.txt", "0");
+            }
+
             quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{userName}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
 
             foreach (var item in quizNames)
@@ -67,8 +94,31 @@ namespace _13IA_Project
                 quizPathList.Add(item);
             }
 
+            try
+            {
+                StreamReader sr = new StreamReader(STUDENTINFO);    //create a StreamReader to process all user information (studentList.csv)
+
+                while (!sr.EndOfStream)
+                {
+                    current = sr.ReadLine().Split(',');
+                    userNames.Add(current[0]);          //add all userNames to the respectivce list
+                    studentNames.Add(current[1]);       //add all student's names to the respective list
+                    studentSubjects.Add(current[2]);
+                }
+                index = userNames.IndexOf(userName);    //get the matching index position of the username in the list for the matching device username
+                lblUsername.Text = studentNames[index]; //set the label on the form to reflect this name
+                studentSubject = studentSubjects[index];
+            }
+            catch (IOException ex)  //if the file cannot be accessed
+            {
+                MessageBox.Show($"studentList.csv could not be accessed! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblUsername.Text = Environment.UserName;    //set the label to the device username as a fallback
+            }
+
             if (quizResults.Length != 0)    //if any results files are present
             {
+                lstQuizzes.Items.Clear();
+                lstQuizzes.Refresh();
                 for (int i = 0; i < quizResults.Length; i++)
                 {
                     quizResultsCheck = quizResults[i].Remove(0, userName.Length + 9);   //get the name of the results file with the additional formatting removed (9 characters long: {username} Results-)
@@ -83,6 +133,10 @@ namespace _13IA_Project
                 {
                     lstQuizzes.Items.Add(item);
                 }
+                if (quizNameList.Count == 0)
+                {
+                    lstQuizzes.Items.Add("Bonus Quiz");
+                }
             }
             else    //if no results files are present
             {
@@ -90,25 +144,6 @@ namespace _13IA_Project
                 {
                     lstQuizzes.Items.Add(item);
                 }
-            }
-
-            try
-            {
-                StreamReader sr = new StreamReader(STUDENTINFO);    //create a StreamReader to process all user information (studentList.csv)
-
-                while (!sr.EndOfStream)
-                {
-                    current = sr.ReadLine().Split(',');
-                    userNames.Add(current[0]);          //add all userNames to the respectivce list
-                    studentNames.Add(current[1]);       //add all student's names to the respective list
-                }
-                index = userNames.IndexOf(userName);    //get the matching index position of the username in the list for the matching device username
-                lblUsername.Text = studentNames[index]; //set the label on the form to reflect this name
-            }
-            catch (IOException ex)  //if the file cannot be accessed
-            {
-                MessageBox.Show($"studentList.csv could not be accessed! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lblUsername.Text = Environment.UserName;    //set the label to the device username as a fallback
             }
         }
 
@@ -121,8 +156,24 @@ namespace _13IA_Project
         {
             if (lstQuizzes.SelectedIndex != -1)
             {
-                selectedQuiz = quizPathList[lstQuizzes.SelectedIndex];
-                selectedQuizName = lstQuizzes.SelectedItem.ToString();
+                if (lstQuizzes.SelectedItem.ToString() == "Bonus Quiz")
+                {
+                    if (studentSubject == "IT")
+                    {
+                        selectedQuiz = $"{INTERNALBONUSPATH}//randomBankIT.quiz";
+                        selectedQuizName = "Bonus Quiz";
+                    }
+                    else if (studentSubject == "Food")
+                    {
+                        selectedQuiz = $"{INTERNALBONUSPATH}//randomBankFood.quiz";
+                        selectedQuizName = "Bonus Quiz";
+                    }
+                }
+                else
+                {
+                    selectedQuiz = quizPathList[lstQuizzes.SelectedIndex];
+                    selectedQuizName = lstQuizzes.SelectedItem.ToString();
+                }
             }
         }
 
