@@ -39,6 +39,7 @@ namespace _13IA_Project
         public List<string> userNames = new List<string>();
         public List<string> studentNames = new List<string>();  //string Lists used for the storing of usernames and student's first names
         public List<string> studentSubjects = new List<string>();
+        public List<int> studentPoints = new List<int>();
 
         public List<string> quizNameList = new List<string>();  //string Lists used for storing the truncated lists of quiz paths and names
         public List<string> quizPathList = new List<string>();
@@ -57,9 +58,6 @@ namespace _13IA_Project
             string userName = Environment.UserName; //reading the username
             int index = 0;
 
-            lstLeaderboard.Items.Add("Name".PadRight(16) + "Score");
-            lstLeaderboard.Items.Add("Jamie".PadRight(15 /*will be PADDING - name.Length*/) + "50");
-
             if (quizResults != null)
             {
                 lstQuizzes.Items.Clear();
@@ -77,10 +75,6 @@ namespace _13IA_Project
             if (Directory.Exists($"{INTERNALRESULTSPATH}//{userName}") != true)
             {
                 Directory.CreateDirectory($"{INTERNALRESULTSPATH}//{userName}");
-            }
-            if (File.Exists($"{INTERNALRESULTSPATH}//{userName}//{userName} Score.txt") != true)
-            {
-                File.WriteAllText($"{INTERNALRESULTSPATH}//{userName}//{userName} Score.txt", "0");
             }
 
             quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{userName}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();
@@ -104,10 +98,15 @@ namespace _13IA_Project
                     userNames.Add(current[0]);          //add all userNames to the respectivce list
                     studentNames.Add(current[1]);       //add all student's names to the respective list
                     studentSubjects.Add(current[2]);
+                    studentPoints.Add(int.Parse(current[3]));
                 }
                 index = userNames.IndexOf(userName);    //get the matching index position of the username in the list for the matching device username
                 lblUsername.Text = studentNames[index]; //set the label on the form to reflect this name
                 studentSubject = studentSubjects[index];
+
+                lstLeaderboard.Items.Clear();
+                lstLeaderboard.Items.Add("Name".PadRight(16) + "Score");
+                
             }
             catch (IOException ex)  //if the file cannot be accessed
             {

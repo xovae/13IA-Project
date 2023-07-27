@@ -33,12 +33,12 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.pnlBody = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lstLeaderboard = new System.Windows.Forms.ListBox();
+            this.lblLeadboard = new System.Windows.Forms.Label();
             this.lblHint = new System.Windows.Forms.Label();
             this.btnStart = new FontAwesome.Sharp.IconButton();
             this.lstQuizzes = new System.Windows.Forms.ListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblLeadboard = new System.Windows.Forms.Label();
-            this.lstLeaderboard = new System.Windows.Forms.ListBox();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
             this.pnlBody.SuspendLayout();
@@ -103,6 +103,35 @@
             this.pnlBody.Size = new System.Drawing.Size(741, 318);
             this.pnlBody.TabIndex = 0;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lstLeaderboard);
+            this.panel1.Controls.Add(this.lblLeadboard);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(182, 318);
+            this.panel1.TabIndex = 14;
+            // 
+            // lstLeaderboard
+            // 
+            this.lstLeaderboard.FormattingEnabled = true;
+            this.lstLeaderboard.Location = new System.Drawing.Point(27, 31);
+            this.lstLeaderboard.Name = "lstLeaderboard";
+            this.lstLeaderboard.Size = new System.Drawing.Size(140, 251);
+            this.lstLeaderboard.TabIndex = 16;
+            // 
+            // lblLeadboard
+            // 
+            this.lblLeadboard.AutoSize = true;
+            this.lblLeadboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.lblLeadboard.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblLeadboard.Location = new System.Drawing.Point(22, 3);
+            this.lblLeadboard.Name = "lblLeadboard";
+            this.lblLeadboard.Size = new System.Drawing.Size(145, 25);
+            this.lblLeadboard.TabIndex = 15;
+            this.lblLeadboard.Text = "Leaderboard";
+            // 
             // lblHint
             // 
             this.lblHint.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -144,35 +173,6 @@
             this.lstQuizzes.TabIndex = 11;
             this.lstQuizzes.SelectedIndexChanged += new System.EventHandler(this.lstQuizzes_SelectedIndexChanged);
             this.lstQuizzes.DoubleClick += new System.EventHandler(this.btnStart_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lstLeaderboard);
-            this.panel1.Controls.Add(this.lblLeadboard);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(182, 318);
-            this.panel1.TabIndex = 14;
-            // 
-            // lblLeadboard
-            // 
-            this.lblLeadboard.AutoSize = true;
-            this.lblLeadboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.lblLeadboard.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblLeadboard.Location = new System.Drawing.Point(22, 3);
-            this.lblLeadboard.Name = "lblLeadboard";
-            this.lblLeadboard.Size = new System.Drawing.Size(145, 25);
-            this.lblLeadboard.TabIndex = 15;
-            this.lblLeadboard.Text = "Leaderboard";
-            // 
-            // lstLeaderboard
-            // 
-            this.lstLeaderboard.FormattingEnabled = true;
-            this.lstLeaderboard.Location = new System.Drawing.Point(27, 31);
-            this.lstLeaderboard.Name = "lstLeaderboard";
-            this.lstLeaderboard.Size = new System.Drawing.Size(140, 251);
-            this.lstLeaderboard.TabIndex = 16;
             // 
             // frmMenu
             // 

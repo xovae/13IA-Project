@@ -110,6 +110,10 @@ namespace _13IA_Teacher_Quiz_Software
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("Please select a quiz from the selection box on the left first!", "No Quiz Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnEncode_Click(object sender, EventArgs e)
@@ -243,6 +247,10 @@ namespace _13IA_Teacher_Quiz_Software
                         MessageBox.Show($"The selected resource could not be added! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please select a quiz bank from the selection box on the left first!", "No Quiz Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
