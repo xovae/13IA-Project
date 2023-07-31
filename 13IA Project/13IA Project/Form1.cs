@@ -92,6 +92,8 @@ namespace _13IA_Project
             {
                 StreamReader sr = new StreamReader(STUDENTINFO);    //create a StreamReader to process all user information (studentList.csv)
 
+                sr.ReadLine();
+
                 while (!sr.EndOfStream)
                 {
                     current = sr.ReadLine().Split(',');
