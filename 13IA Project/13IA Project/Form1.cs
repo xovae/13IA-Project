@@ -44,6 +44,10 @@ namespace _13IA_Project
         public List<string> quizNameList = new List<string>();  //string Lists used for storing the truncated lists of quiz paths and names
         public List<string> quizPathList = new List<string>();
 
+        public List<StudentProfile> studentsList = new List<StudentProfile>();
+
+        public const int PADDING = 25;
+
         public frmMenu()
         {
             InitializeComponent();
@@ -106,8 +110,20 @@ namespace _13IA_Project
                 lblUsername.Text = studentNames[index]; //set the label on the form to reflect this name
                 studentSubject = studentSubjects[index];
 
+                for (int i = 0; i < studentNames.Count; i++)
+                {
+                    studentsList.Add(new StudentProfile(studentNames[i], studentPoints[i]));
+                }
+
+                List<StudentProfile> sortedStudents = studentsList.OrderBy(o=>o.Score).ToList();
+                sortedStudents.Reverse();
+
                 lstLeaderboard.Items.Clear();
-                lstLeaderboard.Items.Add("Name".PadRight(16) + "Score");
+                lstLeaderboard.Items.Add("Name".PadRight(PADDING - 4) + "Score");
+                foreach (var item in sortedStudents)
+                {
+                    lstLeaderboard.Items.Add(item.Name.PadRight(PADDING - item.Name.Length) + item.Score);
+                }
                 
             }
             catch (IOException ex)  //if the file cannot be accessed
@@ -197,6 +213,18 @@ namespace _13IA_Project
             {
                 lblHint.Show();
             }
+        }
+    }
+
+    public class StudentProfile
+    {
+        public string Name;
+        public int Score;
+
+        public StudentProfile(string name, int score)
+        {
+            Name = name;
+            Score = score;
         }
     }
 }
