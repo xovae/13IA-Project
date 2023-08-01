@@ -115,10 +115,12 @@
             // 
             // lstLeaderboard
             // 
+            this.lstLeaderboard.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstLeaderboard.FormattingEnabled = true;
-            this.lstLeaderboard.Location = new System.Drawing.Point(27, 31);
+            this.lstLeaderboard.ItemHeight = 15;
+            this.lstLeaderboard.Location = new System.Drawing.Point(3, 31);
             this.lstLeaderboard.Name = "lstLeaderboard";
-            this.lstLeaderboard.Size = new System.Drawing.Size(140, 251);
+            this.lstLeaderboard.Size = new System.Drawing.Size(176, 274);
             this.lstLeaderboard.TabIndex = 16;
             // 
             // lblLeadboard
@@ -126,7 +128,7 @@
             this.lblLeadboard.AutoSize = true;
             this.lblLeadboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
             this.lblLeadboard.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblLeadboard.Location = new System.Drawing.Point(22, 3);
+            this.lblLeadboard.Location = new System.Drawing.Point(19, 3);
             this.lblLeadboard.Name = "lblLeadboard";
             this.lblLeadboard.Size = new System.Drawing.Size(145, 25);
             this.lblLeadboard.TabIndex = 15;

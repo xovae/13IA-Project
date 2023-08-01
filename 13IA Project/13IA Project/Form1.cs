@@ -46,7 +46,7 @@ namespace _13IA_Project
 
         public List<StudentProfile> studentsList = new List<StudentProfile>();
 
-        public const int PADDING = 25;
+        public const int PADDING = 15;
 
         public frmMenu()
         {
@@ -119,10 +119,10 @@ namespace _13IA_Project
                 sortedStudents.Reverse();
 
                 lstLeaderboard.Items.Clear();
-                lstLeaderboard.Items.Add("Name".PadRight(PADDING - 4) + "Score");
+                lstLeaderboard.Items.Add("Name".PadRight(PADDING) + "Score");
                 foreach (var item in sortedStudents)
                 {
-                    lstLeaderboard.Items.Add(item.Name.PadRight(PADDING - item.Name.Length) + item.Score);
+                    lstLeaderboard.Items.Add(item.Name.PadRight(PADDING) + item.Score);
                 }
                 
             }
