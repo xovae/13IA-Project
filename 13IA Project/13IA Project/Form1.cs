@@ -124,7 +124,6 @@ namespace _13IA_Project
                 {
                     lstLeaderboard.Items.Add(item.Name.PadRight(PADDING) + item.Score);
                 }
-                
             }
             catch (IOException ex)  //if the file cannot be accessed
             {
