@@ -38,11 +38,12 @@ namespace _13IA_Project
         List<MultiSelect> multiselectList = new List<MultiSelect>();    //lists used for storing of question types
         List<TrueFalse> truefalseList = new List<TrueFalse>();
 
-        public frmQuestions(string path, string name)
+        public frmQuestions(string path, string name, string username)
         {
             InitializeComponent();
             Icon = Properties.Resources.hbhs_icon;
-            lblUsername.Text = Environment.UserName;    //update UI elements
+            lblUsername.Text = username;    //update UI elements
+            Text = name;
             filePath = path;
             lblTitle.Text = name;   //get the information for the selected quiz
             quizName = name;

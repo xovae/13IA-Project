@@ -27,10 +27,25 @@ namespace _13IA_Project
         const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";
         const string INTERNALBONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";
 
+        const string NINEITQUIZPATH = "W://StudentPickup//1_IT Dept//09IT//";
+        const string TENITQUIZPATH = "W://StudentPickup//1_IT Dept//10ITA//";
+        //const string FOODQUIZPATH = "W://StudentPickup//";
+
+        const string NINEITBONUSPATH = "W://StudentPickup//1_IT Dept//09IT//";
+        const string TENITBONUSPATH = "W://StudentPickup//1_IT Dept//10ITA//";
+        //const string FOODBONUSPATH = "W://StudentPickup//";
+
+        const string NINEITRESULTSPATH = "W://Dropboxes//Tr//9IT//";
+        const string TENITRESULTSPATH = "W://Dropboxes//Tr//10IT//";
+        //const string FOODRESULTSPATH = "W://Dropboxes//";
+
+        //const string NETWORKSTUDENTINFO = "W://1 IT//";
+
         public string selectedQuiz;
         public string selectedQuizName;         //strings used for the storage of quiz paths, names, and the comparison of results files to existing quizzes
         public string quizResultsCheck;
         public string studentSubject;
+        public string studentClass;
 
         public string[] quizPaths;
         public string[] quizNames;      //string arrays used for storing all quiz paths, names, and results files loaded directly from the given directory
@@ -38,13 +53,15 @@ namespace _13IA_Project
 
         public List<string> userNames = new List<string>();
         public List<string> studentNames = new List<string>();  //string Lists used for the storing of usernames and student's first names
-        public List<string> studentSubjects = new List<string>();
+        public List<string> studentSubjectsList = new List<string>();
+        public List<string> studentClassesList = new List<string>();
         public List<int> studentPoints = new List<int>();
 
         public List<string> quizNameList = new List<string>();  //string Lists used for storing the truncated lists of quiz paths and names
         public List<string> quizPathList = new List<string>();
 
         public List<StudentProfile> studentsList = new List<StudentProfile>();
+        public List<StudentProfile> sortedStudentList = new List<StudentProfile>();
 
         public const int PADDING = 15;
 
@@ -72,6 +89,15 @@ namespace _13IA_Project
                 quizNameList.Clear();
                 quizPathList.Clear();
             }
+
+            userNames.Clear();
+            studentNames.Clear();
+            studentSubjectsList.Clear();
+            studentClassesList.Clear();
+            studentPoints.Clear();
+
+            studentsList.Clear();
+            sortedStudentList.Clear();
 
             quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();  //loading all quiz paths, names, and result files into their respective arrays, according to the given directories
@@ -103,26 +129,32 @@ namespace _13IA_Project
                     current = sr.ReadLine().Split(',');
                     userNames.Add(current[0]);          //add all userNames to the respectivce list
                     studentNames.Add(current[1]);       //add all student's names to the respective list
-                    studentSubjects.Add(current[2]);
+                    studentSubjectsList.Add(current[2]);
+                    studentClassesList.Add(current[3]);
                     studentPoints.Add(int.Parse(current[4]));
                 }
                 index = userNames.IndexOf(userName);    //get the matching index position of the username in the list for the matching device username
                 lblUsername.Text = studentNames[index]; //set the label on the form to reflect this name
-                studentSubject = studentSubjects[index];
+                studentSubject = studentSubjectsList[index];
+                studentClass = studentClassesList[index];
 
                 for (int i = 0; i < studentNames.Count; i++)
                 {
-                    studentsList.Add(new StudentProfile(studentNames[i], studentPoints[i]));
+                    studentsList.Add(new StudentProfile(studentNames[i], studentSubjectsList[i], studentClassesList[i], studentPoints[i]));
                 }
 
-                List<StudentProfile> sortedStudents = studentsList.OrderBy(o=>o.Score).ToList();
-                sortedStudents.Reverse();
+                sortedStudentList = studentsList.OrderBy(o=>o.Score).ToList();
+                sortedStudentList.Reverse();
 
                 lstLeaderboard.Items.Clear();
                 lstLeaderboard.Items.Add("Name".PadRight(PADDING) + "Score");
-                foreach (var item in sortedStudents)
+                
+                foreach (var item in sortedStudentList)
                 {
-                    lstLeaderboard.Items.Add(item.Name.PadRight(PADDING) + item.Score);
+                    if (item.Class == studentClass)
+                    {
+                        lstLeaderboard.Items.Add(item.Name.PadRight(PADDING) + item.Score);
+                    }
                 }
             }
             catch (IOException ex)  //if the file cannot be accessed
@@ -203,7 +235,7 @@ namespace _13IA_Project
         {
             if (selectedQuiz != null)   //if the user has selected a valid quiz
             {
-                frmQuestions quiz = new frmQuestions(selectedQuiz, selectedQuizName);
+                frmQuestions quiz = new frmQuestions(selectedQuiz, selectedQuizName, lblUsername.Text);
                 quiz.Show();    //create a instance of frmQuestions, with the selected quiz
                 Hide();         //hide the menu
                 lblHint.Hide();
@@ -213,16 +245,48 @@ namespace _13IA_Project
                 lblHint.Show();
             }
         }
+
+        private void btnSortByClass_Click(object sender, EventArgs e)
+        {
+            lstLeaderboard.Items.Clear();
+            lstLeaderboard.Items.Add("Name".PadRight(PADDING) + "Score");
+
+            foreach (var item in sortedStudentList)
+            {
+                if (item.Class == studentClass)
+                {
+                    lstLeaderboard.Items.Add(item.Name.PadRight(PADDING) + item.Score);
+                }
+            }
+        }
+
+        private void btnSortBySubject_Click(object sender, EventArgs e)
+        {
+            lstLeaderboard.Items.Clear();
+            lstLeaderboard.Items.Add("Name".PadRight(PADDING) + "Score");
+
+            foreach (var item in sortedStudentList)
+            {
+                if (item.Subject == studentSubject)
+                {
+                    lstLeaderboard.Items.Add(item.Name.PadRight(PADDING) + item.Score);
+                }
+            }
+        }
     }
 
     public class StudentProfile
     {
         public string Name;
+        public string Class;
+        public string Subject;
         public int Score;
 
-        public StudentProfile(string name, int score)
+        public StudentProfile(string name, string subject, string studentClass, int score)
         {
             Name = name;
+            Class = studentClass;
+            Subject = subject;
             Score = score;
         }
     }

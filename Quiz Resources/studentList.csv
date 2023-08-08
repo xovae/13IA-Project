@@ -24,6 +24,6 @@ StudentID,StudentName,Subject,Class,Score
 1aviveka,Aarya,IT,11IA-2-TR,0
 1ewalkle,Ethan,IT,11IA-2-TR,0
 1kyaprak,Kerem,IT,11IA-2-TR,0
-jamie,Jamie Laptop,IT,,5
-9jboulto,Jamie School,IT,,8
-spoop,Jamie Home,IT,,2
+jamie,Jamie Laptop,IT,Jamie-Class,5
+9jboulto,Jamie School,IT,Jamie-Class,8
+spoop,Jamie Home,IT,Jamie-Class,2
