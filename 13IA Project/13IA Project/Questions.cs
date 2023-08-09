@@ -43,11 +43,11 @@ namespace _13IA_Project
         List<MultiSelect> multiselectList = new List<MultiSelect>();    //lists used for storing of question types
         List<TrueFalse> truefalseList = new List<TrueFalse>();
 
-        public frmQuestions(string path, string name, string username)
+        public frmQuestions(string path, string name, string studentName)
         {
             InitializeComponent();
             Icon = Properties.Resources.hbhs_icon;
-            lblUsername.Text = username;    //update UI elements
+            lblUsername.Text = studentName;    //update UI elements
             Text = name;
             filePath = path;
             lblTitle.Text = name;   //get the information for the selected quiz
@@ -265,7 +265,7 @@ namespace _13IA_Project
         private void btnCheck_Click(object sender, EventArgs e)
         {
             string selected;
-            string output = $"{WRITEPATH}//{lblUsername.Text}//{lblUsername.Text} Results-{quizName}.csv";    //filepath for the given output file
+            string output = $"{WRITEPATH}//{Environment.UserName}//{Environment.UserName} Results-{quizName}.csv";    //filepath for the given output file
 
             questionComplete = true;   //reset bool variable to true for the next question
 
@@ -403,7 +403,6 @@ namespace _13IA_Project
 
                         EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}", STUDENTINFO, index); //pass all the information at the given index location to method EditLine to update the student's information
                         
-                        Close();    //close the form
                         File.Delete(output);    //delete the output file (not needed for bonus quizzes)
                     }
                     catch (IOException ex)
@@ -411,6 +410,7 @@ namespace _13IA_Project
                         MessageBox.Show($"studentList.csv could not be accessed! {ex}", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                Close();    //close the form
             }
         }
 
