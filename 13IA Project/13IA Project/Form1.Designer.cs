@@ -120,6 +120,7 @@
             // btnSortBySubject
             // 
             this.btnSortBySubject.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSortBySubject.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSortBySubject.ForeColor = System.Drawing.Color.White;
             this.btnSortBySubject.Location = new System.Drawing.Point(90, 292);
             this.btnSortBySubject.Name = "btnSortBySubject";
@@ -132,6 +133,7 @@
             // btnSortByClass
             // 
             this.btnSortByClass.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSortByClass.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSortByClass.ForeColor = System.Drawing.Color.White;
             this.btnSortByClass.Location = new System.Drawing.Point(3, 292);
             this.btnSortByClass.Name = "btnSortByClass";
@@ -169,10 +171,11 @@
             // 
             this.lblHint.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblHint.AutoSize = true;
+            this.lblHint.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHint.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblHint.Location = new System.Drawing.Point(480, 227);
             this.lblHint.Name = "lblHint";
-            this.lblHint.Size = new System.Drawing.Size(71, 13);
+            this.lblHint.Size = new System.Drawing.Size(74, 14);
             this.lblHint.TabIndex = 13;
             this.lblHint.Text = "Select a quiz!";
             this.lblHint.Visible = false;

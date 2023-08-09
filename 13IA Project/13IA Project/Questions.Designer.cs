@@ -51,11 +51,11 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTitle.Location = new System.Drawing.Point(368, 9);
+            this.lblTitle.Location = new System.Drawing.Point(372, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(65, 25);
+            this.lblTitle.Size = new System.Drawing.Size(57, 26);
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "Title!";
             // 
@@ -63,10 +63,11 @@
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblUsername.Location = new System.Drawing.Point(730, 0);
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(724, 0);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.lblUsername.Size = new System.Drawing.Size(70, 18);
+            this.lblUsername.Size = new System.Drawing.Size(76, 19);
             this.lblUsername.TabIndex = 1;
             this.lblUsername.Text = "lblUsername";
             // 
@@ -87,6 +88,7 @@
             // btnCheck
             // 
             this.btnCheck.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnCheck.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCheck.Location = new System.Drawing.Point(0, 395);
             this.btnCheck.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.btnCheck.Name = "btnCheck";

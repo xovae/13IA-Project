@@ -22,24 +22,33 @@ namespace _13IA_Teacher_Quiz_Software
     public partial class frmQuiz : Form
     {
         const string OPENFILTER = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
-        //const string OPENFILTER = "Data Files (*.csv, *.xlsx, *.xlsb, *.xls)|*.csv;*.xlsx;*.xlsb;*.xls|All Files (*.*)|*.*";
-        const string SAVEFILTER = "Quiz Files (*.quiz)|*.quiz|All Files (*.*)|*.*";
+        const string SAVEFILTER = "Quiz Files (*.quiz)|*.quiz|All Files (*.*)|*.*";                                 //string constants used for setting the OpenFileDialog filters
         const string RESOURCEFILTER = "Image Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp|All Files (*.*)|*.*";
 
         const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
         const string INTERNALBONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";
-        const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";
-        const string TEMPPATH = "..\\..\\..\\..\\Quiz Resources//convert.csv";
+
+        //const string NINEITQUIZPATH = "W://StudentPickup//1_IT Dept//09IT//";
+        //const string TENITQUIZPATH = "W://StudentPickup//1_IT Dept//10ITA//";       //network locations for the storage of quiz files
+        ////const string FOODQUIZPATH = "W://StudentPickup//";
+
+        //const string NINEITBONUSPATH = "W://StudentPickup//1_IT Dept//09IT//";
+        //const string TENITBONUSPATH = "W://StudentPickup//1_IT Dept//10ITA//";      //network locations for the storage of bonus quiz banks
+        ////const string FOODBONUSPATH = "W://StudentPickup//";
+
+        //const string NINEITRESULTSPATH = "W://Dropboxes//Tr//9IT//";
+        //const string TENITRESULTSPATH = "W://Dropboxes//Tr//10IT//";                //network locations for the storage of quiz result files
+        ////const string FOODRESULTSPATH = "W://Dropboxes//";
 
         public string[] quizPaths;
         public string[] quizNames;
-        public string[] bonusPaths;
+        public string[] bonusPaths;         //arrays used for the temporary storage of quiz file information
         public string[] bonusNames;
 
-        public string selectedQuizPath;
+        public string selectedQuizPath;     //strings used for storage of selected quizzes for editing
         public string selectedQuizName;
 
-        public string selectedBonusPath;
+        public string selectedBonusPath;    //strings used for storage of selected bonus quiz bank for editing
         public string selectedBonusName;
 
         public frmQuiz()

@@ -67,6 +67,9 @@ namespace _13IA_Project
             }
         }
 
+        /// <summary>
+        /// This method is used for the loading of generic quizzes.
+        /// </summary>
         private void LoadQuiz()
         {
             try
@@ -94,58 +97,65 @@ namespace _13IA_Project
             }
         }
 
+        /// <summary>
+        /// This method is used for the loading of 'bonus' quizzes, from a central 'quiz bank' file
+        /// </summary>
         private void LoadRandomQuiz()
         {
             int totalQuestions = 0;
             int increment;
 
-            List<int> previousRandoms = new List<int>();
+            List<int> previousRandoms = new List<int>();    //list used for storing previously generated questions to prevent double ups
 
-            Random rand = new Random();
+            Random rand = new Random();     //used for random selection of questions
 
             try
             {
                 StreamReader sr = new StreamReader(filePath);   //create a StreamReader for the selected quiz
 
-                while (!sr.EndOfStream)
+                while (!sr.EndOfStream) 
                 {
-                    totalQuestions++;
+                    totalQuestions++;   //get a count of the total number of questions within the quiz bank
                     sr.ReadLine();
                 }
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)    //generates 10 questions
                 {
                     sr.DiscardBufferedData();
-                    sr.BaseStream.Position = 0;
+                    sr.BaseStream.Position = 0;     //reset the StreamReader to the start of the file
 
-                    increment = rand.Next(1, totalQuestions);
-                    if (!previousRandoms.Contains(increment))
+                    increment = rand.Next(1, totalQuestions);   //select a random integer value to determine the index of the next question from the list
+                    if (!previousRandoms.Contains(increment))   //if the question has not already been used
                     {
                         for (int i2 = 0; i2 < increment; i2++)
                         {
-                            sr.ReadLine();
+                            sr.ReadLine();  //skip forward to the select line
                         }
-                        LoadQuestion(sr.ReadLine());
+                        LoadQuestion(sr.ReadLine());    //read the contents of the chosen line, passing it to method LoadQuestion to prepare the question
                     }
-                    else
+                    else   //if the question has been used before (within the same quiz)
                     {
-                        i--;
+                        i--;    //decrement the loop by one
                     }
-                    previousRandoms.Add(increment);
+                    previousRandoms.Add(increment); //add the index position just used to the list of previously used indexes
                 }
             }
-            catch (IOException ex)
+            catch (IOException ex)  //if any errors are encountered in reading the quiz file
             {
                 MessageBox.Show($"The quiz file could not be read! {ex}", "Invalid Quiz File", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
+        /// <summary>
+        /// This method is used for the generic loading of a quiz question, preparing it graphically.
+        /// It is passed the raw line form a quiz file, and processes this data to create a new question object.
+        /// </summary>
+        /// <param name="rawLine"></param>
         private void LoadQuestion(string rawLine)
         {
             string[] current;
             string resourcePath;
-            List<string> answers = new List<string>();
+            List<string> answers = new List<string>();      //variables used for temporary storage of information
 
             lblTitle.Left = (pnlHeader.Width - lblTitle.Width) / 2; //set the position of the title
             lblTitle.Top = (pnlHeader.Height - lblTitle.Height) / 2;
@@ -366,51 +376,57 @@ namespace _13IA_Project
                         StreamReader sr = new StreamReader(STUDENTINFO);
 
                         List<int> studentScores = new List<int>();
-                        List<string> studentNames = new List<string>();
+                        List<string> studentNames = new List<string>();         //string lists used for temporary storage of studentList.csv information
                         List<string> studentSubjects = new List<string>();
                         List<string> userNames = new List<string>();
 
-                        sr.ReadLine();
+                        sr.ReadLine();  //skip the headings of the csv file
 
-                        try
+                        while (!sr.EndOfStream)
                         {
-                            while (!sr.EndOfStream)
-                            {
-                                current = sr.ReadLine().Split(',');
-                                userNames.Add(current[0]);
-                                studentNames.Add(current[1]);
-                                studentSubjects.Add(current[2]);
-                                studentScores.Add(int.Parse(current[3]));
-                            }
-
-                            sr.Close();
-
-                            int index = userNames.IndexOf(Environment.UserName);
-                            tempScore = studentScores[index] + total;
-
-                            EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}", STUDENTINFO, index);
+                            current = sr.ReadLine().Split(',');
+                            userNames.Add(current[0]);
+                            studentNames.Add(current[1]);               //read all student information into their respective lists for temporary storage
+                            studentSubjects.Add(current[2]);
+                            studentScores.Add(int.Parse(current[3]));
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"The results of the bonus quiz could not be correctly saved! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+
+                        sr.Close(); //close the StreamReader object
+
+                        int index = userNames.IndexOf(Environment.UserName);    //get the index of the line to be edited
+                        tempScore = studentScores[index] + total;               //calculate the new score value for the user
+
+                        EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}", STUDENTINFO, index); //pass all the information at the given index location to method EditLine to update the student's information
+                        
+                        Close();    //close the form
+                        File.Delete(output);    //delete the output file (not needed for bonus quizzes)
                     }
                     catch (IOException ex)
                     {
                         MessageBox.Show($"studentList.csv could not be accessed! {ex}", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-                    File.Delete(output);
                 }
-                Close();    //close the form
             }
         }
 
+        /// <summary>
+        /// This method is used to edit the contents of a specific line in studentList.csv.
+        /// </summary>
+        /// <param name="newLine"></param>
+        /// <param name="fileName"></param>
+        /// <param name="editIndex"></param>
         private void EditLine(string newLine, string fileName, int editIndex)
         {
-            string[] fileArray = File.ReadAllLines(fileName);
-            fileArray[editIndex - 1] = newLine;
-            File.WriteAllLines(fileName, fileArray);
+            try
+            {
+                string[] fileArray = File.ReadAllLines(fileName);   //read all the file into a temporary array
+                fileArray[editIndex - 1] = newLine;                 //change the contents of the array (-1 accounts for the lack of headings)
+                File.WriteAllLines(fileName, fileArray);            //rewrite the edited information to studentList.csv
+            }
+            catch (IOException ex)  //if the file cannot be successfully edited
+            {
+                MessageBox.Show($"The results of the bonus quiz could not be correctly saved! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -455,7 +471,7 @@ namespace _13IA_Project
         }
 
         /// <summary>
-        /// This event method shows the menu form if the quiz form is closed
+        /// This event method shows the menu form if the quiz form is closed, and calls it's load event to update the displayed information
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

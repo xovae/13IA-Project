@@ -46,16 +46,17 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblTitle.Location = new System.Drawing.Point(115, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(149, 24);
+            this.lblTitle.Size = new System.Drawing.Size(147, 26);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Quiz Encoding";
             // 
             // btnEncode
             // 
+            this.btnEncode.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEncode.Location = new System.Drawing.Point(85, 40);
             this.btnEncode.Name = "btnEncode";
             this.btnEncode.Size = new System.Drawing.Size(91, 23);
@@ -70,6 +71,7 @@
             // 
             // btnDecode
             // 
+            this.btnDecode.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDecode.Location = new System.Drawing.Point(202, 40);
             this.btnDecode.Name = "btnDecode";
             this.btnDecode.Size = new System.Drawing.Size(91, 23);
@@ -90,6 +92,7 @@
             // 
             // btnAddResource
             // 
+            this.btnAddResource.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddResource.Location = new System.Drawing.Point(219, 87);
             this.btnAddResource.Name = "btnAddResource";
             this.btnAddResource.Size = new System.Drawing.Size(91, 23);
@@ -100,6 +103,7 @@
             // 
             // btnRandomResources
             // 
+            this.btnRandomResources.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRandomResources.Location = new System.Drawing.Point(219, 236);
             this.btnRandomResources.Name = "btnRandomResources";
             this.btnRandomResources.Size = new System.Drawing.Size(91, 23);
@@ -121,16 +125,17 @@
             // 
             this.lblRandom.AutoSize = true;
             this.lblRandom.BackColor = System.Drawing.Color.Transparent;
-            this.lblRandom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.lblRandom.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRandom.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblRandom.Location = new System.Drawing.Point(114, 147);
             this.lblRandom.Name = "lblRandom";
-            this.lblRandom.Size = new System.Drawing.Size(150, 24);
+            this.lblRandom.Size = new System.Drawing.Size(150, 26);
             this.lblRandom.TabIndex = 8;
             this.lblRandom.Text = "Random Banks";
             // 
             // btnAddBank
             // 
+            this.btnAddBank.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddBank.Location = new System.Drawing.Point(85, 191);
             this.btnAddBank.Name = "btnAddBank";
             this.btnAddBank.Size = new System.Drawing.Size(91, 23);
@@ -141,6 +146,7 @@
             // 
             // btnOpenBank
             // 
+            this.btnOpenBank.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenBank.Location = new System.Drawing.Point(202, 191);
             this.btnOpenBank.Name = "btnOpenBank";
             this.btnOpenBank.Size = new System.Drawing.Size(91, 23);
