@@ -30,9 +30,14 @@ namespace _13IA_Project
         const int PADDING = 50;
         const int DISTANCE_FROM_OUTER = 100;        //constants used for scaling of elements
 
-        public const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
-        public const string INTERNAL_WRITE_PATH = "..\\..\\..\\..\\Quiz Output//";  //file paths of quiz files and output files
-        public const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";
+        //const string QUIZPATH = "..\\..\\..\\..\\Quiz Resources";
+        const string QUIZPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources";                          //internal and network locations of quiz files
+
+        //const string WRITEPATH = "..\\..\\..\\..\\Quiz Output//"; 
+        const string WRITEPATH = "W://1 IT//9jboulto-13IA//Quiz-Results//";                         //internal and network directories to write results files to
+
+        //const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";
+        const string STUDENTINFO = "W://1 IT//9jboulto-13IA//Quiz-Resources//studentList.csv";      //internal and network locations for studentList.csv, a core data file
 
         List<MultiChoice> multichoiceList = new List<MultiChoice>();
         List<MultiSelect> multiselectList = new List<MultiSelect>();    //lists used for storing of question types
@@ -173,7 +178,7 @@ namespace _13IA_Project
                 {
                     try
                     {
-                        resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}";
+                        resourcePath = $"{QUIZPATH}//{quizName} - Resources//{current[2]}";
                         multichoiceList.Add(new MultiChoice(current[1], resourcePath, current[3], answers)); //attempt to pass the file path of the specified resource
                     }
                     catch (IOException ex)  //if it cannot be accessed
@@ -197,7 +202,7 @@ namespace _13IA_Project
                 {
                     try
                     {
-                        resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
+                        resourcePath = $"{QUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
                         multiselectList.Add(new MultiSelect(current[1], resourcePath, current[3], Convert.ToInt32(current[4]), answers));
                     }
                     catch (IOException ex)  //if the resource cannot be accessed
@@ -217,7 +222,7 @@ namespace _13IA_Project
                 {
                     try
                     {
-                        resourcePath = $"{INTERNALQUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
+                        resourcePath = $"{QUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
                         truefalseList.Add(new TrueFalse(current[1], resourcePath, current[3], current[5]));
                     }
                     catch (IOException ex)
@@ -252,7 +257,7 @@ namespace _13IA_Project
 
         /// <summary>
         /// This event method is called when Button btnCheck is clicked.
-        /// It is used to verify the user's input for each question, and output to a results file (given by const string file path INTERNAL_WRITE_PATH).
+        /// It is used to verify the user's input for each question, and output to a results file (given by const string file path INTERNALWRITEPATH).
         /// If any errors are encountered, a suitable error is given.
         /// </summary>
         /// <param name="sender"></param>
@@ -260,7 +265,7 @@ namespace _13IA_Project
         private void btnCheck_Click(object sender, EventArgs e)
         {
             string selected;
-            string output = $"{INTERNAL_WRITE_PATH}//{lblUsername.Text}//{lblUsername.Text} Results-{quizName}.csv";    //filepath for the given output file
+            string output = $"{WRITEPATH}//{lblUsername.Text}//{lblUsername.Text} Results-{quizName}.csv";    //filepath for the given output file
 
             questionComplete = true;   //reset bool variable to true for the next question
 

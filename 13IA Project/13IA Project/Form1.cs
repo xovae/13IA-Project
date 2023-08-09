@@ -22,24 +22,18 @@ namespace _13IA_Project
             return instance;
         }
 
-        const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
-        const string INTERNALRESULTSPATH = "..\\..\\..\\..\\Quiz Output//";             //const strings used for internal file paths of program elements
-        const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";
-        const string INTERNALBONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";
+        //const string QUIZPATH = "..\\..\\..\\..\\Quiz Resources";                                     //internal and network locations for quiz files
+        const string QUIZPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources";                              
+        
+        //const string RESULTSPATH = "..\\..\\..\\..\\Quiz Output//";                                   //internal and network locations for results files
+        const string RESULTSPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources//Bonus Quizzes//";
+        
+        //const string BONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";                   //internal and network locations for bonus quizzes
+        const string BONUSPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources//Bonus Quizzes//";
 
-        const string NINEITQUIZPATH = "W://StudentPickup//1_IT Dept//09IT//";
-        const string TENITQUIZPATH = "W://StudentPickup//1_IT Dept//10ITA//";       //network locations for the storage of quiz files
-        //const string FOODQUIZPATH = "W://StudentPickup//";
+        //const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";                 //internal and network locations for studentList.csv, a core data file
+        const string STUDENTINFO = "W://1 IT//9jboulto-13IA//Quiz-Resources//studentList.csv";          
 
-        const string NINEITBONUSPATH = "W://StudentPickup//1_IT Dept//09IT//";
-        const string TENITBONUSPATH = "W://StudentPickup//1_IT Dept//10ITA//";      //network locations for the storage of bonus quiz banks
-        //const string FOODBONUSPATH = "W://StudentPickup//";
-
-        const string NINEITRESULTSPATH = "W://Dropboxes//Tr//9IT//";
-        const string TENITRESULTSPATH = "W://Dropboxes//Tr//10IT//";                //network locations for the storage of quiz result files
-        //const string FOODRESULTSPATH = "W://Dropboxes//";
-
-        //const string NETWORKSTUDENTINFO = "W://1 IT//";                           //network location for studentList.csv, a core data file
 
         public string selectedQuiz;
         public string selectedQuizName;         //strings used for the storage of quiz paths, names, and the comparison of results files to existing quizzes
@@ -63,7 +57,7 @@ namespace _13IA_Project
         public List<StudentProfile> studentsList = new List<StudentProfile>();
         public List<StudentProfile> sortedStudentList = new List<StudentProfile>(); //lists used for the storage and grouping of information to be displayed in the leaderboard
 
-        public const int PADDING = 15;  //padding used for even spacing of Listbox elements
+        const int PADDING = 15;  //padding used for even spacing of Listbox elements
 
         public frmMenu()
         {
@@ -99,15 +93,15 @@ namespace _13IA_Project
             studentsList.Clear();
             sortedStudentList.Clear();
 
-            quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
-            quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();  //loading all quiz paths, names, and result files into their respective arrays, according to the given directories
+            quizPaths = Directory.GetFiles(QUIZPATH, "*.quiz", SearchOption.AllDirectories);
+            quizNames = Directory.GetFiles(QUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();  //loading all quiz paths, names, and result files into their respective arrays, according to the given directories
 
-            if (Directory.Exists($"{INTERNALRESULTSPATH}//{userName}") != true) //creating the student's results file if it does not exist
+            if (Directory.Exists($"{RESULTSPATH}//{userName}") != true) //creating the student's results file if it does not exist
             {
-                Directory.CreateDirectory($"{INTERNALRESULTSPATH}//{userName}");
+                Directory.CreateDirectory($"{RESULTSPATH}//{userName}");
             }
 
-            quizResults = Directory.GetFiles($"{INTERNALRESULTSPATH}//{userName}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();   //get all results
+            quizResults = Directory.GetFiles($"{RESULTSPATH}//{userName}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();   //get all results
 
             foreach (var item in quizNames)
             {
@@ -134,7 +128,17 @@ namespace _13IA_Project
                     studentPoints.Add(int.Parse(current[4]));
                 }
                 index = userNames.IndexOf(userName);            //get the matching index position of the username in the list for the matching device username
-                lblUsername.Text = studentNames[index];         //set the label on the form to reflect this name
+
+                try
+                {
+                    lblUsername.Text = studentNames[index];         //set the label on the form to reflect this name
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Not a registered student!", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(-1);
+                }
+                
                 studentSubject = studentSubjectsList[index];
                 studentClass = studentClassesList[index];
 
@@ -208,12 +212,12 @@ namespace _13IA_Project
                 {
                     if (studentSubject == "IT")
                     {
-                        selectedQuiz = $"{INTERNALBONUSPATH}//randomBankIT.quiz";
+                        selectedQuiz = $"{BONUSPATH}//randomBankIT.quiz";
                         selectedQuizName = "Bonus Quiz";
                     }
                     else if (studentSubject == "Food")
                     {
-                        selectedQuiz = $"{INTERNALBONUSPATH}//randomBankFood.quiz";
+                        selectedQuiz = $"{BONUSPATH}//randomBankFood.quiz";
                         selectedQuizName = "Bonus Quiz";
                     }
                 }

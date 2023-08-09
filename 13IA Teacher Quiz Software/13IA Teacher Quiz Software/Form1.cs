@@ -23,22 +23,13 @@ namespace _13IA_Teacher_Quiz_Software
     {
         const string OPENFILTER = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
         const string SAVEFILTER = "Quiz Files (*.quiz)|*.quiz|All Files (*.*)|*.*";                                 //string constants used for setting the OpenFileDialog filters
-        const string RESOURCEFILTER = "Image Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp|All Files (*.*)|*.*";
+        const string RESOURCEFILTER = "Image Files (*.jpg, *.png, *.gif, *.bmp, *.svg)|*.jpg;*.png;*.gif;*.bmp;*.svg|All Files (*.*)|*.*";
 
-        const string INTERNALQUIZPATH = "..\\..\\..\\..\\Quiz Resources";
-        const string INTERNALBONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";
+        //const string QUIZPATH = "..\\..\\..\\..\\Quiz Resources";
+        const string QUIZPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources";
 
-        //const string NINEITQUIZPATH = "W://StudentPickup//1_IT Dept//09IT//";
-        //const string TENITQUIZPATH = "W://StudentPickup//1_IT Dept//10ITA//";       //network locations for the storage of quiz files
-        ////const string FOODQUIZPATH = "W://StudentPickup//";
-
-        //const string NINEITBONUSPATH = "W://StudentPickup//1_IT Dept//09IT//";
-        //const string TENITBONUSPATH = "W://StudentPickup//1_IT Dept//10ITA//";      //network locations for the storage of bonus quiz banks
-        ////const string FOODBONUSPATH = "W://StudentPickup//";
-
-        //const string NINEITRESULTSPATH = "W://Dropboxes//Tr//9IT//";
-        //const string TENITRESULTSPATH = "W://Dropboxes//Tr//10IT//";                //network locations for the storage of quiz result files
-        ////const string FOODRESULTSPATH = "W://Dropboxes//";
+        //const string BONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";
+        const string BONUSPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources//Bonus Quizzes//";
 
         public string[] quizPaths;
         public string[] quizNames;
@@ -59,11 +50,11 @@ namespace _13IA_Teacher_Quiz_Software
 
         private void frmQuiz_Load(object sender, EventArgs e)
         {
-            quizPaths = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz", SearchOption.AllDirectories);
-            quizNames = Directory.GetFiles(INTERNALQUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
+            quizPaths = Directory.GetFiles(QUIZPATH, "*.quiz", SearchOption.AllDirectories);
+            quizNames = Directory.GetFiles(QUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
 
-            bonusPaths = Directory.GetFiles(INTERNALBONUSPATH, "*.quiz", SearchOption.AllDirectories);
-            bonusNames = Directory.GetFiles(INTERNALBONUSPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
+            bonusPaths = Directory.GetFiles(BONUSPATH, "*.quiz", SearchOption.AllDirectories);
+            bonusNames = Directory.GetFiles(BONUSPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
 
             foreach (var item in quizNames)
             {
@@ -99,13 +90,13 @@ namespace _13IA_Teacher_Quiz_Software
 
             if (selectedQuizPath != null)
             {
-                if (Directory.Exists($"{INTERNALQUIZPATH}//{selectedQuizName} - Resources") != true)
+                if (Directory.Exists($"{QUIZPATH}//{selectedQuizName} - Resources") != true)
                 {
-                    Directory.CreateDirectory($"{INTERNALQUIZPATH}//{selectedQuizName} - Resources");
+                    Directory.CreateDirectory($"{QUIZPATH}//{selectedQuizName} - Resources");
                 }
                 
                 openFileDialog1.Filter = RESOURCEFILTER;
-                resourceDirectory = $"{INTERNALQUIZPATH}//{selectedQuizName} - Resources";
+                resourceDirectory = $"{QUIZPATH}//{selectedQuizName} - Resources";
 
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
@@ -132,11 +123,11 @@ namespace _13IA_Teacher_Quiz_Software
 
             if (Name == "btnAddBank")
             {
-                saveFileDialog1.InitialDirectory = INTERNALBONUSPATH;
+                saveFileDialog1.InitialDirectory = BONUSPATH;
             }
             else if (Name == "btnEncode")
             {
-                saveFileDialog1.InitialDirectory = INTERNALQUIZPATH;
+                saveFileDialog1.InitialDirectory = QUIZPATH;
             }
 
             byte[] current;
@@ -182,11 +173,11 @@ namespace _13IA_Teacher_Quiz_Software
 
             if (Name == "btnOpenBank")
             {
-                openFileDialog1.InitialDirectory = INTERNALBONUSPATH;
+                openFileDialog1.InitialDirectory = BONUSPATH;
             }
             else if (Name == "btnDecode")
             {
-                openFileDialog1.InitialDirectory = INTERNALQUIZPATH;
+                openFileDialog1.InitialDirectory = QUIZPATH;
             }
 
             byte[] current;
@@ -237,13 +228,13 @@ namespace _13IA_Teacher_Quiz_Software
 
             if (selectedQuizPath != null)
             {
-                if (Directory.Exists($"{INTERNALBONUSPATH}//{selectedQuizName} - Resources") != true)
+                if (Directory.Exists($"{BONUSPATH}//{selectedQuizName} - Resources") != true)
                 {
-                    Directory.CreateDirectory($"{INTERNALBONUSPATH}//{selectedQuizName} - Resources");
+                    Directory.CreateDirectory($"{BONUSPATH}//{selectedQuizName} - Resources");
                 }
 
                 openFileDialog1.Filter = RESOURCEFILTER;
-                resourceDirectory = $"{INTERNALBONUSPATH}//{selectedQuizName} - Resources";
+                resourceDirectory = $"{BONUSPATH}//{selectedQuizName} - Resources";
 
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
