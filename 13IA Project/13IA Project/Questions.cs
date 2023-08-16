@@ -383,6 +383,7 @@ namespace _13IA_Project
                         List<int> studentScores = new List<int>();
                         List<string> studentNames = new List<string>();         //string lists used for temporary storage of studentList.csv information
                         List<string> studentSubjects = new List<string>();
+                        List<string> studentClassesList = new List<string>();
                         List<string> userNames = new List<string>();
 
                         sr.ReadLine();  //skip the headings of the csv file
@@ -393,7 +394,8 @@ namespace _13IA_Project
                             userNames.Add(current[0]);
                             studentNames.Add(current[1]);               //read all student information into their respective lists for temporary storage
                             studentSubjects.Add(current[2]);
-                            studentScores.Add(int.Parse(current[3]));
+                            studentClassesList.Add(current[3]);
+                            studentScores.Add(int.Parse(current[4]));
                         }
 
                         sr.Close(); //close the StreamReader object
@@ -401,7 +403,7 @@ namespace _13IA_Project
                         int index = userNames.IndexOf(Environment.UserName);    //get the index of the line to be edited
                         tempScore = studentScores[index] + total;               //calculate the new score value for the user
 
-                        EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{total}", STUDENTINFO, index); //pass all the information at the given index location to method EditLine to update the student's information
+                        EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{total}", STUDENTINFO, index); //pass all the information at the given index location to method EditLine to update the student's information
                         
                         File.Delete(output);    //delete the output file (not needed for bonus quizzes)
                     }

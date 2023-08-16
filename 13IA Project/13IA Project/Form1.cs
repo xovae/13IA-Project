@@ -26,7 +26,7 @@ namespace _13IA_Project
         const string QUIZPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources";                              
         
         //const string RESULTSPATH = "..\\..\\..\\..\\Quiz Output//";                                   //internal and network locations for results files
-        const string RESULTSPATH = "W://1 IT//9jboulto-13IA//Quiz-Results//";
+        const string RESULTSPATH = "W://1 IT//9jboulto-13IA//Quiz-Results";
         
         //const string BONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";                   //internal and network locations for bonus quizzes
         const string BONUSPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources//Bonus Quizzes//";
