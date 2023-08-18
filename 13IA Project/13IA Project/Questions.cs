@@ -403,7 +403,7 @@ namespace _13IA_Project
                         int index = userNames.IndexOf(Environment.UserName);    //get the index of the line to be edited
                         tempScore = studentScores[index] + total;               //calculate the new score value for the user
 
-                        EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{total}", STUDENTINFO, index); //pass all the information at the given index location to method EditLine to update the student's information
+                        EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{tempScore}", STUDENTINFO, index); //pass all the information at the given index location to method EditLine to update the student's information
                         
                         File.Delete(output);    //delete the output file (not needed for bonus quizzes)
                     }
@@ -427,7 +427,7 @@ namespace _13IA_Project
             try
             {
                 string[] fileArray = File.ReadAllLines(fileName);   //read all the file into a temporary array
-                fileArray[editIndex - 1] = newLine;                 //change the contents of the array (-1 accounts for the lack of headings)
+                fileArray[editIndex + 1] = newLine;                 //change the contents of the array (-1 accounts for the lack of headings)
                 File.WriteAllLines(fileName, fileArray);            //rewrite the edited information to studentList.csv
             }
             catch (IOException ex)  //if the file cannot be successfully edited
