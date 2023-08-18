@@ -98,7 +98,8 @@ namespace _13IA_Project
 
             if (Directory.Exists($"{RESULTSPATH}//{userName}") != true) //creating the student's results file if it does not exist
             {
-                Directory.CreateDirectory($"{RESULTSPATH}//{userName}");
+                DirectoryInfo di = Directory.CreateDirectory($"{RESULTSPATH}//{userName}");
+                di.Attributes = FileAttributes.Hidden;
             }
 
             quizResults = Directory.GetFiles($"{RESULTSPATH}//{userName}//", "*.csv").Select(Path.GetFileNameWithoutExtension).ToArray();   //get all results

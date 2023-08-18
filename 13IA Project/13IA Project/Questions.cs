@@ -94,9 +94,9 @@ namespace _13IA_Project
                     }
                 }
             }
-            catch (IOException ex)  //if the given quiz file cannot be accesssed, give an error, close the window and navigate back to menu
+            catch (IOException)  //if the given quiz file cannot be accesssed, give an error, close the window and navigate back to menu
             {
-                MessageBox.Show($"The quiz file could not be read! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"The quiz file could not be read!", "Read Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
                 frmMenu.GetInstance().Show();   //show the menu form
             }
@@ -145,9 +145,9 @@ namespace _13IA_Project
                     previousRandoms.Add(increment); //add the index position just used to the list of previously used indexes
                 }
             }
-            catch (IOException ex)  //if any errors are encountered in reading the quiz file
+            catch (IOException)  //if any errors are encountered in reading the quiz file
             {
-                MessageBox.Show($"The quiz file could not be read! {ex}", "Invalid Quiz File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"The quiz file could not be read!", "Invalid Quiz File", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -183,7 +183,7 @@ namespace _13IA_Project
                     }
                     catch (IOException ex)  //if it cannot be accessed
                     {
-                        MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"An image resource could not be accessed!", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else   //if no resource is attached, pass an empty string ""
@@ -205,9 +205,9 @@ namespace _13IA_Project
                         resourcePath = $"{QUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
                         multiselectList.Add(new MultiSelect(current[1], resourcePath, current[3], Convert.ToInt32(current[4]), answers));
                     }
-                    catch (IOException ex)  //if the resource cannot be accessed
+                    catch (IOException)  //if the resource cannot be accessed
                     {
-                        MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"An image resource could not be accessed!", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else   //if no resource given
@@ -225,9 +225,9 @@ namespace _13IA_Project
                         resourcePath = $"{QUIZPATH}//{quizName} - Resources//{current[2]}"; //attempt to access the resource
                         truefalseList.Add(new TrueFalse(current[1], resourcePath, current[3], current[5]));
                     }
-                    catch (IOException ex)
+                    catch (IOException)
                     {
-                        MessageBox.Show($"The given resource could not be accessed! {ex}", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"An image resource could not be accessed!", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else    //if no resource given
@@ -357,9 +357,9 @@ namespace _13IA_Project
                 sw.Write($"Score is {total} out of {multichoiceList.Count + multiselectList.Count + truefalseList.Count}"); //output the user's total score
                 sw.Close(); //close the StreamWriter
             }
-            catch (IOException ex)  //if the StreamWriter fails
+            catch (IOException)  //if the StreamWriter fails
             {
-                MessageBox.Show($"The results could not be successfully exported! {ex}", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"The results could not be successfully exported! Please retry.", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
             if (questionComplete == false)  //if any questions were not completed, present a message to the user, and delete the output file
@@ -406,13 +406,18 @@ namespace _13IA_Project
                         EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{tempScore}", STUDENTINFO, index); //pass all the information at the given index location to method EditLine to update the student's information
                         
                         File.Delete(output);    //delete the output file (not needed for bonus quizzes)
+
+                        Close();    //close the form
                     }
-                    catch (IOException ex)
+                    catch (IOException)
                     {
-                        MessageBox.Show($"studentList.csv could not be accessed! {ex}", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Please retry submitting the bonus quiz!", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                Close();    //close the form
+                else
+                {
+                    Close();    //close the form
+                }
             }
         }
 
@@ -430,9 +435,9 @@ namespace _13IA_Project
                 fileArray[editIndex + 1] = newLine;                 //change the contents of the array (-1 accounts for the lack of headings)
                 File.WriteAllLines(fileName, fileArray);            //rewrite the edited information to studentList.csv
             }
-            catch (IOException ex)  //if the file cannot be successfully edited
+            catch (IOException)  //if the file cannot be successfully edited
             {
-                MessageBox.Show($"The results of the bonus quiz could not be correctly saved! {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Please retry submitting the bonus quiz!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
