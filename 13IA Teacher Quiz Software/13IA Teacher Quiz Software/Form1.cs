@@ -1,9 +1,4 @@
 ﻿using _13IA_Teacher_Quiz_Software.Properties;
-using Sylvan.Data.Csv;
-using Sylvan.Data.Excel;
-using Sylvan.Data;
-using Microsoft.Office.Interop;
-using Excel = Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -41,18 +41,10 @@ J:\Github\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\13IA Teacher Quiz Software.exe.config
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\13IA Teacher Quiz Software.exe
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\13IA Teacher Quiz Software.pdb
-K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Common.dll
-K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Csv.dll
-K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.dll
-K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Excel.dll
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Buffers.dll
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Memory.dll
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Numerics.Vectors.dll
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Common.xml
-K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.xml
-K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Csv.xml
-K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\Sylvan.Data.Excel.xml
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Buffers.xml
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Memory.xml
 K:\2023 13IA\13IA Project\13IA-Project\13IA Teacher Quiz Software\13IA Teacher Quiz Software\bin\Debug\System.Numerics.Vectors.xml
