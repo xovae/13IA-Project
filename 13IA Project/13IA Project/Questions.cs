@@ -370,53 +370,58 @@ namespace _13IA_Project
             }
             else  //if output was successful
             {
-                if (quizName == "Bonus Quiz")   //if the user is taking a bonus quiz
+                if (quizName == "Bonus Quiz")
                 {
+                    File.Delete(output);    //delete the output file (not needed for bonus quizzes)
+                }
+
+                try
+                {
+                    string[] current;
+
+                    int tempScore = 0;
+
+                    StreamReader sr = new StreamReader(STUDENTINFO);
+
+                    List<int> studentScores = new List<int>();
+                    List<string> studentNames = new List<string>();         //string lists used for temporary storage of studentList.csv information
+                    List<string> studentSubjects = new List<string>();
+                    List<string> studentClassesList = new List<string>();
+                    List<string> userNames = new List<string>();
+
+                    sr.ReadLine();  //skip the headings of the csv file
+
+                    while (!sr.EndOfStream)
+                    {
+                        current = sr.ReadLine().Split(',');
+                        userNames.Add(current[0]);
+                        studentNames.Add(current[1]);               //read all student information into their respective lists for temporary storage
+                        studentSubjects.Add(current[2]);
+                        studentClassesList.Add(current[3]);
+                        studentScores.Add(int.Parse(current[4]));
+                    }
+
+                    sr.Close(); //close the StreamReader object
+
+                    int index = userNames.IndexOf(Environment.UserName);    //get the index of the line to be edited
+                    tempScore = studentScores[index] + total;               //calculate the new score value for the user
+
                     try
                     {
-                        string[] current;
-
-                        int tempScore = 0;
-
-                        StreamReader sr = new StreamReader(STUDENTINFO);
-
-                        List<int> studentScores = new List<int>();
-                        List<string> studentNames = new List<string>();         //string lists used for temporary storage of studentList.csv information
-                        List<string> studentSubjects = new List<string>();
-                        List<string> studentClassesList = new List<string>();
-                        List<string> userNames = new List<string>();
-
-                        sr.ReadLine();  //skip the headings of the csv file
-
-                        while (!sr.EndOfStream)
-                        {
-                            current = sr.ReadLine().Split(',');
-                            userNames.Add(current[0]);
-                            studentNames.Add(current[1]);               //read all student information into their respective lists for temporary storage
-                            studentSubjects.Add(current[2]);
-                            studentClassesList.Add(current[3]);
-                            studentScores.Add(int.Parse(current[4]));
-                        }
-
-                        sr.Close(); //close the StreamReader object
-
-                        int index = userNames.IndexOf(Environment.UserName);    //get the index of the line to be edited
-                        tempScore = studentScores[index] + total;               //calculate the new score value for the user
-
                         EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{tempScore}", STUDENTINFO, index); //pass all the information at the given index location to method EditLine to update the student's information
-                        
+
                         File.Delete(output);    //delete the output file (not needed for bonus quizzes)
 
                         Close();    //close the form
                     }
-                    catch (IOException)
+                    catch (IOException)     //Cam was here :) <3 UwU OwO :/
                     {
-                        MessageBox.Show($"Please retry submitting the bonus quiz!", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Please retry submitting the quiz!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else
+                catch (IOException)
                 {
-                    Close();    //close the form
+                    MessageBox.Show($"Please retry submitting the quiz!", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -429,16 +434,9 @@ namespace _13IA_Project
         /// <param name="editIndex"></param>
         private void EditLine(string newLine, string fileName, int editIndex)
         {
-            try
-            {
-                string[] fileArray = File.ReadAllLines(fileName);   //read all the file into a temporary array
-                fileArray[editIndex + 1] = newLine;                 //change the contents of the array (-1 accounts for the lack of headings)
-                File.WriteAllLines(fileName, fileArray);            //rewrite the edited information to studentList.csv
-            }
-            catch (IOException)  //if the file cannot be successfully edited
-            {
-                MessageBox.Show($"Please retry submitting the bonus quiz!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            string[] fileArray = File.ReadAllLines(fileName);   //read all the file into a temporary array
+            fileArray[editIndex + 1] = newLine;                 //change the contents of the array (+1 accounts for the lack of headings)
+            File.WriteAllLines(fileName, fileArray);            //rewrite the edited information to studentList.csv
         }
 
         /// <summary>

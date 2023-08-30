@@ -128,6 +128,9 @@ namespace _13IA_Project
                     studentClassesList.Add(current[3]);
                     studentPoints.Add(int.Parse(current[4]));
                 }
+
+                sr.Close();
+
                 index = userNames.IndexOf(userName);            //get the matching index position of the username in the list for the matching device username
 
                 try

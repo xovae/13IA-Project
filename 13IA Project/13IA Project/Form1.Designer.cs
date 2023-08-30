@@ -203,13 +203,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstQuizzes.BackColor = System.Drawing.Color.White;
             this.lstQuizzes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstQuizzes.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstQuizzes.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstQuizzes.ForeColor = System.Drawing.Color.Black;
             this.lstQuizzes.FormattingEnabled = true;
-            this.lstQuizzes.ItemHeight = 23;
+            this.lstQuizzes.ItemHeight = 18;
             this.lstQuizzes.Location = new System.Drawing.Point(222, 31);
             this.lstQuizzes.Name = "lstQuizzes";
-            this.lstQuizzes.Size = new System.Drawing.Size(479, 184);
+            this.lstQuizzes.Size = new System.Drawing.Size(479, 180);
             this.lstQuizzes.TabIndex = 11;
             this.lstQuizzes.SelectedIndexChanged += new System.EventHandler(this.lstQuizzes_SelectedIndexChanged);
             this.lstQuizzes.DoubleClick += new System.EventHandler(this.btnStart_Click);
