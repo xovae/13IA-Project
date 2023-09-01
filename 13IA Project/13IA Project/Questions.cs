@@ -264,6 +264,8 @@ namespace _13IA_Project
         /// <param name="e"></param>
         private void btnCheck_Click(object sender, EventArgs e)
         {
+            List<string> incompleteQuestions = new List<string>();
+
             string selected;
             string output = $"{WRITEPATH}//{Environment.UserName}//{Environment.UserName} Results-{quizName}.csv";    //filepath for the given output file
 
@@ -272,6 +274,7 @@ namespace _13IA_Project
             try
             {
                 StreamWriter sw = File.CreateText(output);  //create a StreamWriter for writing the output file
+                File.SetAttributes(output, FileAttributes.Hidden);
 
                 sw.WriteLine("Question,Topic,UserAnswer(s),CorrectAnswer (MultiChoice),Correct?");  //adding headings
 
@@ -283,6 +286,7 @@ namespace _13IA_Project
                         if (selected == "") //if a question has not been completed
                         {
                             questionComplete = false;   //set the trigger bool to false
+                            incompleteQuestions.Add(item.questionText);
                         }
 
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerMulti},");   //write the question, topic, user's input, and correct answer
@@ -306,6 +310,7 @@ namespace _13IA_Project
                         if (selected == "")     //if the user has not selected an option
                         {
                             questionComplete = false;   //set the trigger bool to false
+                            incompleteQuestions.Add(item.questionText);
                         }
 
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");    //output the question, topic, user input, and answer
@@ -330,7 +335,8 @@ namespace _13IA_Project
                         inputs = GetChecked(item.panel);    //get all the user's selected inputs
                         if (inputs.Count == 0)  //if the user has not selected any options
                         {
-                            questionComplete = false;   //set the trigger obol to false
+                            questionComplete = false;   //set the trigger bool to false
+                            incompleteQuestions.Add(item.questionText);
                         }
 
                         sw.Write($"{item.questionText},{item.questionTopic},"); //write the question and topic
@@ -406,17 +412,9 @@ namespace _13IA_Project
                     int index = userNames.IndexOf(Environment.UserName);    //get the index of the line to be edited
                     tempScore = studentScores[index] + total;               //calculate the new score value for the user
 
-                    try
+                    if (EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{tempScore}", STUDENTINFO, index) == 0)    //pass all the information at the given index location to method EditLine to update the student's information
                     {
-                        EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{tempScore}", STUDENTINFO, index); //pass all the information at the given index location to method EditLine to update the student's information
-
-                        File.Delete(output);    //delete the output file (not needed for bonus quizzes)
-
-                        Close();    //close the form
-                    }
-                    catch (IOException)     //Cam was here :) <3 UwU OwO :/
-                    {
-                        MessageBox.Show($"Please retry submitting the quiz!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Close();    //close the form if submission was successful
                     }
                 }
                 catch (IOException)
@@ -432,11 +430,20 @@ namespace _13IA_Project
         /// <param name="newLine"></param>
         /// <param name="fileName"></param>
         /// <param name="editIndex"></param>
-        private void EditLine(string newLine, string fileName, int editIndex)
+        private int EditLine(string newLine, string fileName, int editIndex)
         {
-            string[] fileArray = File.ReadAllLines(fileName);   //read all the file into a temporary array
-            fileArray[editIndex + 1] = newLine;                 //change the contents of the array (+1 accounts for the lack of headings)
-            File.WriteAllLines(fileName, fileArray);            //rewrite the edited information to studentList.csv
+            try
+            {
+                string[] fileArray = File.ReadAllLines(fileName);   //read all the file into a temporary array
+                fileArray[editIndex + 1] = newLine;                 //change the contents of the array (+1 accounts for the lack of headings)
+                File.WriteAllLines(fileName, fileArray);            //rewrite the edited information to studentList.csv
+                return 0;
+            }
+            catch (IOException)
+            {
+                MessageBox.Show($"Please retry submitting the quiz!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
         }
 
         /// <summary>
