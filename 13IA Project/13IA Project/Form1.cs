@@ -34,7 +34,6 @@ namespace _13IA_Project
         //const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";                 //internal and network locations for studentList.csv, a core data file
         const string STUDENTINFO = "W://1 IT//9jboulto-13IA//Quiz-Resources//studentList.csv";          
 
-
         public string selectedQuiz;
         public string selectedQuizName;         //strings used for the storage of quiz paths, names, and the comparison of results files to existing quizzes
         public string quizResultsCheck;
