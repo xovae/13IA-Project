@@ -33,7 +33,7 @@ namespace _13IA_Project
         //const string QUIZPATH = "..\\..\\..\\..\\Quiz Resources";
         const string QUIZPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources";                          //internal and network locations of quiz files
 
-        //const string WRITEPATH = "..\\..\\..\\..\\Quiz Output//"; 
+        //const string WRITEPATH = "..\\..\\..\\..\\Quiz Output//";
         const string WRITEPATH = "W://1 IT//9jboulto-13IA//Quiz-Results//";                         //internal and network directories to write results files to
 
         //const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";
@@ -181,7 +181,7 @@ namespace _13IA_Project
                         resourcePath = $"{QUIZPATH}//{quizName} - Resources//{current[2]}";
                         multichoiceList.Add(new MultiChoice(current[1], resourcePath, current[3], answers)); //attempt to pass the file path of the specified resource
                     }
-                    catch (IOException ex)  //if it cannot be accessed
+                    catch (IOException)  //if it cannot be accessed
                     {
                         MessageBox.Show($"An image resource could not be accessed!", "Invalid Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -370,8 +370,8 @@ namespace _13IA_Project
             
             if (questionComplete == false)  //if any questions were not completed, present a message to the user, and delete the output file
             {
-                var incompleteOutput = string.Join(",", incompleteQuestions);
-                MessageBox.Show($"Complete all quiz questions before submitting: {Environment.NewLine} {incompleteOutput}", "Quiz Incomplete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var incompleteOutput = string.Join(Environment.NewLine, incompleteQuestions);
+                MessageBox.Show($"Complete all quiz questions before submitting:{Environment.NewLine}{incompleteOutput}", "Quiz Incomplete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 File.Delete(output);
                 total = 0;
                 incompleteQuestions.Clear();

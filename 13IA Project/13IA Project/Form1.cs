@@ -23,16 +23,16 @@ namespace _13IA_Project
         }
 
         //const string QUIZPATH = "..\\..\\..\\..\\Quiz Resources";                                     //internal and network locations for quiz files
-        const string QUIZPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources";                              
-        
+        const string QUIZPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources";
+
         //const string RESULTSPATH = "..\\..\\..\\..\\Quiz Output//";                                   //internal and network locations for results files
         const string RESULTSPATH = "W://1 IT//9jboulto-13IA//Quiz-Results";
-        
+
         //const string BONUSPATH = "..\\..\\..\\..\\Quiz Resources//Bonus Quizzes//";                   //internal and network locations for bonus quizzes
         const string BONUSPATH = "W://1 IT//9jboulto-13IA//Quiz-Resources//Bonus Quizzes//";
 
         //const string STUDENTINFO = "..\\..\\..\\..\\Quiz Resources//studentList.csv";                 //internal and network locations for studentList.csv, a core data file
-        const string STUDENTINFO = "W://1 IT//9jboulto-13IA//Quiz-Resources//studentList.csv";          
+        const string STUDENTINFO = "W://1 IT//9jboulto-13IA//Quiz-Resources//studentList.csv";
 
         public string selectedQuiz;
         public string selectedQuizName;         //strings used for the storage of quiz paths, names, and the comparison of results files to existing quizzes
@@ -56,7 +56,7 @@ namespace _13IA_Project
         public List<StudentProfile> studentsList = new List<StudentProfile>();
         public List<StudentProfile> sortedStudentList = new List<StudentProfile>(); //lists used for the storage and grouping of information to be displayed in the leaderboard
 
-        const int PADDING = 17;  //padding used for even spacing of Listbox elements
+        const int PADDING = 18;  //padding used for even spacing of Listbox elements
 
         public frmMenu()
         {

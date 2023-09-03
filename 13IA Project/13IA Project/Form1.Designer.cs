@@ -55,7 +55,7 @@
             this.pnlHeader.Controls.Add(this.lblUsername);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(988, 73);
             this.pnlHeader.TabIndex = 4;
@@ -64,7 +64,7 @@
             // 
             this.pctLogo.Dock = System.Windows.Forms.DockStyle.Left;
             this.pctLogo.Location = new System.Drawing.Point(0, 0);
-            this.pctLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pctLogo.Margin = new System.Windows.Forms.Padding(4);
             this.pctLogo.Name = "pctLogo";
             this.pctLogo.Size = new System.Drawing.Size(300, 73);
             this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -105,7 +105,7 @@
             this.pnlBody.Controls.Add(this.lstQuizzes);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlBody.Location = new System.Drawing.Point(0, 73);
-            this.pnlBody.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlBody.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Size = new System.Drawing.Size(988, 391);
             this.pnlBody.TabIndex = 0;
@@ -118,7 +118,7 @@
             this.panel1.Controls.Add(this.lblLeadboard);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(262, 391);
             this.panel1.TabIndex = 14;
@@ -129,7 +129,7 @@
             this.btnSortBySubject.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSortBySubject.ForeColor = System.Drawing.Color.White;
             this.btnSortBySubject.Location = new System.Drawing.Point(129, 359);
-            this.btnSortBySubject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSortBySubject.Margin = new System.Windows.Forms.Padding(4);
             this.btnSortBySubject.Name = "btnSortBySubject";
             this.btnSortBySubject.Size = new System.Drawing.Size(119, 28);
             this.btnSortBySubject.TabIndex = 15;
@@ -143,7 +143,7 @@
             this.btnSortByClass.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSortByClass.ForeColor = System.Drawing.Color.White;
             this.btnSortByClass.Location = new System.Drawing.Point(13, 359);
-            this.btnSortByClass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSortByClass.Margin = new System.Windows.Forms.Padding(4);
             this.btnSortByClass.Name = "btnSortByClass";
             this.btnSortByClass.Size = new System.Drawing.Size(108, 28);
             this.btnSortByClass.TabIndex = 15;
@@ -155,14 +155,14 @@
             // 
             this.lstLeaderboard.BackColor = System.Drawing.Color.White;
             this.lstLeaderboard.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstLeaderboard.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstLeaderboard.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstLeaderboard.ForeColor = System.Drawing.Color.Black;
             this.lstLeaderboard.FormattingEnabled = true;
-            this.lstLeaderboard.ItemHeight = 17;
+            this.lstLeaderboard.ItemHeight = 22;
             this.lstLeaderboard.Location = new System.Drawing.Point(4, 38);
-            this.lstLeaderboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstLeaderboard.Margin = new System.Windows.Forms.Padding(4);
             this.lstLeaderboard.Name = "lstLeaderboard";
-            this.lstLeaderboard.Size = new System.Drawing.Size(254, 306);
+            this.lstLeaderboard.Size = new System.Drawing.Size(254, 308);
             this.lstLeaderboard.TabIndex = 16;
             // 
             // lblLeadboard
@@ -170,7 +170,7 @@
             this.lblLeadboard.AutoSize = true;
             this.lblLeadboard.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeadboard.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblLeadboard.Location = new System.Drawing.Point(56, 9);
+            this.lblLeadboard.Location = new System.Drawing.Point(70, 9);
             this.lblLeadboard.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLeadboard.Name = "lblLeadboard";
             this.lblLeadboard.Size = new System.Drawing.Size(123, 25);
@@ -183,7 +183,7 @@
             this.lblHint.AutoSize = true;
             this.lblHint.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHint.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblHint.Location = new System.Drawing.Point(645, 279);
+            this.lblHint.Location = new System.Drawing.Point(645, 273);
             this.lblHint.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHint.Name = "lblHint";
             this.lblHint.Size = new System.Drawing.Size(87, 18);
@@ -200,8 +200,8 @@
             this.btnStart.IconColor = System.Drawing.Color.LimeGreen;
             this.btnStart.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnStart.IconSize = 20;
-            this.btnStart.Location = new System.Drawing.Point(604, 272);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStart.Location = new System.Drawing.Point(605, 266);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(33, 31);
             this.btnStart.TabIndex = 12;
@@ -220,7 +220,7 @@
             this.lstQuizzes.FormattingEnabled = true;
             this.lstQuizzes.ItemHeight = 22;
             this.lstQuizzes.Location = new System.Drawing.Point(302, 38);
-            this.lstQuizzes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstQuizzes.Margin = new System.Windows.Forms.Padding(4);
             this.lstQuizzes.Name = "lstQuizzes";
             this.lstQuizzes.Size = new System.Drawing.Size(639, 220);
             this.lstQuizzes.TabIndex = 11;
@@ -238,7 +238,7 @@
             this.Controls.Add(this.pnlHeader);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(994, 494);
             this.Name = "frmMenu";

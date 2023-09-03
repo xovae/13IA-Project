@@ -44,7 +44,7 @@
             this.pnlHeader.Controls.Add(this.lblUsername);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1067, 46);
             this.pnlHeader.TabIndex = 1;
@@ -54,7 +54,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTitle.Location = new System.Drawing.Point(496, 11);
+            this.lblTitle.Location = new System.Drawing.Point(496, 7);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(74, 34);
@@ -84,7 +84,6 @@
             this.pnlQuestions.Location = new System.Drawing.Point(0, 46);
             this.pnlQuestions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 62);
             this.pnlQuestions.Name = "pnlQuestions";
-            this.pnlQuestions.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
             this.pnlQuestions.Size = new System.Drawing.Size(1067, 521);
             this.pnlQuestions.TabIndex = 2;
             // 
@@ -92,7 +91,7 @@
             // 
             this.btnCheck.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCheck.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheck.Location = new System.Drawing.Point(0, 485);
+            this.btnCheck.Location = new System.Drawing.Point(0, 491);
             this.btnCheck.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(1067, 30);
@@ -110,7 +109,7 @@
             this.ClientSize = new System.Drawing.Size(1067, 567);
             this.Controls.Add(this.pnlQuestions);
             this.Controls.Add(this.pnlHeader);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(861, 605);
             this.Name = "frmQuestions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
