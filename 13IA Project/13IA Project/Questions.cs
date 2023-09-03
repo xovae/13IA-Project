@@ -370,9 +370,11 @@ namespace _13IA_Project
             
             if (questionComplete == false)  //if any questions were not completed, present a message to the user, and delete the output file
             {
-                MessageBox.Show("Complete all quiz questions before submitting!", "Quiz Incomplete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var incompleteOutput = string.Join(",", incompleteQuestions);
+                MessageBox.Show($"Complete all quiz questions before submitting: {Environment.NewLine} {incompleteOutput}", "Quiz Incomplete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 File.Delete(output);
                 total = 0;
+                incompleteQuestions.Clear();
             }
             else  //if output was successful
             {

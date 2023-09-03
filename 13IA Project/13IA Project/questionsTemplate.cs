@@ -67,6 +67,7 @@ namespace _13IA_Project
             panel.Controls.Add(check);
             check.Top = above.Bottom + PADDING;
             check.Left = PADDING / 2;
+            check.Font = new Font(check.Font.FontFamily, 12);
         }
 
         public void AddRadioButton(RadioButton button, Control above, string questionText)
@@ -76,6 +77,7 @@ namespace _13IA_Project
             panel.Controls.Add(button);
             button.Top = above.Bottom + PADDING;
             button.Left = PADDING / 2;
+            button.Font = new Font(button.Font.FontFamily, 12);
         }
     }
 
