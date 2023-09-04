@@ -46,6 +46,7 @@ namespace _13IA_Project
                 questionPictureBox.Image = Image.FromFile(questionResourcePath);
                 panel.Controls.Add(questionPictureBox);
                 questionPictureBox.Top = questionLabel.Bottom + PADDING;
+                questionPictureBox.Left = PADDING / 5;
                 questionPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
             }
             else

@@ -40,6 +40,8 @@
             this.lblRandom = new System.Windows.Forms.Label();
             this.btnAddBank = new System.Windows.Forms.Button();
             this.btnOpenBank = new System.Windows.Forms.Button();
+            this.chkEnableScoring = new System.Windows.Forms.CheckBox();
+            this.btnDeleteQuiz = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -57,7 +59,7 @@
             // btnEncode
             // 
             this.btnEncode.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEncode.Location = new System.Drawing.Point(85, 40);
+            this.btnEncode.Location = new System.Drawing.Point(85, 42);
             this.btnEncode.Name = "btnEncode";
             this.btnEncode.Size = new System.Drawing.Size(91, 23);
             this.btnEncode.TabIndex = 1;
@@ -72,7 +74,7 @@
             // btnDecode
             // 
             this.btnDecode.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDecode.Location = new System.Drawing.Point(202, 40);
+            this.btnDecode.Location = new System.Drawing.Point(202, 42);
             this.btnDecode.Name = "btnDecode";
             this.btnDecode.Size = new System.Drawing.Size(91, 23);
             this.btnDecode.TabIndex = 2;
@@ -84,7 +86,7 @@
             // 
             this.cmbQuizzes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbQuizzes.FormattingEnabled = true;
-            this.cmbQuizzes.Location = new System.Drawing.Point(69, 87);
+            this.cmbQuizzes.Location = new System.Drawing.Point(19, 105);
             this.cmbQuizzes.Name = "cmbQuizzes";
             this.cmbQuizzes.Size = new System.Drawing.Size(121, 21);
             this.cmbQuizzes.TabIndex = 4;
@@ -93,7 +95,7 @@
             // btnAddResource
             // 
             this.btnAddResource.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddResource.Location = new System.Drawing.Point(219, 87);
+            this.btnAddResource.Location = new System.Drawing.Point(167, 104);
             this.btnAddResource.Name = "btnAddResource";
             this.btnAddResource.Size = new System.Drawing.Size(91, 23);
             this.btnAddResource.TabIndex = 5;
@@ -155,12 +157,37 @@
             this.btnOpenBank.UseVisualStyleBackColor = true;
             this.btnOpenBank.Click += new System.EventHandler(this.btnDecode_Click);
             // 
+            // chkEnableScoring
+            // 
+            this.chkEnableScoring.AutoSize = true;
+            this.chkEnableScoring.BackColor = System.Drawing.Color.Transparent;
+            this.chkEnableScoring.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkEnableScoring.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.chkEnableScoring.Location = new System.Drawing.Point(134, 71);
+            this.chkEnableScoring.Name = "chkEnableScoring";
+            this.chkEnableScoring.Size = new System.Drawing.Size(110, 19);
+            this.chkEnableScoring.TabIndex = 11;
+            this.chkEnableScoring.Text = "&Enable Scoring";
+            this.chkEnableScoring.UseVisualStyleBackColor = false;
+            // 
+            // btnDeleteQuiz
+            // 
+            this.btnDeleteQuiz.Location = new System.Drawing.Point(285, 104);
+            this.btnDeleteQuiz.Name = "btnDeleteQuiz";
+            this.btnDeleteQuiz.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteQuiz.TabIndex = 12;
+            this.btnDeleteQuiz.Text = "&Delete Quiz";
+            this.btnDeleteQuiz.UseVisualStyleBackColor = true;
+            this.btnDeleteQuiz.Click += new System.EventHandler(this.btnDeleteQuiz_Click);
+            // 
             // frmQuiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_13IA_Teacher_Quiz_Software.Properties.Resources.hbhs_background;
             this.ClientSize = new System.Drawing.Size(378, 306);
+            this.Controls.Add(this.btnDeleteQuiz);
+            this.Controls.Add(this.chkEnableScoring);
             this.Controls.Add(this.btnOpenBank);
             this.Controls.Add(this.btnAddBank);
             this.Controls.Add(this.lblRandom);
@@ -196,6 +223,8 @@
         private System.Windows.Forms.Label lblRandom;
         private System.Windows.Forms.Button btnAddBank;
         private System.Windows.Forms.Button btnOpenBank;
+        private System.Windows.Forms.CheckBox chkEnableScoring;
+        private System.Windows.Forms.Button btnDeleteQuiz;
     }
 }
 

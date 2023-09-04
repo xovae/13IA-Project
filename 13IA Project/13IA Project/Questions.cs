@@ -26,6 +26,7 @@ namespace _13IA_Project
         public int total = 0;           //counter variable used for user score
 
         public bool questionComplete = true;   //bool used for checking if all questions are completed
+        public bool scoringEnabled = false;
 
         const int PADDING = 50;
         const int DISTANCE_FROM_OUTER = 100;        //constants used for scaling of elements
@@ -43,15 +44,19 @@ namespace _13IA_Project
         List<MultiSelect> multiselectList = new List<MultiSelect>();    //lists used for storing of question types
         List<TrueFalse> truefalseList = new List<TrueFalse>();
 
-        public frmQuestions(string path, string name, string studentName)
+        public frmQuestions(string path, string name, string displayName, string studentName)
         {
             InitializeComponent();
             Icon = Properties.Resources.hbhs_icon;
             lblUsername.Text = studentName;    //update UI elements
-            Text = name;
             filePath = path;
-            lblTitle.Text = name;   //get the information for the selected quiz
+            lblTitle.Text = displayName;   //get the information for the selected quiz
             quizName = name;
+
+            if (filePath.Contains("s-"))
+            {
+                scoringEnabled = true;
+            }
         }
 
         /// <summary>
@@ -190,7 +195,10 @@ namespace _13IA_Project
                 {
                     multichoiceList.Add(new MultiChoice(current[1], "", current[3], answers));
                 }
-                FormatQuestions(multichoiceList, multichoiceList.Last().panel); //format the current question + panel
+                if (multichoiceList.Count != 0)
+                {
+                    FormatQuestions(multichoiceList, multichoiceList.Last().panel); //format the current question + panel
+                }
             }
             else if (current[0].Equals("MultiSelect", StringComparison.OrdinalIgnoreCase))  //if a select all that apply type question
             {
@@ -214,7 +222,10 @@ namespace _13IA_Project
                 {
                     multiselectList.Add(new MultiSelect(current[1], "", current[3], Convert.ToInt32(current[4]), answers));
                 }
-                FormatQuestions(multiselectList, multiselectList.Last().panel); //format the current question
+                if (multiselectList.Count != 0)
+                {
+                    FormatQuestions(multiselectList, multiselectList.Last().panel); //format the current question
+                }
             }
             else if (current[0].Equals("TrueFalse", StringComparison.OrdinalIgnoreCase))    //if a true false question
             {
@@ -234,7 +245,10 @@ namespace _13IA_Project
                 {
                     truefalseList.Add(new TrueFalse(current[1], "", current[3], current[5]));
                 }
-                FormatQuestions(truefalseList, truefalseList.Last().panel); //format the current question
+                if (truefalseList.Count != 0)
+                {
+                    FormatQuestions(truefalseList, truefalseList.Last().panel); //format the current question
+                }
             }
         }
 
@@ -267,8 +281,9 @@ namespace _13IA_Project
             List<string> incompleteQuestions = new List<string>();
 
             string selected;
+           
             string output = $"{WRITEPATH}//{Environment.UserName}//{Environment.UserName} Results-{quizName}.csv";    //filepath for the given output file
-
+           
             questionComplete = true;   //reset bool variable to true for the next question
 
             try
@@ -431,6 +446,11 @@ namespace _13IA_Project
 
                     if (EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{tempScore}", STUDENTINFO, index) == 0)    //pass all the information at the given index location to method EditLine to update the student's information
                     {
+                        if (scoringEnabled == true || quizName == "Bonus Quiz")
+                        {
+                            MessageBox.Show($"You scored {total} out of {multichoiceList.Count + multiselectList.Count + truefalseList.Count}!", "Final Score", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
                         Close();    //close the form if submission was successful
                     }
                 }

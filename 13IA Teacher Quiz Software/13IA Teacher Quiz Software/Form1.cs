@@ -45,6 +45,8 @@ namespace _13IA_Teacher_Quiz_Software
 
         private void frmQuiz_Load(object sender, EventArgs e)
         {
+            cmbQuizzes.Items.Clear();
+
             quizPaths = Directory.GetFiles(QUIZPATH, "*.quiz", SearchOption.AllDirectories);
             quizNames = Directory.GetFiles(QUIZPATH, "*.quiz").Select(Path.GetFileNameWithoutExtension).ToArray();
 
@@ -81,8 +83,8 @@ namespace _13IA_Teacher_Quiz_Software
 
         private void btnAddResource_Click(object sender, EventArgs e)
         {
-            string resourceDirectory; 
-
+            string resourceDirectory;
+           
             if (selectedQuizPath != null)
             {
                 if (Directory.Exists($"{QUIZPATH}//{selectedQuizName} - Resources") != true)
@@ -126,6 +128,9 @@ namespace _13IA_Teacher_Quiz_Software
             }
 
             byte[] current;
+            string quizSavePath;
+            string quizPath;
+            string quizName;
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -133,30 +138,51 @@ namespace _13IA_Teacher_Quiz_Software
                 {
                     try
                     {
-                        if (Path.GetExtension(openFileDialog1.FileName) == ".xlsx" || Path.GetExtension(openFileDialog1.FileName) == ".xlsb" || Path.GetExtension(openFileDialog1.FileName) == ".xls")
+                        StreamReader sr = new StreamReader(openFileDialog1.FileName);
+
+                        if (chkEnableScoring.Checked == true)
                         {
-
+                            quizPath = Path.GetDirectoryName(saveFileDialog1.FileName);
+                            quizName = Path.GetFileName(saveFileDialog1.FileName);
+                            quizSavePath = $"{quizPath}\\s-{quizName}";
                         }
-                        else if (Path.GetExtension(openFileDialog1.FileName) == ".csv")
+                        else
                         {
-                            StreamReader sr = new StreamReader(openFileDialog1.FileName);
-                            StreamWriter sw = File.CreateText(saveFileDialog1.FileName);
-
-                            while (!sr.EndOfStream)
-                            {
-                                current = Encoding.UTF8.GetBytes(sr.ReadLine());
-                                sw.WriteLine(Convert.ToBase64String(current));
-                            }
-
-                            sr.Close();
-                            sw.Close();
+                            quizSavePath = saveFileDialog1.FileName;
                         }
+
+                        StreamWriter sw = File.CreateText(quizSavePath);
+
+                        while (!sr.EndOfStream)
+                        {
+                            current = Encoding.UTF8.GetBytes(sr.ReadLine());
+                            sw.WriteLine(Convert.ToBase64String(current));
+                        }
+
+                        sr.Close();
+                        sw.Close();
+
+                        frmQuiz_Load(sender, e);
                     }
-                    catch (IOException ex)
+                    catch (IOException)
                     {
-                        MessageBox.Show($"The selected file could not be encoded! {ex}", "Encoding Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"The selected file could not be encoded!", "Encoding Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         File.Delete(saveFileDialog1.FileName);
                     }
+                }
+            }
+        }
+
+        private void btnDeleteQuiz_Click(object sender, EventArgs e)
+        {
+            if (selectedQuizPath != null)
+            {
+                if (MessageBox.Show("Are you sure you want to delete this quiz?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    File.Delete(selectedQuizPath);
+                    Directory.Delete($"{QUIZPATH}//{selectedQuizName} - Resources", true);
+                    
+                    frmQuiz_Load(sender, e);
                 }
             }
         }

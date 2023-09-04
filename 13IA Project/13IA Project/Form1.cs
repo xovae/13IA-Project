@@ -36,6 +36,7 @@ namespace _13IA_Project
 
         public string selectedQuiz;
         public string selectedQuizName;         //strings used for the storage of quiz paths, names, and the comparison of results files to existing quizzes
+        public string selectedQuizDisplayName;
         public string quizResultsCheck;
         public string studentSubject;
         public string studentClass;
@@ -50,8 +51,9 @@ namespace _13IA_Project
         public List<string> studentClassesList = new List<string>();
         public List<int> studentPoints = new List<int>();
 
-        public List<string> quizNameList = new List<string>();  //string Lists used for storing the truncated lists of quiz paths and names
+        public List<string> quizNameList = new List<string>();  //string Lists used for storing the truncated lists of quiz paths, internal names, and display names
         public List<string> quizPathList = new List<string>();
+        public List<string> quizDisplayNameList = new List<string>();
 
         public List<StudentProfile> studentsList = new List<StudentProfile>();
         public List<StudentProfile> sortedStudentList = new List<StudentProfile>(); //lists used for the storage and grouping of information to be displayed in the leaderboard
@@ -81,6 +83,7 @@ namespace _13IA_Project
 
                 quizNameList.Clear();
                 quizPathList.Clear();
+                quizDisplayNameList.Clear();
             }
 
             userNames.Clear();
@@ -105,7 +108,16 @@ namespace _13IA_Project
 
             foreach (var item in quizNames)
             {
-                quizNameList.Add(item);         //assigning all the contents of the arrays to their respective lists
+                quizNameList.Add(item);
+
+                if (item.Contains("s-"))
+                {
+                    quizDisplayNameList.Add(item.Remove(0, 2));
+                }
+                else
+                {
+                    quizDisplayNameList.Add(item);         //assigning all the contents of the arrays to their respective lists
+                }
             }
             foreach (var item in quizPaths)
             {
@@ -182,9 +194,10 @@ namespace _13IA_Project
                         index = quizNameList.IndexOf(quizResultsCheck); 
                         quizNameList.Remove(quizResultsCheck);          //remove the quiz from both lists
                         quizPathList.RemoveAt(index);
+                        quizDisplayNameList.RemoveAt(index);
                     }
                 }
-                foreach (var item in quizNameList)  //add all quizzes that do not have a results file to the ListBox lstQuizzes
+                foreach (var item in quizDisplayNameList)  //add all quizzes that do not have a results file to the ListBox lstQuizzes
                 {
                     lstQuizzes.Items.Add(item);
                 }
@@ -227,7 +240,8 @@ namespace _13IA_Project
                 else    //for all other quizzes, get the item at the corresponding index from the quiz lists
                 {
                     selectedQuiz = quizPathList[lstQuizzes.SelectedIndex];
-                    selectedQuizName = lstQuizzes.SelectedItem.ToString();
+                    selectedQuizDisplayName = lstQuizzes.SelectedItem.ToString();
+                    selectedQuizName = quizNameList[lstQuizzes.SelectedIndex];
                 }
             }
         }
@@ -242,7 +256,7 @@ namespace _13IA_Project
         {
             if (selectedQuiz != null)   //if the user has selected a valid quiz
             {
-                frmQuestions quiz = new frmQuestions(selectedQuiz, selectedQuizName, lblUsername.Text);
+                frmQuestions quiz = new frmQuestions(selectedQuiz, selectedQuizName, selectedQuizDisplayName, lblUsername.Text);
                 quiz.Show();    //create a instance of frmQuestions, with the selected quiz
                 Hide();         //hide the menu
                 lblHint.Hide();

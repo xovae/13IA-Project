@@ -109,7 +109,7 @@
             this.MinimumSize = new System.Drawing.Size(650, 499);
             this.Name = "frmQuestions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Questions";
+            this.Text = "HBHS Quizzes";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmQuestions_FormClosed);
             this.Load += new System.EventHandler(this.frmQuestions_Load);
             this.SizeChanged += new System.EventHandler(this.frmQuestions_SizeChanged);
