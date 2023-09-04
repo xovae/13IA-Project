@@ -281,7 +281,10 @@ namespace _13IA_Project
             List<string> incompleteQuestions = new List<string>();
 
             string selected;
-           
+
+            int totalQuestions = multichoiceList.Count + multiselectList.Count + truefalseList.Count;
+            double userPercentage = Math.Round(Convert.ToDouble(total / totalQuestions * 100), MidpointRounding.AwayFromZero);
+
             string output = $"{WRITEPATH}//{Environment.UserName}//{Environment.UserName} Results-{quizName}.csv";    //filepath for the given output file
            
             questionComplete = true;   //reset bool variable to true for the next question
@@ -390,7 +393,7 @@ namespace _13IA_Project
                     }   
                 }
 
-                sw.Write($"Score is {total} out of {multichoiceList.Count + multiselectList.Count + truefalseList.Count}"); //output the user's total score
+                sw.Write($"Score is {total} out of {totalQuestions} ({userPercentage}%)"); //output the user's total score
                 sw.Close(); //close the StreamWriter
             }
             catch (IOException)  //if the StreamWriter fails
@@ -448,7 +451,7 @@ namespace _13IA_Project
                     {
                         if (scoringEnabled == true || quizName == "Bonus Quiz")
                         {
-                            MessageBox.Show($"You scored {total} out of {multichoiceList.Count + multiselectList.Count + truefalseList.Count} ({total/(multichoiceList.Count + multiselectList.Count + truefalseList.Count) * 100}%)!", "Final Score", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"You scored {total} out of {totalQuestions} ({userPercentage}%)!", "Final Score", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
                         Close();    //close the form if submission was successful
