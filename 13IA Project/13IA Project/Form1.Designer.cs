@@ -55,18 +55,16 @@
             this.pnlHeader.Controls.Add(this.lblUsername);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(988, 73);
+            this.pnlHeader.Size = new System.Drawing.Size(741, 59);
             this.pnlHeader.TabIndex = 4;
             // 
             // pctLogo
             // 
             this.pctLogo.Dock = System.Windows.Forms.DockStyle.Left;
             this.pctLogo.Location = new System.Drawing.Point(0, 0);
-            this.pctLogo.Margin = new System.Windows.Forms.Padding(4);
             this.pctLogo.Name = "pctLogo";
-            this.pctLogo.Size = new System.Drawing.Size(300, 73);
+            this.pctLogo.Size = new System.Drawing.Size(225, 59);
             this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pctLogo.TabIndex = 2;
             this.pctLogo.TabStop = false;
@@ -76,10 +74,9 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblTitle.Location = new System.Drawing.Point(519, 20);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Location = new System.Drawing.Point(389, 16);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(180, 34);
+            this.lblTitle.Size = new System.Drawing.Size(144, 26);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "HBHS Quizzes";
             // 
@@ -89,10 +86,9 @@
             this.lblUsername.Dock = System.Windows.Forms.DockStyle.Right;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblUsername.Location = new System.Drawing.Point(867, 0);
-            this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUsername.Location = new System.Drawing.Point(643, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(121, 25);
+            this.lblUsername.Size = new System.Drawing.Size(98, 21);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "lblUsername";
             // 
@@ -104,10 +100,9 @@
             this.pnlBody.Controls.Add(this.btnStart);
             this.pnlBody.Controls.Add(this.lstQuizzes);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlBody.Location = new System.Drawing.Point(0, 73);
-            this.pnlBody.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlBody.Location = new System.Drawing.Point(0, 59);
             this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(988, 391);
+            this.pnlBody.Size = new System.Drawing.Size(741, 318);
             this.pnlBody.TabIndex = 0;
             // 
             // panel1
@@ -118,9 +113,8 @@
             this.panel1.Controls.Add(this.lblLeadboard);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(262, 391);
+            this.panel1.Size = new System.Drawing.Size(196, 318);
             this.panel1.TabIndex = 14;
             // 
             // btnSortBySubject
@@ -128,10 +122,9 @@
             this.btnSortBySubject.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSortBySubject.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSortBySubject.ForeColor = System.Drawing.Color.White;
-            this.btnSortBySubject.Location = new System.Drawing.Point(129, 359);
-            this.btnSortBySubject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSortBySubject.Location = new System.Drawing.Point(97, 292);
             this.btnSortBySubject.Name = "btnSortBySubject";
-            this.btnSortBySubject.Size = new System.Drawing.Size(119, 28);
+            this.btnSortBySubject.Size = new System.Drawing.Size(89, 23);
             this.btnSortBySubject.TabIndex = 15;
             this.btnSortBySubject.Text = "&Subject";
             this.btnSortBySubject.UseVisualStyleBackColor = true;
@@ -142,10 +135,9 @@
             this.btnSortByClass.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSortByClass.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSortByClass.ForeColor = System.Drawing.Color.White;
-            this.btnSortByClass.Location = new System.Drawing.Point(13, 359);
-            this.btnSortByClass.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSortByClass.Location = new System.Drawing.Point(10, 292);
             this.btnSortByClass.Name = "btnSortByClass";
-            this.btnSortByClass.Size = new System.Drawing.Size(108, 28);
+            this.btnSortByClass.Size = new System.Drawing.Size(81, 23);
             this.btnSortByClass.TabIndex = 15;
             this.btnSortByClass.Text = "&Class";
             this.btnSortByClass.UseVisualStyleBackColor = true;
@@ -155,14 +147,13 @@
             // 
             this.lstLeaderboard.BackColor = System.Drawing.Color.White;
             this.lstLeaderboard.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstLeaderboard.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstLeaderboard.Font = new System.Drawing.Font("Courier New", 9F);
             this.lstLeaderboard.ForeColor = System.Drawing.Color.Black;
             this.lstLeaderboard.FormattingEnabled = true;
-            this.lstLeaderboard.ItemHeight = 22;
-            this.lstLeaderboard.Location = new System.Drawing.Point(4, 38);
-            this.lstLeaderboard.Margin = new System.Windows.Forms.Padding(4);
+            this.lstLeaderboard.ItemHeight = 15;
+            this.lstLeaderboard.Location = new System.Drawing.Point(3, 31);
             this.lstLeaderboard.Name = "lstLeaderboard";
-            this.lstLeaderboard.Size = new System.Drawing.Size(254, 308);
+            this.lstLeaderboard.Size = new System.Drawing.Size(190, 255);
             this.lstLeaderboard.TabIndex = 16;
             // 
             // lblLeadboard
@@ -170,10 +161,9 @@
             this.lblLeadboard.AutoSize = true;
             this.lblLeadboard.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeadboard.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblLeadboard.Location = new System.Drawing.Point(70, 9);
-            this.lblLeadboard.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLeadboard.Location = new System.Drawing.Point(52, 7);
             this.lblLeadboard.Name = "lblLeadboard";
-            this.lblLeadboard.Size = new System.Drawing.Size(123, 25);
+            this.lblLeadboard.Size = new System.Drawing.Size(98, 21);
             this.lblLeadboard.TabIndex = 15;
             this.lblLeadboard.Text = "Leaderboard";
             // 
@@ -183,10 +173,9 @@
             this.lblHint.AutoSize = true;
             this.lblHint.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHint.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblHint.Location = new System.Drawing.Point(645, 273);
-            this.lblHint.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHint.Location = new System.Drawing.Point(484, 222);
             this.lblHint.Name = "lblHint";
-            this.lblHint.Size = new System.Drawing.Size(87, 18);
+            this.lblHint.Size = new System.Drawing.Size(74, 14);
             this.lblHint.TabIndex = 13;
             this.lblHint.Text = "Select a quiz!";
             this.lblHint.Visible = false;
@@ -200,10 +189,9 @@
             this.btnStart.IconColor = System.Drawing.Color.LimeGreen;
             this.btnStart.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnStart.IconSize = 20;
-            this.btnStart.Location = new System.Drawing.Point(605, 266);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStart.Location = new System.Drawing.Point(454, 216);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(33, 31);
+            this.btnStart.Size = new System.Drawing.Size(25, 25);
             this.btnStart.TabIndex = 12;
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -218,29 +206,27 @@
             this.lstQuizzes.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstQuizzes.ForeColor = System.Drawing.Color.Black;
             this.lstQuizzes.FormattingEnabled = true;
-            this.lstQuizzes.ItemHeight = 22;
-            this.lstQuizzes.Location = new System.Drawing.Point(302, 38);
-            this.lstQuizzes.Margin = new System.Windows.Forms.Padding(4);
+            this.lstQuizzes.ItemHeight = 18;
+            this.lstQuizzes.Location = new System.Drawing.Point(226, 31);
             this.lstQuizzes.Name = "lstQuizzes";
-            this.lstQuizzes.Size = new System.Drawing.Size(639, 220);
+            this.lstQuizzes.Size = new System.Drawing.Size(479, 162);
             this.lstQuizzes.TabIndex = 11;
             this.lstQuizzes.SelectedIndexChanged += new System.EventHandler(this.lstQuizzes_SelectedIndexChanged);
             this.lstQuizzes.DoubleClick += new System.EventHandler(this.btnStart_Click);
             // 
             // frmMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_13IA_Project.Properties.Resources.hbhs_background_bitmap;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(988, 464);
+            this.ClientSize = new System.Drawing.Size(741, 377);
             this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlHeader);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(994, 494);
+            this.MinimumSize = new System.Drawing.Size(750, 409);
             this.Name = "frmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";

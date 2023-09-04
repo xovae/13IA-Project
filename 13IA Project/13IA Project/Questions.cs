@@ -286,7 +286,12 @@ namespace _13IA_Project
                         if (selected == "") //if a question has not been completed
                         {
                             questionComplete = false;   //set the trigger bool to false
+                            item.panel.BackColor = Color.IndianRed;
                             incompleteQuestions.Add(item.questionText);
+                        }
+                        else
+                        {
+                            item.panel.BackColor = Color.Transparent;
                         }
 
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerMulti},");   //write the question, topic, user's input, and correct answer
@@ -310,7 +315,12 @@ namespace _13IA_Project
                         if (selected == "")     //if the user has not selected an option
                         {
                             questionComplete = false;   //set the trigger bool to false
+                            item.panel.BackColor = Color.IndianRed;
                             incompleteQuestions.Add(item.questionText);
+                        }
+                        else
+                        {
+                            item.panel.BackColor = Color.Transparent;
                         }
 
                         sw.Write($"{item.questionText},{item.questionTopic},{selected},{item.answerText},");    //output the question, topic, user input, and answer
@@ -336,7 +346,12 @@ namespace _13IA_Project
                         if (inputs.Count == 0)  //if the user has not selected any options
                         {
                             questionComplete = false;   //set the trigger bool to false
+                            item.panel.BackColor = Color.IndianRed;
                             incompleteQuestions.Add(item.questionText);
+                        }
+                        else
+                        {
+                            item.panel.BackColor = Color.Transparent;
                         }
 
                         sw.Write($"{item.questionText},{item.questionTopic},"); //write the question and topic

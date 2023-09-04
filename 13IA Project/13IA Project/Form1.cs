@@ -56,7 +56,7 @@ namespace _13IA_Project
         public List<StudentProfile> studentsList = new List<StudentProfile>();
         public List<StudentProfile> sortedStudentList = new List<StudentProfile>(); //lists used for the storage and grouping of information to be displayed in the leaderboard
 
-        const int PADDING = 18;  //padding used for even spacing of Listbox elements
+        const int PADDING = 19;  //padding used for even spacing of Listbox elements
 
         public frmMenu()
         {
