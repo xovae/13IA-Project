@@ -448,7 +448,7 @@ namespace _13IA_Project
                     {
                         if (scoringEnabled == true || quizName == "Bonus Quiz")
                         {
-                            MessageBox.Show($"You scored {total} out of {multichoiceList.Count + multiselectList.Count + truefalseList.Count}!", "Final Score", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"You scored {total} out of {multichoiceList.Count + multiselectList.Count + truefalseList.Count} ({total/(multichoiceList.Count + multiselectList.Count + truefalseList.Count) * 100}%)!", "Final Score", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
                         Close();    //close the form if submission was successful
