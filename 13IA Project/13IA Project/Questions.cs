@@ -23,7 +23,8 @@ namespace _13IA_Project
 
         public int distanceFromTop;
         public int distanceFromLeft;    //variables used for scaling of panels
-        public int total = 0;           //counter variable used for user score
+
+        public double total = 0;           //counter variable used for user score
 
         public bool questionComplete = true;   //bool used for checking if all questions are completed
         public bool scoringEnabled = false;
@@ -281,9 +282,9 @@ namespace _13IA_Project
             List<string> incompleteQuestions = new List<string>();
 
             string selected;
+            string userPercentage;
 
-            int totalQuestions = multichoiceList.Count + multiselectList.Count + truefalseList.Count;
-            double userPercentage = Math.Round(Convert.ToDouble(total / totalQuestions * 100), MidpointRounding.AwayFromZero);
+            double totalQuestions = multichoiceList.Count + multiselectList.Count + truefalseList.Count;
 
             string output = $"{WRITEPATH}//{Environment.UserName}//{Environment.UserName} Results-{quizName}.csv";    //filepath for the given output file
            
@@ -393,74 +394,76 @@ namespace _13IA_Project
                     }   
                 }
 
+                userPercentage = (total / totalQuestions).ToString("0.00%");
+
                 sw.Write($"Score is {total} out of {totalQuestions} ({userPercentage}%)"); //output the user's total score
                 sw.Close(); //close the StreamWriter
-            }
-            catch (IOException)  //if the StreamWriter fails
-            {
-                MessageBox.Show($"The results could not be successfully exported! Please retry.", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
-            if (questionComplete == false)  //if any questions were not completed, present a message to the user, and delete the output file
-            {
-                var incompleteOutput = string.Join(Environment.NewLine, incompleteQuestions);
-                MessageBox.Show($"Complete all quiz questions before submitting:{Environment.NewLine}{incompleteOutput}", "Quiz Incomplete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                File.Delete(output);
-                total = 0;
-                incompleteQuestions.Clear();
-            }
-            else  //if output was successful
-            {
+
                 if (quizName == "Bonus Quiz")
                 {
                     File.Delete(output);    //delete the output file (not needed for bonus quizzes)
                 }
 
-                try
+                if (questionComplete == false)  //if any questions were not completed, present a message to the user, and delete the output file
                 {
-                    string[] current;
-
-                    int tempScore = 0;
-
-                    StreamReader sr = new StreamReader(STUDENTINFO);
-
-                    List<int> studentScores = new List<int>();
-                    List<string> studentNames = new List<string>();         //string lists used for temporary storage of studentList.csv information
-                    List<string> studentSubjects = new List<string>();
-                    List<string> studentClassesList = new List<string>();
-                    List<string> userNames = new List<string>();
-
-                    sr.ReadLine();  //skip the headings of the csv file
-
-                    while (!sr.EndOfStream)
+                    var incompleteOutput = string.Join(Environment.NewLine, incompleteQuestions);
+                    MessageBox.Show($"Complete all quiz questions before submitting:{Environment.NewLine}{incompleteOutput}", "Quiz Incomplete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    File.Delete(output);
+                    total = 0;
+                    incompleteQuestions.Clear();
+                }
+                else  //if output was successful
+                {
+                    try
                     {
-                        current = sr.ReadLine().Split(',');
-                        userNames.Add(current[0]);
-                        studentNames.Add(current[1]);               //read all student information into their respective lists for temporary storage
-                        studentSubjects.Add(current[2]);
-                        studentClassesList.Add(current[3]);
-                        studentScores.Add(int.Parse(current[4]));
-                    }
+                        string[] current;
 
-                    sr.Close(); //close the StreamReader object
+                        int tempScore = 0;
 
-                    int index = userNames.IndexOf(Environment.UserName);    //get the index of the line to be edited
-                    tempScore = studentScores[index] + total;               //calculate the new score value for the user
+                        StreamReader sr = new StreamReader(STUDENTINFO);
 
-                    if (EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{tempScore}", STUDENTINFO, index) == 0)    //pass all the information at the given index location to method EditLine to update the student's information
-                    {
-                        if (scoringEnabled == true || quizName == "Bonus Quiz")
+                        List<int> studentScores = new List<int>();
+                        List<string> studentNames = new List<string>();         //string lists used for temporary storage of studentList.csv information
+                        List<string> studentSubjects = new List<string>();
+                        List<string> studentClassesList = new List<string>();
+                        List<string> userNames = new List<string>();
+
+                        sr.ReadLine();  //skip the headings of the csv file
+
+                        while (!sr.EndOfStream)
                         {
-                            MessageBox.Show($"You scored {total} out of {totalQuestions} ({userPercentage}%)!", "Final Score", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            current = sr.ReadLine().Split(',');
+                            userNames.Add(current[0]);
+                            studentNames.Add(current[1]);               //read all student information into their respective lists for temporary storage
+                            studentSubjects.Add(current[2]);
+                            studentClassesList.Add(current[3]);
+                            studentScores.Add(int.Parse(current[4]));
                         }
 
-                        Close();    //close the form if submission was successful
+                        sr.Close(); //close the StreamReader object
+
+                        int index = userNames.IndexOf(Environment.UserName);    //get the index of the line to be edited
+                        tempScore = studentScores[index] + Convert.ToInt32(total);               //calculate the new score value for the user
+
+                        if (EditLine($"{userNames[index]},{studentNames[index]},{studentSubjects[index]},{studentClassesList[index]},{tempScore}", STUDENTINFO, index) == 0)    //pass all the information at the given index location to method EditLine to update the student's information
+                        {
+                            if (scoringEnabled == true || quizName == "Bonus Quiz")
+                            {
+                                MessageBox.Show($"You scored {total} out of {totalQuestions} ({userPercentage})!", "Final Score", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+
+                            Close();    //close the form if submission was successful
+                        }
+                    }
+                    catch (IOException)
+                    {
+                        MessageBox.Show($"Please retry submitting the quiz!", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (IOException)
-                {
-                    MessageBox.Show($"Please retry submitting the quiz!", "Output error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch (IOException)  //if the StreamWriter fails
+            {
+                MessageBox.Show($"The results could not be successfully exported! Please retry.", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
